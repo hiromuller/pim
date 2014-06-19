@@ -11,9 +11,9 @@ class Team(models.Model):
     # チーム名
     name = models.CharField(max_length=200)    
 
-class Customer(models.Model):
+class Target(models.Model):
     """
-    顧客情報モデル
+    ターゲット情報モデル
     """
     def __unicode__(self):
         return self.name_kanji
@@ -98,13 +98,13 @@ class Responsible(models.Model):
     def __unicode__(self):
         return self.responsible_by
     # 顧客
-    customer = models.ForeignKey(Customer)
+    customer = models.ForeignKey(Target)
     # 担当者
     responsible_by = models.ForeignKey(User)
     # 関係性。友人:1,取引相手:2,上司:3,会社同期:4,会社後輩:5,大学同期:6,大学先輩:7,大学後輩:8,地元:9,幹事仲間:10,恋人:11,ほぼ知らない:12
     relationship = models.IntegerField()
     
-admin.site.register(Customer)
+admin.site.register(Target)
 admin.site.register(User)
 admin.site.register(Team)
 admin.site.register(Responsible)
