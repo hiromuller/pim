@@ -108,3 +108,6 @@ admin.site.register(Target)
 admin.site.register(User)
 admin.site.register(Team)
 admin.site.register(Responsible)
+from django.db import models
+
+# Create your models here.
