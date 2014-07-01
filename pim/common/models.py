@@ -10,6 +10,15 @@ class Team(models.Model):
         return self.name
     # チーム名
     name = models.CharField(max_length=200)    
+    
+class Living_situation(models.Model):
+    """
+    暮らし状況
+    """
+    def __unicode__(self):
+        return self.living_situation
+    # 暮らし状況
+    living_situation = models.CharField(max_length=200)
 
 class Target(models.Model):
     """
@@ -41,8 +50,6 @@ class Target(models.Model):
     mail = models.CharField(max_length=200, blank=True)
     # 住所
     address = models.CharField(max_length=200, blank=True)
-    # チーム
-    team = models.ForeignKey(Team)
     # 職業
     occupation = models.CharField(max_length=200, blank=True)
     # 会社
@@ -52,15 +59,15 @@ class Target(models.Model):
     # 出身地
     birth_place = models.CharField(max_length=200, blank=True)
     # ひとり暮らし:1, 実家:2, ルームシェア:3 
-    living_situation = models.IntegerField(null=True)
+    living_situation = models.ForeignKey(Living_situation)
     # 備考
     remarks = models.TextField(blank=True)
     # 性格1
-    character_1 = models.IntegerField(null=True)
+    type_1 = models.CharField(max_length=200)
     # 性格2
-    character_2 = models.IntegerField(null=True)
+    type_2 = models.CharField(max_length=200)
     # 性格3
-    character_3 = models.IntegerField(null=True)
+    type_3 = models.CharField(max_length=200)
     # 終了フラグ
     done_flg = models.BooleanField(default=False)
 
@@ -83,13 +90,13 @@ class User (models.Model):
     # チーム
     team = models.ForeignKey(Team)
     # 出身地
-    birth_place = models.CharField(max_length=200)
+    birthday = models.DateField(blank=True)
     # 対象性格1
-    target_character_1 = models.IntegerField(blank=True)
+    target_type_1 = models.CharField(max_length=200)
     # 対象性格2
-    target_character_2 = models.IntegerField(blank=True)
+    target_type_2 = models.CharField(max_length=200)
     # 対象性格3
-    target_character_3 = models.IntegerField(blank=True)
+    target_type_3 = models.CharField(max_length=200)
     
 class Responsible(models.Model):
     """
@@ -98,13 +105,16 @@ class Responsible(models.Model):
     def __unicode__(self):
         return self.responsible_by
     # 顧客
-    customer = models.ForeignKey(Target)
+    target = models.ForeignKey(Target)
     # 担当者
     responsible_by = models.ForeignKey(User)
     # 関係性。友人:1,取引相手:2,上司:3,会社同期:4,会社後輩:5,大学同期:6,大学先輩:7,大学後輩:8,地元:9,幹事仲間:10,恋人:11,ほぼ知らない:12
     relationship = models.IntegerField()
+    #進捗状況
+    progress_status = models.TextField(blank=True)
     
 admin.site.register(Target)
+admin.site.register(Living_situation)
 admin.site.register(User)
 admin.site.register(Team)
 admin.site.register(Responsible)
