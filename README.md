@@ -1,2 +1,2 @@
-pim
+pim (personal info manager)
 ===
