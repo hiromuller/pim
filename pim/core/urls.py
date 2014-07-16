@@ -9,9 +9,9 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^login/$', 'common.views.logged_in'),
-    url(r'^logout/$', 'common.views.logout'),
-    url(r'^done/$', 'common.views.done', name='done'),
+    url(r'^login/$', 'auth.views.logged_in'),
+    url(r'^logout/$', 'auth.views.logout'),
+    url(r'^done/$', 'auth.views.done', name='done'),
     url(r'', include('social.apps.django_app.urls', namespace='social'))
 
 
