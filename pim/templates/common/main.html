@@ -1,17 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
 
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <link rel="stylesheet" type="text/css" href="../../static/css/common.css">
-</head>
-<body>
-  <div id="container">
+{% extends "base.html" %}
 
-{% include header.html %}
 
-{% include navigation.html %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+
+{% include "header.html" %}
+
+{% include "navigation.html" %}
 
 <!-- 変数mainに呼び出すメインテンプレート名を代入 -->
 {% include main_content %}
@@ -19,8 +16,6 @@
 <!-- 変数subに呼び出すサブテンプレート名を代入 -->
 {% include sub_content %}
 
-{% include footer.html %}
+{% include "footer.html" %}
 
-  </div>
-</body>
-</html>
+{% endblock %}
