@@ -71,15 +71,15 @@ class Target(models.Model):
     # 出身地
     birth_place = models.CharField(max_length=200, blank=True)
     # ひとり暮らし:1, 実家:2, ルームシェア:3 
-    living_situation = models.ForeignKey(Living_situation)
+    living_situation = models.ForeignKey(Living_situation, blank=True)
     # 備考
     remarks = models.TextField(blank=True)
     # 性格1
-    type_1 = models.ForeignKey(Type, related_name='type_1')
+    type_1 = models.ForeignKey(Type, related_name='type_1', blank=True)
     # 性格2
-    type_2 = models.ForeignKey(Type, related_name='type_2')
+    type_2 = models.ForeignKey(Type, related_name='type_2', blank=True)
     # 性格3
-    type_3 = models.ForeignKey(Type, related_name='type_3')
+    type_3 = models.ForeignKey(Type, related_name='type_3', blank=True)
     # 終了フラグ
     done_flg = models.BooleanField(default=False)
 
@@ -135,13 +135,13 @@ class User (models.Model):
     # 出身地
     birthday = models.DateField(blank=True)
     #出身地
-    birth_place = models.CharField(max_length=200)
+    birth_place = models.CharField(max_length=200, blank=True)
     # 対象性格1
-    target_type_1 = models.ForeignKey(Type, related_name='target_type_1')
+    target_type_1 = models.ForeignKey(Type, related_name='target_type_1', blank=True)
     # 対象性格2
-    target_type_2 = models.ForeignKey(Type, related_name='target_type_2')
+    target_type_2 = models.ForeignKey(Type, related_name='target_type_2', blank=True)
     # 対象性格3
-    target_type_3 = models.ForeignKey(Type, related_name='target_type_3')
+    target_type_3 = models.ForeignKey(Type, related_name='target_type_3', blank=True)
 
     
 class Progress(models.Model):
@@ -168,7 +168,7 @@ class Progress_management(models.Model):
     #進捗状況
     progress = models.ForeignKey(Progress)
     #備考
-    remarks = models.CharField(max_length=200)
+    remarks = models.CharField(max_length=200, blank=True)
 
 admin.site.register(Living_situation)
 admin.site.register(Type)
