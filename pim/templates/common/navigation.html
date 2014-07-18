@@ -1,17 +1,20 @@
     <div id="nav">
       <div class="title">TITLE</div>
+      <form id="navigation_form" method="post" action="{{main_url}}">
+      {% csrf_token %}
       <ul>
         <li>
-          Home
+          <a href="#" onClick="moveTo('progress_latest');">Home</a>
         </li>
         <li>
-          進捗
+          <a href="#" onClick="moveTo('progress_list');">進捗</a>
         </li>
         <li>
-          ターゲット
+          <a href="#" onClick="moveTo('target_list');">ターゲット</a>
         </li>
         <li>
-          ユーザ
+          <a href="#" onClick="moveTo('user_list');">ユーザ</a>
         </li>
       </ul>
+      </form>
     </div>
