@@ -8,17 +8,17 @@ from django.template.context import RequestContext
 # Create your views here.
 def logged_in(request):
     context = {}
-    template = 'logged_in.html'
+    template = 'auth/logged_in.html'
     return render(request, template, context)
 
 def done(request):
     context = {}
-    template = 'done.html'
+    template = 'auth/done.html'
     return render(request, template, context)
 
 def logout(request):
     auth_logout(request)
-    return redirect('/logged_in.html')
+    return redirect('/login')
 #     return render_to_response('logged_in.html', {}, RequestContext(request))
 
 #     context = {}
