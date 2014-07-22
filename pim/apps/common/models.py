@@ -26,7 +26,7 @@ class Level(models.Model):
     性格
     """
     def __unicode__(self):
-        return self.level
+        return self.level_description
     # レベル説明
     level_description = models.CharField(max_length=50)
 
@@ -43,21 +43,21 @@ class Target(models.Model):
     # 名前（英語）
     name_en = models.CharField(max_length=200)
     # 難易度
-    difficulty = models.IntegerField()
+    difficulty = models.IntegerField(blank=True, null=True)
     #レベル
-    level = models.ForeignKey(Level)
+    level = models.ForeignKey(Level, null=True)
     # 接触の目的
-    purpose = models.CharField(max_length=50)
+    purpose = models.CharField(max_length=50, blank=True)
     # 会った日
     met_date = models.DateField()
     # 会った場所
-    met_place = models.CharField(max_length=50)
+    met_place = models.CharField(max_length=50, blank=True)
     # 会ったシチュエーション
-    met_situation = models.CharField(max_length=200)
+    met_situation = models.CharField(max_length=200, blank=True)
     # 誕生日
-    birthday = models.DateField(blank=True)
+    birthday = models.DateField(blank=True, null=True)
     # 電話番号
-    phone_number = models.IntegerField(blank=True)
+    phone_number = models.IntegerField(blank=True, null=True)
     # メールアドレス
     mail = models.CharField(max_length=200, blank=True)
     # 住所
@@ -71,15 +71,15 @@ class Target(models.Model):
     # 出身地
     birth_place = models.CharField(max_length=200, blank=True)
     # ひとり暮らし:1, 実家:2, ルームシェア:3 
-    living_situation = models.ForeignKey(Living_situation, blank=True)
+    living_situation = models.ForeignKey(Living_situation, blank=True, null=True)
     # 備考
     remarks = models.TextField(blank=True)
     # 性格1
-    type_1 = models.ForeignKey(Type, related_name='type_1', blank=True)
+    type_1 = models.ForeignKey(Type, related_name='type_1', blank=True, null=True)
     # 性格2
-    type_2 = models.ForeignKey(Type, related_name='type_2', blank=True)
+    type_2 = models.ForeignKey(Type, related_name='type_2', blank=True, null=True)
     # 性格3
-    type_3 = models.ForeignKey(Type, related_name='type_3', blank=True)
+    type_3 = models.ForeignKey(Type, related_name='type_3', blank=True, null=True)
     # 終了フラグ
     done_flg = models.BooleanField(default=False)
 
@@ -88,7 +88,7 @@ class Introduce(models.Model):
     紹介者管理
     """
     def __unicode__(self):
-        return self.introuce
+        return self.introduced_by
     #紹介された人
     target = models.ForeignKey(Target, related_name='target')
     #紹介者
@@ -98,6 +98,8 @@ class Target_relationship(models.Model):
     """
     ターゲット同士の関係性
     """
+    def __unicode__(self):
+        return self.relationship
     #ターゲット1
     target1 = models.ForeignKey(Target, related_name='target1')
     #ターゲット2
@@ -133,15 +135,15 @@ class User (models.Model):
     # チーム
     team = models.ForeignKey(Team)
     # 出身地
-    birthday = models.DateField(blank=True)
+    birthday = models.DateField(blank=True, null=True)
     #出身地
     birth_place = models.CharField(max_length=200, blank=True)
     # 対象性格1
-    target_type_1 = models.ForeignKey(Type, related_name='target_type_1', blank=True)
+    target_type_1 = models.ForeignKey(Type, related_name='target_type_1', blank=True, null=True)
     # 対象性格2
-    target_type_2 = models.ForeignKey(Type, related_name='target_type_2', blank=True)
+    target_type_2 = models.ForeignKey(Type, related_name='target_type_2', blank=True, null=True)
     # 対象性格3
-    target_type_3 = models.ForeignKey(Type, related_name='target_type_3', blank=True)
+    target_type_3 = models.ForeignKey(Type, related_name='target_type_3', blank=True, null=True)
 
     
 class Progress(models.Model):
@@ -149,7 +151,7 @@ class Progress(models.Model):
     進捗マスタ
     """
     def __unicode__(self):
-        return self.progress
+        return self.progress_name
     #進捗名
     progress_name = models.CharField(max_length=50)
     
@@ -158,7 +160,7 @@ class Progress_management(models.Model):
     担当者定義モデル
     """
     def __unicode__(self):
-        return self.progress_management
+        return self.progress
     # 顧客
     target = models.ForeignKey(Target)
     # 担当者
