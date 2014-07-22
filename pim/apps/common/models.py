@@ -37,7 +37,7 @@ class Target(models.Model):
     def __unicode__(self):
         return self.name_kanji
     # 名前（漢字）
-    name_kanji = models.CharField(max_length=200, blank=True)
+    name_kanji = models.CharField(max_length=200)
     # 名前（ひらがな）
     name_hiragana = models.CharField(max_length=200, blank=True)
     # 名前（英語）
@@ -160,7 +160,7 @@ class Progress_management(models.Model):
     担当者定義モデル
     """
     def __unicode__(self):
-        return self.progress
+        return unicode(self.progress)
     # 顧客
     target = models.ForeignKey(Target)
     # 担当者
