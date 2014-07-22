@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.core.context_processors import csrf
 from django.contrib.auth.decorators import login_required
 
-@login_required(login_url='/login/')
+#@login_required(login_url='/login/')
 def show(request):
     if request.method == "POST":
         action = request.POST["action"]
