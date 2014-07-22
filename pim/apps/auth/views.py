@@ -5,15 +5,10 @@ from django.contrib.auth import logout as auth_logout
 from django.http.response import HttpResponseRedirect
 from django.template.context import RequestContext
 
-# Create your views here.
 def logged_in(request):
     context = {}
+    print "aaa"
     template = 'auth/logged_in.html'
-    return render(request, template, context)
-
-def done(request):
-    context = {}
-    template = 'auth/done.html'
     return render(request, template, context)
 
 def logout(request):
