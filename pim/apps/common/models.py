@@ -1,175 +1,175 @@
-# coding=sjis
+# -*- coding: utf-8 -*-
 from django.db import models
 from django.contrib import admin
 
     
 class Living_situation(models.Model):
     """
-    •é‚ç‚µó‹µ
+    ï¿½ï¿½ç‚µï¿½ï¿½
     """
     def __unicode__(self):
         return self.living_situation
-    # •é‚ç‚µó‹µ
+    # ï¿½ï¿½ç‚µï¿½ï¿½
     living_situation = models.CharField(max_length=200)
 
 class Type(models.Model):
     """
-    «Ši
+    ï¿½ï¿½ï¿½i
     """
     def __unicode__(self):
         return self.type
-    # «Ši
+    # ï¿½ï¿½ï¿½i
     type = models.CharField(max_length=200)
     
 class Level(models.Model):
     """
-    «Ši
+    ï¿½ï¿½ï¿½i
     """
     def __unicode__(self):
         return self.level_description
-    # ƒŒƒxƒ‹à–¾
+    # ï¿½ï¿½ï¿½xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     level_description = models.CharField(max_length=50)
 
 class Target(models.Model):
     """
-    ƒ^[ƒQƒbƒgî•ñƒ‚ƒfƒ‹
+    ï¿½^ï¿½[ï¿½Qï¿½bï¿½gï¿½ï¿½ñƒ‚ƒfï¿½ï¿½
     """
     def __unicode__(self):
         return self.name_kanji
-    # –¼‘OiŠ¿šj
+    # ï¿½ï¿½ï¿½Oï¿½iï¿½ï¿½ï¿½ï¿½ï¿½j
     name_kanji = models.CharField(max_length=200)
-    # –¼‘Oi‚Ğ‚ç‚ª‚Èj
+    # ï¿½ï¿½ï¿½Oï¿½iï¿½Ğ‚ç‚ªï¿½Èj
     name_hiragana = models.CharField(max_length=200, blank=True)
-    # –¼‘Oi‰pŒêj
+    # ï¿½ï¿½ï¿½Oï¿½iï¿½pï¿½ï¿½j
     name_en = models.CharField(max_length=200)
-    # “ïˆÕ“x
+    # ï¿½ï¿½Õ“x
     difficulty = models.IntegerField(blank=True, null=True)
-    #ƒŒƒxƒ‹
+    #ï¿½ï¿½ï¿½xï¿½ï¿½
     level = models.ForeignKey(Level, null=True)
-    # ÚG‚Ì–Ú“I
+    # ï¿½ÚGï¿½Ì–Ú“I
     purpose = models.CharField(max_length=50, blank=True)
-    # ‰ï‚Á‚½“ú
+    # ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     met_date = models.DateField()
-    # ‰ï‚Á‚½êŠ
+    # ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½êŠ
     met_place = models.CharField(max_length=50, blank=True)
-    # ‰ï‚Á‚½ƒVƒ`ƒ…ƒG[ƒVƒ‡ƒ“
+    # ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Vï¿½`ï¿½ï¿½ï¿½Gï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½
     met_situation = models.CharField(max_length=200, blank=True)
-    # ’a¶“ú
+    # ï¿½aï¿½ï¿½ï¿½ï¿½
     birthday = models.DateField(blank=True, null=True)
-    # “d˜b”Ô†
+    # ï¿½dï¿½bï¿½Ôï¿½
     phone_number = models.IntegerField(blank=True, null=True)
-    # ƒ[ƒ‹ƒAƒhƒŒƒX
+    # ï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Aï¿½hï¿½ï¿½ï¿½X
     mail = models.CharField(max_length=200, blank=True)
-    # ZŠ
+    # ï¿½Zï¿½ï¿½
     address = models.CharField(max_length=200, blank=True)
-    # E‹Æ
+    # ï¿½Eï¿½ï¿½
     occupation = models.CharField(max_length=200, blank=True)
-    # ‰ïĞ
+    # ï¿½ï¿½ï¿½
     company = models.CharField(max_length=200, blank=True)
-    # ï–¡
+    # ï¿½ï–¡
     hobby = models.CharField(max_length=200, blank=True)
-    # og’n
+    # ï¿½oï¿½gï¿½n
     birth_place = models.CharField(max_length=200, blank=True)
-    # ‚Ğ‚Æ‚è•é‚ç‚µ:1, À‰Æ:2, ƒ‹[ƒ€ƒVƒFƒA:3 
+    # ï¿½Ğ‚Æ‚ï¿½ï¿½ç‚µ:1, ï¿½ï¿½ï¿½ï¿½:2, ï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Vï¿½Fï¿½A:3 
     living_situation = models.ForeignKey(Living_situation, blank=True, null=True)
-    # ”õl
+    # ï¿½ï¿½ï¿½l
     remarks = models.TextField(blank=True)
-    # «Ši1
+    # ï¿½ï¿½ï¿½i1
     type_1 = models.ForeignKey(Type, related_name='type_1', blank=True, null=True)
-    # «Ši2
+    # ï¿½ï¿½ï¿½i2
     type_2 = models.ForeignKey(Type, related_name='type_2', blank=True, null=True)
-    # «Ši3
+    # ï¿½ï¿½ï¿½i3
     type_3 = models.ForeignKey(Type, related_name='type_3', blank=True, null=True)
-    # I—¹ƒtƒ‰ƒO
+    # ï¿½Iï¿½ï¿½ï¿½tï¿½ï¿½ï¿½O
     done_flg = models.BooleanField(default=False)
 
 class Introduce(models.Model):
     """
-    Ğ‰îÒŠÇ—
+    ï¿½Ğ‰ï¿½ÒŠÇ—ï¿½
     """
     def __unicode__(self):
         return self.introduced_by
-    #Ğ‰î‚³‚ê‚½l
+    #ï¿½Ğ‰î‚³ï¿½ê‚½ï¿½l
     target = models.ForeignKey(Target, related_name='target')
-    #Ğ‰îÒ
+    #ï¿½Ğ‰ï¿½ï¿½
     introduced_by = models.ForeignKey(Target, related_name='introduced_by')
 
 class Target_relationship(models.Model):
     """
-    ƒ^[ƒQƒbƒg“¯m‚ÌŠÖŒW«
+    ï¿½^ï¿½[ï¿½Qï¿½bï¿½gï¿½ï¿½ï¿½mï¿½ÌŠÖŒWï¿½ï¿½
     """
     def __unicode__(self):
         return self.relationship
-    #ƒ^[ƒQƒbƒg1
+    #ï¿½^ï¿½[ï¿½Qï¿½bï¿½g1
     target1 = models.ForeignKey(Target, related_name='target1')
-    #ƒ^[ƒQƒbƒg2
+    #ï¿½^ï¿½[ï¿½Qï¿½bï¿½g2
     target2 = models.ForeignKey(Target, related_name='target2')
-    #ŠÖŒW«
+    #ï¿½ÖŒWï¿½ï¿½
     relationship = models.CharField(max_length=200)
     
 class Team(models.Model):
     """
-    ƒ`[ƒ€ƒ‚ƒfƒ‹
+    ï¿½`ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½fï¿½ï¿½
     """
     def __unicode__(self):
         return self.name
-    # ƒ`[ƒ€–¼
+    # ï¿½`ï¿½[ï¿½ï¿½ï¿½ï¿½
     name = models.CharField(max_length=200)    
 
 class User (models.Model):
     """
-    ƒ†[ƒUƒ‚ƒfƒ‹
+    ï¿½ï¿½ï¿½[ï¿½Uï¿½ï¿½ï¿½fï¿½ï¿½
     """
     def __unicode__(self):
         return self.name_kanji
-    # ƒ†[ƒUID
+    # ï¿½ï¿½ï¿½[ï¿½UID
     login_id = models.CharField(max_length=20, primary_key=True)
-    # –¼‘OiŠ¿šj
+    # ï¿½ï¿½ï¿½Oï¿½iï¿½ï¿½ï¿½ï¿½ï¿½j
     name_kanji = models.CharField(max_length=200, blank=True)
-    # –¼‘Oi‚Ğ‚ç‚ª‚Èj
+    # ï¿½ï¿½ï¿½Oï¿½iï¿½Ğ‚ç‚ªï¿½Èj
     name_hiragana = models.CharField(max_length=200, blank=True)
-    # –¼‘Oi‰pŒêj
+    # ï¿½ï¿½ï¿½Oï¿½iï¿½pï¿½ï¿½j
     name_en = models.CharField(max_length=200)
-    # ƒpƒXƒ[ƒh
+    # ï¿½pï¿½Xï¿½ï¿½ï¿½[ï¿½h
     password = models.CharField(max_length=10)
-    # ƒ`[ƒ€
+    # ï¿½`ï¿½[ï¿½ï¿½
     team = models.ForeignKey(Team)
-    # og’n
+    # ï¿½oï¿½gï¿½n
     birthday = models.DateField(blank=True, null=True)
-    #og’n
+    #ï¿½oï¿½gï¿½n
     birth_place = models.CharField(max_length=200, blank=True)
-    # ‘ÎÛ«Ši1
+    # ï¿½ÎÛï¿½ï¿½i1
     target_type_1 = models.ForeignKey(Type, related_name='target_type_1', blank=True, null=True)
-    # ‘ÎÛ«Ši2
+    # ï¿½ÎÛï¿½ï¿½i2
     target_type_2 = models.ForeignKey(Type, related_name='target_type_2', blank=True, null=True)
-    # ‘ÎÛ«Ši3
+    # ï¿½ÎÛï¿½ï¿½i3
     target_type_3 = models.ForeignKey(Type, related_name='target_type_3', blank=True, null=True)
 
     
 class Progress(models.Model):
     """
-    i’»ƒ}ƒXƒ^
+    ï¿½iï¿½ï¿½ï¿½}ï¿½Xï¿½^
     """
     def __unicode__(self):
         return self.progress_name
-    #i’»–¼
+    #ï¿½iï¿½ï¿½ï¿½ï¿½
     progress_name = models.CharField(max_length=50)
     
 class Progress_management(models.Model):
     """
-    ’S“–Ò’è‹`ƒ‚ƒfƒ‹
+    ï¿½Sï¿½ï¿½ï¿½Ò’ï¿½`ï¿½ï¿½ï¿½fï¿½ï¿½
     """
     def __unicode__(self):
         return unicode(self.progress)
-    # ŒÚ‹q
+    # ï¿½Ú‹q
     target = models.ForeignKey(Target)
-    # ’S“–Ò
+    # ï¿½Sï¿½ï¿½ï¿½ï¿½
     responsible_by = models.ForeignKey(User)
-    # ŠÖŒW«B—Fl:1,æˆø‘Šè:2,ãi:3,‰ïĞ“¯Šú:4,‰ïĞŒã”y:5,‘åŠw“¯Šú:6,‘åŠwæ”y:7,‘åŠwŒã”y:8,’nŒ³:9,Š²–’‡ŠÔ:10,—öl:11,‚Ù‚Ú’m‚ç‚È‚¢:12
+    # ï¿½ÖŒWï¿½ï¿½ï¿½Bï¿½Fï¿½l:1,ï¿½ï¿½ï¿½ï¿½:2,ï¿½ï¿½i:3,ï¿½ï¿½Ğ“ï¿½ï¿½ï¿½:4,ï¿½ï¿½ĞŒï¿½y:5,ï¿½ï¿½wï¿½ï¿½ï¿½ï¿½:6,ï¿½ï¿½wï¿½ï¿½y:7,ï¿½ï¿½wï¿½ï¿½y:8,ï¿½nï¿½ï¿½:9,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:10,ï¿½ï¿½ï¿½l:11,ï¿½Ù‚Ú’mï¿½ï¿½È‚ï¿½:12
     relationship = models.CharField(max_length=200)
-    #i’»ó‹µ
+    #ï¿½iï¿½ï¿½ï¿½ï¿½
     progress = models.ForeignKey(Progress)
-    #”õl
+    #ï¿½ï¿½ï¿½l
     remarks = models.CharField(max_length=200, blank=True)
 
 admin.site.register(Living_situation)
