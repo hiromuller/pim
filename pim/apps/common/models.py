@@ -5,171 +5,171 @@ from django.contrib import admin
     
 class Living_situation(models.Model):
     """
-    ��炵��
+    暮らし状況
     """
     def __unicode__(self):
         return self.living_situation
-    # ��炵��
+    # 暮らし状況
     living_situation = models.CharField(max_length=200)
 
 class Type(models.Model):
     """
-    ���i
+    性格
     """
     def __unicode__(self):
         return self.type
-    # ���i
+    # 性格
     type = models.CharField(max_length=200)
     
 class Level(models.Model):
     """
-    ���i
+    性格
     """
     def __unicode__(self):
         return self.level_description
-    # ���x������
+    # レベル説明
     level_description = models.CharField(max_length=50)
 
 class Target(models.Model):
     """
-    �^�[�Q�b�g��񃂃f��
+    ターゲット情報モデル
     """
     def __unicode__(self):
         return self.name_kanji
-    # ���O�i�����j
+    # 名前（漢字）
     name_kanji = models.CharField(max_length=200)
-    # ���O�i�Ђ炪�ȁj
+    # 名前（ひらがな）
     name_hiragana = models.CharField(max_length=200, blank=True)
-    # ���O�i�p��j
+    # 名前（英語）
     name_en = models.CharField(max_length=200)
-    # ��Փx
+    # 難易度
     difficulty = models.IntegerField(blank=True, null=True)
-    #���x��
+    #レベル
     level = models.ForeignKey(Level, null=True)
-    # �ڐG�̖ړI
+    # 接触の目的
     purpose = models.CharField(max_length=50, blank=True)
-    # �������
+    # 会った日
     met_date = models.DateField()
-    # ������ꏊ
+    # 会った場所
     met_place = models.CharField(max_length=50, blank=True)
-    # ������V�`���G�[�V����
+    # 会ったシチュエーション
     met_situation = models.CharField(max_length=200, blank=True)
-    # �a����
+    # 誕生日
     birthday = models.DateField(blank=True, null=True)
-    # �d�b�ԍ�
+    # 電話番号
     phone_number = models.IntegerField(blank=True, null=True)
-    # ���[���A�h���X
+    # メールアドレス
     mail = models.CharField(max_length=200, blank=True)
-    # �Z��
+    # 住所
     address = models.CharField(max_length=200, blank=True)
-    # �E��
+    # 職業
     occupation = models.CharField(max_length=200, blank=True)
-    # ���
+    # 会社
     company = models.CharField(max_length=200, blank=True)
-    # �
+    # 趣味
     hobby = models.CharField(max_length=200, blank=True)
-    # �o�g�n
+    # 出身地
     birth_place = models.CharField(max_length=200, blank=True)
-    # �ЂƂ��炵:1, ����:2, ���[���V�F�A:3 
+    # ひとり暮らし:1, 実家:2, ルームシェア:3 
     living_situation = models.ForeignKey(Living_situation, blank=True, null=True)
-    # ���l
+    # 備考
     remarks = models.TextField(blank=True)
-    # ���i1
+    # 性格1
     type_1 = models.ForeignKey(Type, related_name='type_1', blank=True, null=True)
-    # ���i2
+    # 性格2
     type_2 = models.ForeignKey(Type, related_name='type_2', blank=True, null=True)
-    # ���i3
+    # 性格3
     type_3 = models.ForeignKey(Type, related_name='type_3', blank=True, null=True)
-    # �I���t���O
+    # 終了フラグ
     done_flg = models.BooleanField(default=False)
 
 class Introduce(models.Model):
     """
-    �Љ�ҊǗ�
+    紹介者管理
     """
     def __unicode__(self):
         return self.introduced_by
-    #�Љ�ꂽ�l
+    #紹介された人
     target = models.ForeignKey(Target, related_name='target')
-    #�Љ��
+    #紹介者
     introduced_by = models.ForeignKey(Target, related_name='introduced_by')
 
 class Target_relationship(models.Model):
     """
-    �^�[�Q�b�g���m�̊֌W��
+    ターゲット同士の関係性
     """
     def __unicode__(self):
         return self.relationship
-    #�^�[�Q�b�g1
+    #ターゲット1
     target1 = models.ForeignKey(Target, related_name='target1')
-    #�^�[�Q�b�g2
+    #ターゲット2
     target2 = models.ForeignKey(Target, related_name='target2')
-    #�֌W��
+    #関係性
     relationship = models.CharField(max_length=200)
     
 class Team(models.Model):
     """
-    �`�[�����f��
+    チームモデル
     """
     def __unicode__(self):
         return self.name
-    # �`�[����
+    # チーム名
     name = models.CharField(max_length=200)    
 
 class User (models.Model):
     """
-    ���[�U���f��
+    ユーザモデル
     """
     def __unicode__(self):
         return self.name_kanji
-    # ���[�UID
+    # ユーザID
     login_id = models.CharField(max_length=20, primary_key=True)
-    # ���O�i�����j
+    # 名前（漢字）
     name_kanji = models.CharField(max_length=200, blank=True)
-    # ���O�i�Ђ炪�ȁj
+    # 名前（ひらがな）
     name_hiragana = models.CharField(max_length=200, blank=True)
-    # ���O�i�p��j
+    # 名前（英語）
     name_en = models.CharField(max_length=200)
-    # �p�X���[�h
+    # パスワード
     password = models.CharField(max_length=10)
-    # �`�[��
+    # チーム
     team = models.ForeignKey(Team)
-    # �o�g�n
+    # 出身地
     birthday = models.DateField(blank=True, null=True)
-    #�o�g�n
+    #出身地
     birth_place = models.CharField(max_length=200, blank=True)
-    # �Ώې��i1
+    # 対象性格1
     target_type_1 = models.ForeignKey(Type, related_name='target_type_1', blank=True, null=True)
-    # �Ώې��i2
+    # 対象性格2
     target_type_2 = models.ForeignKey(Type, related_name='target_type_2', blank=True, null=True)
-    # �Ώې��i3
+    # 対象性格3
     target_type_3 = models.ForeignKey(Type, related_name='target_type_3', blank=True, null=True)
 
     
 class Progress(models.Model):
     """
-    �i���}�X�^
+    進捗マスタ
     """
     def __unicode__(self):
         return self.progress_name
-    #�i����
+    #進捗名
     progress_name = models.CharField(max_length=50)
     
 class Progress_management(models.Model):
     """
-    �S���Ғ�`���f��
+    担当者定義モデル
     """
     def __unicode__(self):
         return unicode(self.progress)
-    # �ڋq
+    # 顧客
     target = models.ForeignKey(Target)
-    # �S����
+    # 担当者
     responsible_by = models.ForeignKey(User)
-    # �֌W���B�F�l:1,����:2,��i:3,��Г���:4,��Ќ�y:5,��w����:6,��w��y:7,��w��y:8,�n��:9,��������:10,���l:11,�قڒm��Ȃ�:12
+    # 関係性。友人:1,取引相手:2,上司:3,会社同期:4,会社後輩:5,大学同期:6,大学先輩:7,大学後輩:8,地元:9,幹事仲間:10,恋人:11,ほぼ知らない:12
     relationship = models.CharField(max_length=200)
-    #�i����
+    #進捗状況
     progress = models.ForeignKey(Progress)
-    #���l
+    #備考
     remarks = models.CharField(max_length=200, blank=True)
 
 admin.site.register(Living_situation)
