@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from django.core.context_processors import csrf
 import configs as CONFIG
+import services as SERVICES
 
 # Create your views here.
-def index(request):        
+def index(request):
+    print 'progress_latest'    
     main_url = CONFIG.TOP_URL
     main_content = CONFIG.PROGRESS_LATEST_MAIN_URL
     sub_content = CONFIG.PROGRESS_LATEST_SUB_URL
