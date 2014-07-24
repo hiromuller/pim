@@ -12,6 +12,11 @@ class Living_situation(models.Model):
     # 暮らし状況
     living_situation = models.CharField(max_length=200)
 
+    def encode(self):
+        return {
+                'living_situation': self.living_situation,
+                }
+        
 class Type(models.Model):
     """
     性格
@@ -20,16 +25,26 @@ class Type(models.Model):
         return self.type
     # 性格
     type = models.CharField(max_length=200)
-    
+
+    def encode(self):
+        return {
+                'type': self.type,
+                }
+        
 class Level(models.Model):
     """
-    性格
+    レベル
     """
     def __unicode__(self):
         return self.level_description
     # レベル説明
     level_description = models.CharField(max_length=50)
 
+    def encode(self):
+        return {
+                'level_description': self.level_description,
+                }
+        
 class Target(models.Model):
     """
     ターゲット情報モデル
@@ -83,6 +98,33 @@ class Target(models.Model):
     # 終了フラグ
     done_flg = models.BooleanField(default=False)
 
+    def encode(self):
+        return {
+                'name_kanji': self.name_kanji,
+                'name_hiragana': self.name_hiragana,
+                'name_en': self.name_en,
+                'difficulty': self.difficulty,
+                'level': self.level,
+                'purpose': self.purpose,
+                'met_date': self.met_date,
+                'met_place': self.met_place,
+                'met_situation': self.met_situation,
+                'birthday': self.birthday,
+                'phone_number': self.phone_number,
+                'mail': self.mail,
+                'address': self.address,
+                'occupation': self.occupation,
+                'company': self.company,
+                'hobby': self.hobby,
+                'birth_place': self.birth_place,
+                'living_situation': self.living_situation.encode(),
+                'remarks': self.remarks,
+                'type_1': self.type_1.encode(),
+                'type_2': self.type_2.encode(),
+                'type_3': self.type_3.encode(),
+                'done_flg': self.done_flg,
+                }
+        
 class Introduce(models.Model):
     """
     紹介者管理
@@ -93,6 +135,12 @@ class Introduce(models.Model):
     target = models.ForeignKey(Target, related_name='target')
     #紹介者
     introduced_by = models.ForeignKey(Target, related_name='introduced_by')
+    
+    def encode(self):
+        return {
+                'target': self.target.encode(),
+                'introduced_by': self.introduced_by.encode(),
+                }
 
 class Target_relationship(models.Model):
     """
@@ -107,6 +155,13 @@ class Target_relationship(models.Model):
     #関係性
     relationship = models.CharField(max_length=200)
     
+    def encode(self):
+        return {
+                'target1': self.target1.encode(),
+                'target2': self.target2.encode(),
+                'relationship': self.relationship,
+                }
+    
 class Team(models.Model):
     """
     チームモデル
@@ -114,7 +169,12 @@ class Team(models.Model):
     def __unicode__(self):
         return self.name
     # チーム名
-    name = models.CharField(max_length=200)    
+    name = models.CharField(max_length=200)
+    
+    def encode(self):
+        return {
+                'name': self.name,
+                }
 
 class User (models.Model):
     """
@@ -144,7 +204,21 @@ class User (models.Model):
     target_type_2 = models.ForeignKey(Type, related_name='target_type_2', blank=True, null=True)
     # 対象性格3
     target_type_3 = models.ForeignKey(Type, related_name='target_type_3', blank=True, null=True)
-
+    
+    def encode(self):
+        return {
+                'login_id': self.login_id,
+                'name_kanji': self.name_kanji,
+                'name_hiragana': self.name_hiragana,
+                'name_en': self.name_en,
+                'password': self.password,
+                'team': self.team.encode(),
+                'birthday': self.birthday,
+                'birth_place': self.birth_place,
+                'target_type_1': self.target_type_1,
+                'target_type_2': self.target_type_2,
+                'target_type_3': self.target_type_3,
+                }
     
 class Progress(models.Model):
     """
@@ -154,6 +228,11 @@ class Progress(models.Model):
         return self.progress_name
     #進捗名
     progress_name = models.CharField(max_length=50)
+    
+    def encode(self):
+        return {
+                'progress_name': self.progress_name,
+                }
     
 class Progress_management(models.Model):
     """
@@ -172,6 +251,15 @@ class Progress_management(models.Model):
     #備考
     remarks = models.CharField(max_length=200, blank=True)
 
+    def encode(self):
+        return {
+                'target': self.target.encode(),
+                'responsible_by': self.responsible_by.encode(),
+                'relationship': self.relationship,
+                'progres': self.progress.encode(),
+                'remarks': self.remarks,
+                }
+        
 admin.site.register(Living_situation)
 admin.site.register(Type)
 admin.site.register(Level)

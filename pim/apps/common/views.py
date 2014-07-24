@@ -2,6 +2,7 @@
 from django.shortcuts import render
 from django.core.context_processors import csrf
 from django.contrib.auth.decorators import login_required
+import services as SERVICE
 import configs as CONFIG
 import progress_latest.views as PROGRESS_LATEST_VIEWS
 import progress_list.views as PROGRESS_LIST_VIEWS
@@ -12,6 +13,11 @@ import user_list.views as USER_LIST_VIEWS
 
 #@login_required(login_url='/login/')
 def show(request):
+    #暫定的にsessionユーザを定義。あとで消す
+    test_user = SERVICE.getUserByLoginId('user1')
+    request.session['user'] = test_user
+    #ここまで
+    
     if request.method == "POST":
         action = request.POST["action"]
     else:
