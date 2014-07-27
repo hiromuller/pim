@@ -24,15 +24,16 @@ TOP_URL = '/main/'
 
 
 """
-トップページアクションの設定
+アクションの設定
 """
-ACTION_TOP = 'progress_latest'
 ACTION_PROGRESS_LATEST = 'progress_latest'
 ACTION_PROGRESS_LIST = 'progress_list'
 ACTION_TARGET_DETAIL = 'target_detail'
 ACTION_TARGET_LIST = 'target_list'
 ACTION_USER_DETAIL = 'user_detail'
 ACTION_USER_LIST = 'user_list'
+
+ACTION_TOP = ACTION_PROGRESS_LATEST
 
 """
 コンテンツHTML
