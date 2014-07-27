@@ -4,6 +4,8 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta http-equiv="Content-Style-Type" content="text/css">
   <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/common.css">
+  <!-- Bootstrap -->
+  <link href="{{STATIC_URL}}css/bootstrap.min.css" rel="stylesheet">
   <script type="text/javascript" src="{{STATIC_URL}}js/common.js"></script>
   <title>{% block title %}{% endblock %}</title>
 </head>
@@ -13,10 +15,9 @@
   {% block content %}{% endblock %}
   
   </div>
-  <script type="text/javascript">
-  function test1() {
-	  window.alert("aaaaa");
-  }
-  </script>
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="{{STATIC_URL}}js/bootstrap.min.js"></script>
 </body>
 </html>
