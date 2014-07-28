@@ -8,14 +8,25 @@
 
 {% include "common/header.html" %}
 
-{% include "common/navigation.html" %}
+<div class="row">
+  <div class="col-xs-12 col-sm-2">
+    {% include "common/navigation.html" %}
+  </div>
+  
+  <!-- 変数mainに呼び出すメインテンプレート名を代入 -->
+  <div class="col-xs-7 col-sm-7">
+    {% include main_content %}
+  </div>
+ 
+  <!-- 変数subに呼び出すサブテンプレート名を代入 -->
+  <div class="col-xs-5 col-sm-3">
+    {% include sub_content %}
+  </div>
+</div>
 
-<!-- 変数mainに呼び出すメインテンプレート名を代入 -->
-{% include main_content %}
-
-<!-- 変数subに呼び出すサブテンプレート名を代入 -->
-{% include sub_content %}
-
-{% include "common/footer.html" %}
-
+<div class="row">
+  <div class="col-xs-12 col-sm-12">
+    {% include "common/footer.html" %}
+  </div>
+</div>
 {% endblock %}
