@@ -38,11 +38,13 @@ def show(request):
         return USER_LIST_VIEWS.index(request)    
     else:
         main_url = CONFIG.TOP_URL
+        page_title = action + CONFIG.PAGE_TITLE
         main_content = action + CONFIG.CONTENT_MAIN
         sub_content = action + CONFIG.CONTENT_SUB
         
         c = {}    
         url_dict = {'main_url':main_url, 
+                    'page_title':page_title,
                     'main_content':main_content,
                     'sub_content':sub_content}
         c.update(csrf(request))

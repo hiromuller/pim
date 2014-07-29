@@ -6,10 +6,12 @@ import configs as CONFIG
 def index(request):
     print 'target_detail'    
     main_url = CONFIG.TOP_URL
+    page_title = CONFIG.TARGET_DETAIL_PAGE_TITLE_URL
     main_content = CONFIG.TARGET_DETAIL_MAIN_URL
     sub_content = CONFIG.TARGET_DETAIL_SUB_URL
     c = {}    
     url_dict = {'main_url':main_url, 
+                'page_title':page_title, 
                 'main_content':main_content,
                 'sub_content':sub_content}
     c.update(csrf(request))

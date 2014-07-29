@@ -6,10 +6,12 @@ import configs as CONFIG
 def index(request):
     print 'progress_list'    
     main_url = CONFIG.TOP_URL
+    page_title = CONFIG.PROGRESS_LIST_PAGE_TITLE_URL
     main_content = CONFIG.PROGRESS_LIST_MAIN_URL
     sub_content = CONFIG.PROGRESS_LIST_SUB_URL
     c = {}    
     url_dict = {'main_url':main_url, 
+                'page_title':page_title, 
                 'main_content':main_content,
                 'sub_content':sub_content}
     c.update(csrf(request))

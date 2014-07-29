@@ -2,21 +2,27 @@
 """
 URL設定
 """
+PROGRESS_LATEST_PAGE_TITLE_URL = 'progress_latest/page_title.html'
 PROGRESS_LATEST_MAIN_URL = 'progress_latest/main_content.html'
 PROGRESS_LATEST_SUB_URL = 'progress_latest/sub_content.html'
 
+PROGRESS_LIST_PAGE_TITLE_URL = 'progress_list/page_title.html'
 PROGRESS_LIST_MAIN_URL = 'progress_list/main_content.html'
 PROGRESS_LIST_SUB_URL = 'progress_list/sub_content.html'
 
+TARGET_DETAIL_PAGE_TITLE_URL = 'target_detail/page_title.html'
 TARGET_DETAIL_MAIN_URL = 'target_detail/main_content.html'
 TARGET_DETAIL_SUB_URL = 'target_detail/sub_content.html'
 
+TARGET_LIST_PAGE_TITLE_URL = 'target_list/page_title.html'
 TARGET_LIST_MAIN_URL = 'target_list/main_content.html'
 TARGET_LIST_SUB_URL = 'target_list/sub_content.html'
 
+USER_DETAIL_PAGE_TITLE_URL = 'user_detail/page_title.html'
 USER_DETAIL_MAIN_URL = 'user_detail/main_content.html'
 USER_DETAIL_SUB_URL = 'user_detail/sub_content.html'
 
+USER_LIST_PAGE_TITLE_URL = 'user_list/page_title.html'
 USER_LIST_MAIN_URL = 'user_list/main_content.html'
 USER_LIST_SUB_URL = 'user_list/sub_content.html'
 
@@ -38,5 +44,6 @@ ACTION_TOP = ACTION_PROGRESS_LATEST
 """
 コンテンツHTML
 """
+PAGE_TITLE = '/page_title.html'
 CONTENT_MAIN = '/main_content.html'
 CONTENT_SUB = '/sub_content.html'
