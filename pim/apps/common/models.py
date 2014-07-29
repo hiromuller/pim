@@ -250,6 +250,8 @@ class Progress_management(models.Model):
     progress = models.ForeignKey(Progress)
     #備考
     remarks = models.CharField(max_length=200, blank=True)
+    #登録日時
+    registered_at = models.DateField(auto_now_add=True)
 
     def encode(self):
         return {
