@@ -97,6 +97,8 @@ class Target(models.Model):
     type_3 = models.ForeignKey(Type, related_name='type_3', blank=True, null=True)
     # 終了フラグ
     done_flg = models.BooleanField(default=False)
+    # プロファイル画像
+    profile_photo = models.CharField(max_length=200, blank=True)
 
     def encode(self):
         return {
@@ -204,6 +206,8 @@ class User (models.Model):
     target_type_2 = models.ForeignKey(Type, related_name='target_type_2', blank=True, null=True)
     # 対象性格3
     target_type_3 = models.ForeignKey(Type, related_name='target_type_3', blank=True, null=True)
+    # プロファイル画像
+    profile_photo = models.CharField(max_length=200, blank=True)
     
     def encode(self):
         return {
