@@ -50,9 +50,9 @@ class Target(models.Model):
     ターゲット情報モデル
     """
     def __unicode__(self):
-        return self.name_kanji
+        return self.name_en
     # 名前（漢字）
-    name_kanji = models.CharField(max_length=200)
+    name_kanji = models.CharField(max_length=200, blank=True)
     # 名前（ひらがな）
     name_hiragana = models.CharField(max_length=200, blank=True)
     # 名前（英語）
@@ -181,7 +181,7 @@ class User (models.Model):
     ユーザモデル
     """
     def __unicode__(self):
-        return self.name_kanji
+        return self.name_en
     # ユーザID
     login_id = models.CharField(max_length=20, primary_key=True)
     # 名前（漢字）
@@ -193,7 +193,7 @@ class User (models.Model):
     # パスワード
     password = models.CharField(max_length=10)
     # チーム
-    team = models.ForeignKey(Team)
+    team = models.ForeignKey(Team, blank=True, null=True)
     # 出身地
     birthday = models.DateField(blank=True, null=True)
     #出身地
