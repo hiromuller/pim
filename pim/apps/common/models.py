@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 from django.contrib import admin
+from django.contrib.auth.models import AbstractUser
 
     
 class Living_situation(models.Model):
@@ -57,6 +58,8 @@ class Target(models.Model):
     name_hiragana = models.CharField(max_length=200, blank=True)
     # 名前（英語）
     name_en = models.CharField(max_length=200)
+    # 呼び名
+    nick_name = models.CharField(max_length=200, blank=True)
     # 難易度
     difficulty = models.IntegerField(blank=True, null=True)
     #レベル
@@ -178,7 +181,7 @@ class Team(models.Model):
                 'name': self.name,
                 }
 
-class User (models.Model):
+class User (AbstractUser):
     """
     ユーザモデル
     """
@@ -193,7 +196,7 @@ class User (models.Model):
     # 名前（英語）
     name_en = models.CharField(max_length=200)
     # パスワード
-    password = models.CharField(max_length=10)
+#     password = models.CharField(max_length=10)
     # チーム
     team = models.ForeignKey(Team, blank=True, null=True)
     # 出身地
