@@ -181,6 +181,10 @@ class Team(models.Model):
                 'name': self.name,
                 }
 
+class CustomUserManager(models.Manager):
+    def create_user(self, username, email):
+        return self.model._default_manager.create(username=username)
+
 class User (models.Model):
     """
     ユーザモデル
@@ -188,7 +192,11 @@ class User (models.Model):
     def __unicode__(self):
         return self.name_en
     # ユーザID
-    login_id = models.CharField(max_length=20, primary_key=True)
+    username = models.CharField(max_length=20, primary_key=True)
+    # email
+    email = models.CharField(max_length=200)
+    # last login
+    last_login = models.DateTimeField(blank=True, null=True)
     # 名前（漢字）
     name_kanji = models.CharField(max_length=200, blank=True)
     # 名前（ひらがな）
@@ -211,7 +219,14 @@ class User (models.Model):
     target_type_3 = models.CharField(max_length=200, blank=True, null=True, choices=CONST.TYPE_CHOICES)
     # プロファイル画像
     profile_photo = models.CharField(max_length=200, blank=True)
-    
+    # is_active 
+    is_active  = models.BooleanField(default=True)
+
+    objects = CustomUserManager();
+
+    def is_authenticated(self):
+        return True
+ 
     def encode(self):
         return {
                 'login_id': self.login_id,
