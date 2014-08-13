@@ -1,50 +1,50 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 from django.contrib import admin
-from django.contrib.auth.models import AbstractUser
+import consts as CONST
 
     
-class Living_situation(models.Model):
-    """
-    暮らし状況
-    """
-    def __unicode__(self):
-        return self.living_situation
+#class Living_situation(models.Model):
+#    """
+#    暮らし状況
+#    """
+#    def __unicode__(self):
+#        return self.living_situation
     # 暮らし状況
-    living_situation = models.CharField(max_length=200)
+#    living_situation = models.CharField(max_length=200)
 
-    def encode(self):
-        return {
-                'living_situation': self.living_situation,
-                }
+#    def encode(self):
+#        return {
+#                'living_situation': self.living_situation,
+#                }
         
-class Type(models.Model):
-    """
-    性格
-    """
-    def __unicode__(self):
-        return self.type
-    # 性格
-    type = models.CharField(max_length=200)
+#class Type(models.Model):
+#    """
+#    性格
+#    """
+#    def __unicode__(self):
+#        return self.type
+#    # 性格
+#    type = models.CharField(max_length=200)
 
-    def encode(self):
-        return {
-                'type': self.type,
-                }
+#    def encode(self):
+#        return {
+#                'type': self.type,
+#                }
         
-class Level(models.Model):
-    """
-    レベル
-    """
-    def __unicode__(self):
-        return self.level_description
-    # レベル説明
-    level_description = models.CharField(max_length=50)
+#class Level(models.Model):
+#    """
+#    レベル
+#    """
+#    def __unicode__(self):
+#        return self.level_description
+#    # レベル説明
+#    level_description = models.CharField(max_length=50)
 
-    def encode(self):
-        return {
-                'level_description': self.level_description,
-                }
+#    def encode(self):
+#        return {
+#                'level_description': self.level_description,
+#                }
         
 class Target(models.Model):
     """
@@ -63,7 +63,7 @@ class Target(models.Model):
     # 難易度
     difficulty = models.IntegerField(blank=True, null=True)
     #レベル
-    level = models.ForeignKey(Level, null=True)
+    level = models.IntegerField(null=True, choices=CONST.LEVEL_CHOICES)
     # 接触の目的
     purpose = models.CharField(max_length=50, blank=True)
     # 会った日
@@ -89,15 +89,15 @@ class Target(models.Model):
     # 出身地
     birth_place = models.CharField(max_length=200, blank=True)
     # ひとり暮らし:1, 実家:2, ルームシェア:3 
-    living_situation = models.ForeignKey(Living_situation, blank=True, null=True)
+    living_situation = models.CharField(max_length=200, blank=True, null=True, choices=CONST.LIVING_SITUATION_CHOICES)
     # 備考
     remarks = models.TextField(blank=True)
     # 性格1
-    type_1 = models.ForeignKey(Type, related_name='type_1', blank=True, null=True)
+    type_1 = models.CharField(max_length=200, blank=True, null=True, choices=CONST.TYPE_CHOICES)
     # 性格2
-    type_2 = models.ForeignKey(Type, related_name='type_2', blank=True, null=True)
+    type_2 = models.CharField(max_length=200, blank=True, null=True, choices=CONST.TYPE_CHOICES)
     # 性格3
-    type_3 = models.ForeignKey(Type, related_name='type_3', blank=True, null=True)
+    type_3 = models.CharField(max_length=200, blank=True, null=True, choices=CONST.TYPE_CHOICES)
     # 終了フラグ
     done_flg = models.BooleanField(default=False)
     # プロファイル画像
@@ -122,11 +122,11 @@ class Target(models.Model):
                 'company': self.company,
                 'hobby': self.hobby,
                 'birth_place': self.birth_place,
-                'living_situation': self.living_situation.encode(),
+                'living_situation': self.living_situation,
                 'remarks': self.remarks,
-                'type_1': self.type_1.encode(),
-                'type_2': self.type_2.encode(),
-                'type_3': self.type_3.encode(),
+                'type_1': self.type_1,
+                'type_2': self.type_2,
+                'type_3': self.type_3,
                 'done_flg': self.done_flg,
                 }
         
@@ -181,7 +181,7 @@ class Team(models.Model):
                 'name': self.name,
                 }
 
-class User (AbstractUser):
+class User (models.Model):
     """
     ユーザモデル
     """
@@ -204,11 +204,11 @@ class User (AbstractUser):
     #出身地
     birth_place = models.CharField(max_length=200, blank=True)
     # 対象性格1
-    target_type_1 = models.ForeignKey(Type, related_name='target_type_1', blank=True, null=True)
+    target_type_1 = models.CharField(max_length=200, blank=True, null=True, choices=CONST.TYPE_CHOICES)
     # 対象性格2
-    target_type_2 = models.ForeignKey(Type, related_name='target_type_2', blank=True, null=True)
+    target_type_2 = models.CharField(max_length=200, blank=True, null=True, choices=CONST.TYPE_CHOICES)
     # 対象性格3
-    target_type_3 = models.ForeignKey(Type, related_name='target_type_3', blank=True, null=True)
+    target_type_3 = models.CharField(max_length=200, blank=True, null=True, choices=CONST.TYPE_CHOICES)
     # プロファイル画像
     profile_photo = models.CharField(max_length=200, blank=True)
     
@@ -227,19 +227,19 @@ class User (AbstractUser):
                 'target_type_3': self.target_type_3,
                 }
     
-class Progress(models.Model):
-    """
-    進捗マスタ
-    """
-    def __unicode__(self):
-        return self.progress_name
-    #進捗名
-    progress_name = models.CharField(max_length=50)
+#class Progress(models.Model):
+#    """
+#    進捗マスタ
+#    """
+#    def __unicode__(self):
+#        return self.progress_name
+#    #進捗名
+#    progress_name = models.CharField(max_length=50)
     
-    def encode(self):
-        return {
-                'progress_name': self.progress_name,
-                }
+#    def encode(self):
+#        return {
+#                'progress_name': self.progress_name,
+#                }
     
 class Progress_management(models.Model):
     """
@@ -254,7 +254,7 @@ class Progress_management(models.Model):
     # 関係性。友人:1,取引相手:2,上司:3,会社同期:4,会社後輩:5,大学同期:6,大学先輩:7,大学後輩:8,地元:9,幹事仲間:10,恋人:11,ほぼ知らない:12
     relationship = models.CharField(max_length=200)
     #進捗状況
-    progress = models.ForeignKey(Progress)
+    progress = models.CharField(max_length=200, choices=CONST.PROGRESS_CHOICES)
     #備考
     remarks = models.CharField(max_length=200, blank=True)
     #登録日時
@@ -265,17 +265,17 @@ class Progress_management(models.Model):
                 'target': self.target.encode(),
                 'responsible_by': self.responsible_by.encode(),
                 'relationship': self.relationship,
-                'progres': self.progress.encode(),
+                'progress': self.progress,
                 'remarks': self.remarks,
                 }
         
-admin.site.register(Living_situation)
-admin.site.register(Type)
-admin.site.register(Level)
+#admin.site.register(Living_situation)
+#admin.site.register(Type)
+#admin.site.register(Level)
 admin.site.register(Target)
 admin.site.register(Introduce)
 admin.site.register(Target_relationship)
 admin.site.register(Team)
 admin.site.register(User)
-admin.site.register(Progress)
+#admin.site.register(Progress)
 admin.site.register(Progress_management)

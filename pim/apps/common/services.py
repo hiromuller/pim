@@ -3,7 +3,7 @@ Created on 2014/07/23
 
 @author: h-nagata
 '''
-from models import Target, User, Team, Progress, Progress_management
+from models import Target, User, Team, Progress_management
 
 def getUserByLoginId(login_id):
     user = User.objects.filter(login_id = login_id)
