@@ -61,7 +61,7 @@ class Target(models.Model):
     # 呼び名
     nick_name = models.CharField(max_length=200, blank=True)
     # 難易度
-    difficulty = models.IntegerField(blank=True, null=True)
+    difficulty = models.CharField(max_length=200, blank=True, null=True, choices=CONST.DIFFICULTY_CHOICES)
     #レベル
     level = models.IntegerField(null=True, choices=CONST.LEVEL_CHOICES)
     # 接触の目的

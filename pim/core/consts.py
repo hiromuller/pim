@@ -54,3 +54,11 @@ PROGRESS_CHOICES = (
                     ('COMPLETED',u'完了'),
                     ('FINISHED',u'終了')
                     )
+"""
+difficulty
+"""
+DIFFICULTY_CHOICES = (
+                      ('EASY', u'易しい'),
+                      ('NOMRAL', u'普通'),
+                      ('HARD', u'難しい')
+                      )
