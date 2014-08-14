@@ -1,13 +1,11 @@
 # -*- coding: utf-8 -*-
 
-from django.shortcuts import render, render_to_response, redirect
 from django.contrib.auth import logout as auth_logout
-from django.http.response import HttpResponseRedirect
-from django.template.context import RequestContext
+from django.shortcuts import render, redirect
 
 def logged_in(request):
     context = {}
-    print "aaa"
+    print "logged_in"
     template = 'auth/logged_in.html'
     return render(request, template, context)
 

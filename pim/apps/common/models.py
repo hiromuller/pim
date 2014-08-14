@@ -218,7 +218,7 @@ class User (models.Model):
     # 対象性格3
     target_type_3 = models.CharField(max_length=200, blank=True, null=True, choices=CONST.TYPE_CHOICES)
     # プロファイル画像
-    profile_photo = models.CharField(max_length=200, blank=True)
+    profile_photo = models.URLField(max_length=200, blank=True)
     # is_active 
     is_active  = models.BooleanField(default=True)
 
@@ -229,17 +229,17 @@ class User (models.Model):
  
     def encode(self):
         return {
-                'login_id': self.login_id,
+                'username': self.username,
                 'name_kanji': self.name_kanji,
                 'name_hiragana': self.name_hiragana,
                 'name_en': self.name_en,
-                'password': self.password,
-                'team': self.team.encode(),
+                'team': self.team,
                 'birthday': self.birthday,
                 'birth_place': self.birth_place,
                 'target_type_1': self.target_type_1,
                 'target_type_2': self.target_type_2,
                 'target_type_3': self.target_type_3,
+                'profile_photo': self.profile_photo,
                 }
     
 #class Progress(models.Model):
