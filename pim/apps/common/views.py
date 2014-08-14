@@ -30,6 +30,8 @@ def show(request):
         return PROGRESS_LIST_VIEWS.index(request)
     elif action == CONFIG.ACTION_TARGET_DETAIL:
         return TARGET_DETAIL_VIEWS.index(request)
+    elif action == CONFIG.ACTION_TARGET_ADD:
+        return TARGET_LIST_VIEWS.add(request)
     elif action == CONFIG.ACTION_TARGET_LIST:
         return TARGET_LIST_VIEWS.index(request)
     elif action == CONFIG.ACTION_USER_DETAIL:

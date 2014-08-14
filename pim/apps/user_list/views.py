@@ -9,6 +9,7 @@ def index(request):
     page_title = CONFIG.USER_LIST_PAGE_TITLE_URL
     main_content = CONFIG.USER_LIST_MAIN_URL
     sub_content = CONFIG.USER_LIST_SUB_URL
+    action_dict = CONFIG.ACTION_DICT
     c = {}    
     url_dict = {'main_url':main_url, 
                 'page_title':page_title, 
@@ -16,4 +17,5 @@ def index(request):
                 'sub_content':sub_content}
     c.update(csrf(request))
     c.update(url_dict)
+    c.update(action_dict)
     return render(request, 'common/main.html', c)

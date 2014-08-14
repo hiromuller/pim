@@ -1,3 +1,28 @@
     <div id="sub_content">
-      登録フォームとか
+      <form method="POST" action="{{main_url}}">
+        {%csrf_token%}
+        {{ addForm.non_field_errors }}
+        <div class="fieldWrapper">
+          {{ form.name_kanji.errors }}
+          <label for="id_name_kanji">名前(漢字):</label>
+          {{ addForm.name_kanji }}
+        </div>
+        <div class="fieldWrapper">
+          {{ form.name_hiragana.errors }}
+          <label for="id_name_hiragana">よみかた:</label>
+          {{ addForm.name_hiragana }}
+        </div>
+        <div class="fieldWrapper">
+          {{ form.name_en.errors }}
+          <label for="id_name_en">名前(英語):</label>
+          {{ addForm.name_en }}
+        </div>
+        <div class="fieldWrapper">
+          {{ form.met_date.errors }}
+          <label for="id_met_date">会った日:</label>
+          {{ addForm.met_date }}
+        </div>
+        <input type="hidden" name="action" value="{{ACTION_TARGET_ADD}}">
+        <input type="submit" />
+      </form>
     </div>
