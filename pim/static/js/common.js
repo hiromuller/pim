@@ -9,6 +9,11 @@ function moveTo(action){
     form.submit();
 }
 
+function display(target) {
+    var obj=document.all && document.all(target) || document.getElementById && document.getElementById(target);
+    if(obj && obj.style) obj.style.display=
+    "none" == obj.style.display ?"" : "none"
+}
 function test() {
 	window.alert("TEST!!");
 }

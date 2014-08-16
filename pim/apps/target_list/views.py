@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.core.context_processors import csrf
 import configs as CONFIG
 import forms as FORMS
+import services as SERVICES
 
 # targetlist views
 
@@ -27,4 +28,6 @@ def index(request):
     return render(request, 'common/main.html', c)
     
 def add(request):
+    if request.method == 'POST':
+        SERVICES.addTarget(request)
     return index(request)
