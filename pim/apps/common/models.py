@@ -263,17 +263,17 @@ class Progress_management(models.Model):
     def __unicode__(self):
         return unicode(self.progress)
     # 顧客
-    target = models.ForeignKey(Target)
+    target = models.ForeignKey(Target, verbose_name='顧客')
     # 担当者
-    responsible_by = models.ForeignKey(User)
+    responsible_by = models.ForeignKey(User, verbose_name='担当者')
     # 関係性。友人:1,取引相手:2,上司:3,会社同期:4,会社後輩:5,大学同期:6,大学先輩:7,大学後輩:8,地元:9,幹事仲間:10,恋人:11,ほぼ知らない:12
-    relationship = models.CharField(max_length=200)
+    relationship = models.CharField(max_length=200, verbose_name='関係性')
     #進捗状況
-    progress = models.CharField(max_length=200, choices=CONST.PROGRESS_CHOICES)
+    progress = models.CharField(max_length=200, choices=CONST.PROGRESS_CHOICES, verbose_name='進捗状況')
     #備考
-    remarks = models.CharField(max_length=200, blank=True)
+    remarks = models.CharField(max_length=200, blank=True, verbose_name='備考')
     #登録日時
-    registered_at = models.DateField(auto_now_add=True)
+    registered_at = models.DateField(auto_now_add=True, verbose_name='登録日時')
 
     def encode(self):
         return {
