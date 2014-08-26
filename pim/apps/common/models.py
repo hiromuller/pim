@@ -268,11 +268,11 @@ class Progress_management(models.Model):
     responsible_by = models.ForeignKey(User, verbose_name='担当者')
     # 関係性
     relationship = models.CharField(max_length=200, verbose_name='関係性')
-    #進捗状況
+    # 進捗状況
     progress = models.CharField(max_length=200, choices=CONST.PROGRESS_CHOICES, verbose_name='進捗状況')
-    #備考
+    # 備考
     remarks = models.CharField(max_length=200, blank=True, verbose_name='備考')
-    #登録日時
+    # 登録日時
     registered_at = models.DateField(auto_now_add=True, verbose_name='登録日時')
 
     def encode(self):
@@ -283,7 +283,18 @@ class Progress_management(models.Model):
                 'progress': self.progress,
                 'remarks': self.remarks,
                 }
-        
+
+class Target_register(models.Model):
+    """
+    ターゲット登録者モデル
+    """
+    def __unicode__(self):
+        return unicode(self.pk)
+    # ターゲット
+    target = target = models.ForeignKey(Target, verbose_name='顧客')
+    # ユーザ
+    user = models.ForeignKey(User)
+
 #admin.site.register(Living_situation)
 #admin.site.register(Type)
 #admin.site.register(Level)
@@ -294,3 +305,4 @@ admin.site.register(Team)
 admin.site.register(User)
 #admin.site.register(Progress)
 admin.site.register(Progress_management)
+admin.site.register(Target_register)
