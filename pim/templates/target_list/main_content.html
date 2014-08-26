@@ -1,6 +1,7 @@
     <div id="main_content">
         <table class="table table-hover">
           <tbody>
+            {% for target in target_list%}
             <tr>
               <td class="col-md-2">
                 <img src="">photo space
@@ -9,7 +10,7 @@
                 <table style="width:100%;">
                   <tr>
                     <td class="col-md-12" colspan="4">
-                      NameNameName (NickName)
+                      {{ target.name_kanji}} : {{ target.name_en }} {%if target.nick_name %}({{ target.nick_name }}){% endif %}
                     </td>
                   <tr>
                   <tr>
@@ -17,13 +18,39 @@
                       職業:
                     </th>
                     <td class="col-md-5">
-                      学生
+                      {% if target.occupation  %}
+                      {% else %}
+                      &nbsp;-
+                      {% endif %}
                     </td>
                     <th class="col-md-2">
                       誕生日:
                     </th>
                     <td class="col-md-5">
-                      4/1/1989
+                      {% if target.birthday  %}
+                      {% else %}
+                      &nbsp;-
+                      {% endif %}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th class="col-md-2">
+                      電話番号:
+                    </th>
+                    <td class="col-md-5">
+                      {% if target.phone_number  %}
+                      {% else %}
+                      &nbsp;-
+                      {% endif %}
+                    </td>
+                    <th class="col-md-2">
+                      メールアドレス:
+                    </th>
+                    <td class="col-md-5">
+                      {% if target.mail  %}
+                      {% else %}
+                      &nbsp;-
+                      {% endif %}
                     </td>
                   </tr>
                   <tr>
@@ -31,13 +58,19 @@
                       住所:
                     </th>
                     <td class="col-md-5">
-                      東京都豊島区池袋1-1-1
+                      {% if target.address  %}
+                      {% else %}
+                      &nbsp;-
+                      {% endif %}
                     </td>
                     <th class="col-md-2">
                       状況:
                     </th>
                     <td class="col-md-5">
-                      ひとり暮らし
+                      {% if target.living_situation  %}
+                      {% else %}
+                      &nbsp;-
+                      {% endif %}
                     </td>
                   </tr>
                   <tr>
@@ -45,13 +78,21 @@
                       性格:
                     </th>
                     <td class="col-md-5">
-                      ああ
+                      {% if target.type_1  %}
+                      {% endif %}
+                      {% if target.type_2  %}
+                      {% endif %}
+                      {% if target.type_3  %}
+                      {% endif %}
                     </td>
                     <th class="col-md-2">
                       趣味:
                     </th>
                     <td class="col-md-5">
-                      テニス
+                      {% if target.hobby  %}
+                      {% else %}
+                      &nbsp;-
+                      {% endif %}
                     </td>
                   </tr>
                   <tr>
@@ -59,7 +100,10 @@
                       <span style="font-size:13px;">きっかけ:
                     </th>
                     <td class="col-md-10" colspan="3">
-                      aaaa
+                      {% if target.met_situation  %}
+                      {% else %}
+                      &nbsp;-
+                      {% endif %}
                     </td>
                   </tr>
                   <tr>
@@ -67,13 +111,19 @@
                       目的:
                     </th>
                     <td class="col-md-5">
-                      あああ
+                      {% if target.purpose  %}
+                      {% else %}
+                      &nbsp;-
+                      {% endif %}
                     </td>
                     <th class="col-md-2">
                       接触日:
                     </th>
                     <td class="col-md-5">
-                      ああああ
+                      {% if target.met_date  %}
+                      {% else %}
+                      &nbsp;-
+                      {% endif %}
                     </td>
                   </tr>
                   <tr>
@@ -87,23 +137,17 @@
                       難易度:
                     </th>
                     <td class="col-md-5">
-                      あああ
+                      {% if target.difficulty %}
+                      {% else %}
+                      &nbsp;-
+                      {% endif %}
                     </td>
                   </tr>
                 </table>
               </td>
+            </tr>
+            {% endfor %}
 
-            </tr>
-            <tr>
-              <td>
-                ss
-              </td>
-            </tr>
-            <tr>
-              <td>
-                gg
-              </td>
-            </tr>
           </tbody>
         </table>
     </div>
