@@ -1,11 +1,20 @@
 # -*- coding: utf-8 -*-
 import forms as FORMS
 import common.models as MODELS
+import logging
+
+logger = logging.getLogger('app')
 
 def addProgress(request):
-    print 'addProgress'
+    logger.info('addProgress')
 
-    print 'username = ' + request.user.username
+    logger.info('username = ' + request.user.username)
+
+    # 投げられたusernameで存在チェックを行う
+    isUserExist = MODELS.User.objects.filter(username=request.user.username).count()
+    if isUserExist == 0:
+        return 'fail'
+
     # ユーザ名をセットしたUserクラスを作成
     user = MODELS.User(username=request.user.username)
     # responsible_byに作成したuserモデルをセットしてProgress_managementクラスを作成
@@ -14,10 +23,8 @@ def addProgress(request):
     # http://docs.djangoproject.jp/en/latest/topics/forms/modelforms.html
     new_progress_form = FORMS.ProgressManagementForm(request.POST, instance=progress_management)
 
-    print new_progress_form.errors
-    print new_progress_form
     if new_progress_form.is_valid():
-        print 'is_valid'
+        logger.info('is_valid')
         new_progress_form.save()
         return 'success'
     else:
