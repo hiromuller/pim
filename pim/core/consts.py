@@ -14,6 +14,7 @@ living situation
 LIVING_SITUATION_CHOICES = (
                             ('LONE',u'一人暮らし'),
                             ('FAMILY',u'実家'),
+                            ('DORMITORY',u'寮'),
                             ('SHARE',u'シェアハウス'),
                             ('ETC',u'その他')
                             )
@@ -24,6 +25,7 @@ TYPE_CHOICES = (
                 ('OUTGOING',u'元気'),
                 ('DRINKER',u'酒好き'),
                 ('LEADER',u'幹事')
+                ('STUDIOUS',u'真面目')
                 )
 """
 level
