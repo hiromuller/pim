@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import forms as FORMS
 import common.models as MODELS
 import logging
 
@@ -20,14 +19,12 @@ def addNewTarget(addTargetForm, user):
         return 'fail'
     
     
-def addTarget(request):
+def addTarget(add_target_form):
 
     logger.info('登録')
 
-    new_target_form = FORMS.TargetForm(request.POST)
-
-    if new_target_form.is_valid():
-        target = new_target_form.save()
+    if add_target_form.is_valid():
+        target = add_target_form.save()
         return target
     else:
         return None
