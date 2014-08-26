@@ -1,8 +1,8 @@
     <div id="sub_content">
+        {{form_message}}
         <form method="POST" action="{{main_url}}">
         {%csrf_token%}
 		{{ form.as_p }}
-		Welcome {{ user.username }}!
         <input type="hidden" name="action" value="{{ACTION_PROGRESS_ADD}}">
         <input type="hidden" name="responsible_by_id" value="{{ user.username }}">
 		<input type="submit" value="登録" />

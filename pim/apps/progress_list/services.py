@@ -19,5 +19,6 @@ def addProgress(request):
     if new_progress_form.is_valid():
         print 'is_valid'
         new_progress_form.save()
-    else: 
-        print 'fail addProgress'
+        return 'success'
+    else:
+        return 'fail'
