@@ -3,10 +3,11 @@ from django.shortcuts import render
 from django.core.context_processors import csrf
 import configs as CONFIG
 from progress_list.forms import ProgressManagementForm
+import services as SERVICES
 
 # Create your views here.
 def index(request):
-    print 'progress_list'    
+    print 'progress_list'
 
     main_url = CONFIG.TOP_URL
     page_title = CONFIG.PROGRESS_LIST_PAGE_TITLE_URL
@@ -24,3 +25,9 @@ def index(request):
     c.update(form)
     c.update(action_dict)
     return render(request, 'common/main.html', c)
+
+def add(request):
+    if request.method == 'POST':
+        SERVICES.addProgress(request)
+    return index(request)
+

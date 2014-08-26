@@ -28,6 +28,8 @@ def show(request):
         return PROGRESS_LATEST_VIEWS.index(request)
     elif action == CONFIG.ACTION_PROGRESS_LIST:
         return PROGRESS_LIST_VIEWS.index(request)
+    elif action == CONFIG.ACTION_PROGRESS_ADD:
+        return PROGRESS_LIST_VIEWS.add(request)
     elif action == CONFIG.ACTION_TARGET_DETAIL:
         return TARGET_DETAIL_VIEWS.index(request)
     elif action == CONFIG.ACTION_TARGET_ADD:
