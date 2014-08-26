@@ -24,7 +24,7 @@ type
 TYPE_CHOICES = (
                 ('OUTGOING',u'元気'),
                 ('DRINKER',u'酒好き'),
-                ('LEADER',u'幹事')
+                ('LEADER',u'幹事'),
                 ('STUDIOUS',u'真面目')
                 )
 """
