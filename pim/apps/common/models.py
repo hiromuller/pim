@@ -3,7 +3,7 @@ from django.db import models
 from django.contrib import admin
 import consts as CONST
 
-    
+
 #class Living_situation(models.Model):
 #    """
 #    暮らし状況
@@ -17,7 +17,7 @@ import consts as CONST
 #        return {
 #                'living_situation': self.living_situation,
 #                }
-        
+
 #class Type(models.Model):
 #    """
 #    性格
@@ -31,7 +31,7 @@ import consts as CONST
 #        return {
 #                'type': self.type,
 #                }
-        
+
 #class Level(models.Model):
 #    """
 #    レベル
@@ -45,7 +45,7 @@ import consts as CONST
 #        return {
 #                'level_description': self.level_description,
 #                }
-        
+
 class Target(models.Model):
     """
     ターゲット情報モデル
@@ -75,7 +75,7 @@ class Target(models.Model):
     # 誕生日
     birthday = models.DateField(blank=True, null=True)
     # 電話番号
-    phone_number = models.IntegerField(blank=True, null=True)
+    phone_number = models.CharField(max_length=11, blank=True, null=True)
     # メールアドレス
     mail = models.CharField(max_length=200, blank=True)
     # 住所
@@ -88,7 +88,7 @@ class Target(models.Model):
     hobby = models.CharField(max_length=200, blank=True)
     # 出身地
     birth_place = models.CharField(max_length=200, blank=True)
-    # ひとり暮らし:1, 実家:2, ルームシェア:3 
+    # ひとり暮らし:1, 実家:2, ルームシェア:3
     living_situation = models.CharField(max_length=200, blank=True, null=True, choices=CONST.LIVING_SITUATION_CHOICES)
     # 備考
     remarks = models.TextField(blank=True)
@@ -129,7 +129,7 @@ class Target(models.Model):
                 'type_3': self.type_3,
                 'done_flg': self.done_flg,
                 }
-        
+
 class Introduce(models.Model):
     """
     紹介者管理
@@ -140,7 +140,7 @@ class Introduce(models.Model):
     target = models.ForeignKey(Target, related_name='target')
     #紹介者
     introduced_by = models.ForeignKey(Target, related_name='introduced_by')
-    
+
     def encode(self):
         return {
                 'target': self.target.encode(),
@@ -159,14 +159,14 @@ class Target_relationship(models.Model):
     target2 = models.ForeignKey(Target, related_name='target2')
     #関係性
     relationship = models.CharField(max_length=200)
-    
+
     def encode(self):
         return {
                 'target1': self.target1.encode(),
                 'target2': self.target2.encode(),
                 'relationship': self.relationship,
                 }
-    
+
 class Team(models.Model):
     """
     チームモデル
@@ -175,7 +175,7 @@ class Team(models.Model):
         return self.name
     # チーム名
     name = models.CharField(max_length=200)
-    
+
     def encode(self):
         return {
                 'name': self.name,
@@ -219,14 +219,14 @@ class User (models.Model):
     target_type_3 = models.CharField(max_length=200, blank=True, null=True, choices=CONST.TYPE_CHOICES)
     # プロファイル画像
     profile_photo = models.URLField(max_length=200, blank=True)
-    # is_active 
+    # is_active
     is_active  = models.BooleanField(default=True)
 
     objects = CustomUserManager();
 
     def is_authenticated(self):
         return True
- 
+
     def encode(self):
         return {
                 'username': self.username,
@@ -241,7 +241,7 @@ class User (models.Model):
                 'target_type_3': self.target_type_3,
                 'profile_photo': self.profile_photo,
                 }
-    
+
 #class Progress(models.Model):
 #    """
 #    進捗マスタ
@@ -250,12 +250,12 @@ class User (models.Model):
 #        return self.progress_name
 #    #進捗名
 #    progress_name = models.CharField(max_length=50)
-    
+
 #    def encode(self):
 #        return {
 #                'progress_name': self.progress_name,
 #                }
-    
+
 class Progress_management(models.Model):
     """
     担当者定義モデル
