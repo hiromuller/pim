@@ -17,3 +17,7 @@ function display(target) {
 function test() {
 	window.alert("TEST!!");
 }
+
+$(function() {
+    $("#met_date").datepicker();
+});
