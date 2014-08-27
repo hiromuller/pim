@@ -19,7 +19,7 @@ def index(request):
 
 def add(request):
     if request.method == 'POST':
-        result = SERVICES.addProgress(request)
+        result = SERVICES.addProgress(request.user, request.POST)
         if not result == 'success':
             fail_form = FORMS.ProgressManagementForm(request.POST)
             c = {'form':fail_form}
