@@ -37,7 +37,7 @@
                   </tr>
                   <tr>
                     <th class="col-md-2">
-                      電話番号:
+                      <span style="font-size:13px;">電話番号:</span>
                     </th>
                     <td class="col-md-5">
                       {% if target.phone_number  %}
@@ -47,7 +47,7 @@
                       {% endif %}
                     </td>
                     <th class="col-md-2">
-                      メールアドレス:
+                      メール
                     </th>
                     <td class="col-md-5">
                       {% if target.mail  %}
@@ -81,17 +81,13 @@
                   </tr>
                   <tr>
                     <th class="col-md-2">
-                      性格:
+                      <span style="font-size:13px;">きっかけ:</span>
                     </th>
                     <td class="col-md-5">
-                      {% if target.type_1  %}
-                      {{ target.type_1 }}
-                      {% endif %}
-                      {% if target.type_2  %}
-                      {{ target.type_2 }}
-                      {% endif %}
-                      {% if target.type_3  %}
-                      {{ target.type_3 }}
+                      {% if target.met_situation  %}
+                      {{ target.met_situation }}
+                      {% else %}
+                      &nbsp;-
                       {% endif %}
                     </td>
                     <th class="col-md-2">
@@ -107,13 +103,17 @@
                   </tr>
                   <tr>
                     <th class="col-md-2">
-                      <span style="font-size:13px;">きっかけ:</span>
+                      性格:
                     </th>
                     <td class="col-md-10" colspan="3">
-                      {% if target.met_situation  %}
-                      {{ target.met_situation }}
-                      {% else %}
-                      &nbsp;-
+                      {% if target.type_1  %}
+                      {{ target.type_1 }}
+                      {% endif %}
+                      {% if target.type_2  %}
+                      {{ target.type_2 }}
+                      {% endif %}
+                      {% if target.type_3  %}
+                      {{ target.type_3 }}
                       {% endif %}
                     </td>
                   </tr>
