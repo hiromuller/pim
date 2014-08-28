@@ -6,9 +6,7 @@ import services as SERVICE
 import configs as CONFIG
 import progress_latest.views as PROGRESS_LATEST_VIEWS
 import progress_list.views as PROGRESS_LIST_VIEWS
-import target_detail.views as TARGET_DETAIL_VIEWS
-import target_list.views as TARGET_LIST_VIEWS
-import user_detail.views as USER_DETAIL_VIEWS
+import target.views as TARGET_VIEWS
 import user_list.views as USER_LIST_VIEWS
 
 #@login_required(login_url='/login/')
@@ -30,14 +28,10 @@ def show(request):
         return PROGRESS_LIST_VIEWS.index(request)
     elif action == CONFIG.ACTION_PROGRESS_ADD:
         return PROGRESS_LIST_VIEWS.add(request)
-    elif action == CONFIG.ACTION_TARGET_DETAIL:
-        return TARGET_DETAIL_VIEWS.index(request)
     elif action == CONFIG.ACTION_TARGET_ADD:
-        return TARGET_LIST_VIEWS.add(request)
+        return TARGET_VIEWS.add(request)
     elif action == CONFIG.ACTION_TARGET_LIST:
-        return TARGET_LIST_VIEWS.index(request)
-    elif action == CONFIG.ACTION_USER_DETAIL:
-        return USER_DETAIL_VIEWS.index(request)
+        return TARGET_VIEWS.index(request)
     elif action == CONFIG.ACTION_USER_LIST:
         return USER_LIST_VIEWS.index(request)    
     else:

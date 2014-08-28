@@ -53,9 +53,9 @@ def show(request, c):
     c.update({'target_list':target_list})
 
     main_url = CONFIG.TOP_URL
-    page_title = CONFIG.TARGET_LIST_PAGE_TITLE_URL
-    main_content = CONFIG.TARGET_LIST_MAIN_URL
-    sub_content = CONFIG.TARGET_LIST_SUB_URL
+    page_title = CONFIG.TARGET_PAGE_TITLE_URL
+    main_content = CONFIG.TARGET_MAIN_URL
+    sub_content = CONFIG.TARGET_SUB_URL
 
     url_dict = {'main_url':main_url, 
                 'page_title':page_title, 
