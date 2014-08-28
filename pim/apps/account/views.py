@@ -4,11 +4,11 @@ import configs as CONFIG
 
 # Create your views here.
 def index(request):
-    print 'user_list'    
+    print 'account'    
     main_url = CONFIG.TOP_URL
-    page_title = CONFIG.USER_LIST_PAGE_TITLE_URL
-    main_content = CONFIG.USER_LIST_MAIN_URL
-    sub_content = CONFIG.USER_LIST_SUB_URL
+    page_title = CONFIG.ACCOUNT_PAGE_TITLE_URL
+    main_content = CONFIG.ACCOUNT_MAIN_URL
+    sub_content = CONFIG.ACCOUNT_SUB_URL
     action_dict = CONFIG.ACTION_DICT
     c = {}    
     url_dict = {'main_url':main_url, 
