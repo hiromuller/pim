@@ -14,10 +14,12 @@ function display(target) {
     if(obj && obj.style) obj.style.display=
     "none" == obj.style.display ?"" : "none"
 }
+
 function test() {
 	window.alert("TEST!!");
 }
 
-$(function() {
-    $("#met_date").datepicker();
+$(document).ready(function() {
+    $('#id_met_date').datepicker({ dateFormat: "yy-mm-dd" });
+    $('#id_birthday').datepicker({ dateFormat: "yy-mm-dd" });
 });

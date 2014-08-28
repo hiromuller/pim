@@ -20,7 +20,7 @@
         </div>
         <div class="fieldWrapper">
           {{ addForm.met_date.errors }}
-          <label for="id_met_date">会った日 yyyy-MM-dd:</label>
+          <label for="id_met_date">会った日:</label>
           {{ addForm.met_date }}
         </div>
         <a href="#" onclick="display('target_detail_inputs');">詳細入力</a>
@@ -130,7 +130,7 @@
         </div>
 
         <input type="hidden" name="action" value="{{ACTION_TARGET_ADD}}">
-        <input type="submit" />
+        <input type="submit" value="登録"/>
       </form>
       
     </div>
