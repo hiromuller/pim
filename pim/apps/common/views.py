@@ -4,7 +4,7 @@ from django.core.context_processors import csrf
 from django.contrib.auth.decorators import login_required
 import services as SERVICE
 import configs as CONFIG
-import progress_latest.views as PROGRESS_LATEST_VIEWS
+import home.views as HOME_VIEWS
 import progress_list.views as PROGRESS_LIST_VIEWS
 import target.views as TARGET_VIEWS
 import account.views as ACCOUNT_VIEWS
@@ -19,11 +19,11 @@ def show(request):
     if request.method == "POST":
         action = request.POST["action"]
     else:
-        action = CONFIG.ACTION_TOP
+        action = CONFIG.ACTION_HOME
     
     #ページの振り分け
-    if action == CONFIG.ACTION_PROGRESS_LATEST:
-        return PROGRESS_LATEST_VIEWS.index(request)
+    if action == CONFIG.ACTION_HOME:
+        return HOME_VIEWS.index(request)
     elif action == CONFIG.ACTION_PROGRESS_LIST:
         return PROGRESS_LIST_VIEWS.index(request)
     elif action == CONFIG.ACTION_PROGRESS_ADD:

@@ -5,12 +5,12 @@ import services as SERVICES
 
 # Create your views here.
 def index(request):
-    print 'progress_latest'
+    print 'home'
     user = request.session['user']
     main_url = CONFIG.TOP_URL
-    page_title = CONFIG.PROGRESS_LATEST_PAGE_TITLE_URL
-    main_content = CONFIG.PROGRESS_LATEST_MAIN_URL
-    sub_content = CONFIG.PROGRESS_LATEST_SUB_URL
+    page_title = CONFIG.HOME_PAGE_TITLE_URL
+    main_content = CONFIG.HOME_MAIN_URL
+    sub_content = CONFIG.HOME_SUB_URL
     action_dict = CONFIG.ACTION_DICT
     c = {}
 #     user_dict = {'user':user}

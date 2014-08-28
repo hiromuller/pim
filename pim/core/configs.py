@@ -2,9 +2,9 @@
 """
 URL設定
 """
-PROGRESS_LATEST_PAGE_TITLE_URL = 'progress_latest/page_title.html'
-PROGRESS_LATEST_MAIN_URL = 'progress_latest/main_content.html'
-PROGRESS_LATEST_SUB_URL = 'progress_latest/sub_content.html'
+HOME_PAGE_TITLE_URL = 'home/page_title.html'
+HOME_MAIN_URL = 'home/main_content.html'
+HOME_SUB_URL = 'home/sub_content.html'
 
 PROGRESS_LIST_PAGE_TITLE_URL = 'progress_list/page_title.html'
 PROGRESS_LIST_MAIN_URL = 'progress_list/main_content.html'
@@ -24,23 +24,20 @@ TOP_URL = '/main/'
 """
 アクションの設定
 """
-ACTION_PROGRESS_LATEST = 'progress_latest'
+ACTION_HOME = 'home'
 ACTION_PROGRESS_LIST = 'progress_list'
 ACTION_PROGRESS_ADD = 'progress_add'
 ACTION_TARGET_LIST = 'target'
 ACTION_TARGET_ADD = 'target_add'
 ACTION_ACCOUNT_LIST = 'account'
 
-ACTION_TOP = ACTION_PROGRESS_LATEST
-
 ACTION_DICT = {
-                'ACTION_PROGRESS_LATEST':ACTION_PROGRESS_LATEST,
+                'ACTION_HOME':ACTION_HOME,
                 'ACTION_PROGRESS_LIST':ACTION_PROGRESS_LIST,
                 'ACTION_PROGRESS_ADD':ACTION_PROGRESS_ADD,
                 'ACTION_TARGET_LIST':ACTION_TARGET_LIST,
                 'ACTION_TARGET_ADD':ACTION_TARGET_ADD,
                 'ACTION_ACCOUNT_LIST':ACTION_ACCOUNT_LIST,
-                'ACTION_TOP':ACTION_TOP
                }
 """
 コンテンツHTML
