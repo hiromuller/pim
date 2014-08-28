@@ -29,3 +29,10 @@ def addProgress(user, post_data):
         return 'success'
     else:
         return 'fail'
+
+def getUserProgressList(user):
+    return MODELS.Progress_management.objects.filter(responsible_by=user.username).order_by('target', 'registered_at')
+
+
+
+

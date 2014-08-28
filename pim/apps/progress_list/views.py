@@ -31,6 +31,11 @@ def add(request):
 
 def show(request, c):
     print 'show'    
+
+    # 担当者の進捗一覧を取得し、返却する
+    user_progress_list = SERVICES.getUserProgressList(request.user)
+    c.update({'user_progress_list':user_progress_list})
+
     main_url = CONFIG.TOP_URL
     page_title = CONFIG.PROGRESS_LIST_PAGE_TITLE_URL
     main_content = CONFIG.PROGRESS_LIST_MAIN_URL
