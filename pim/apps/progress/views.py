@@ -2,7 +2,7 @@
 from django.shortcuts import render
 from django.core.context_processors import csrf
 import configs as CONFIG
-from progress_list.forms import ProgressManagementForm
+from progress.forms import ProgressManagementForm
 import forms as FORMS
 import services as SERVICES
 import messages as MSGS
@@ -37,9 +37,9 @@ def show(request, c):
     c.update({'user_progress_list':user_progress_list})
 
     main_url = CONFIG.TOP_URL
-    page_title = CONFIG.PROGRESS_LIST_PAGE_TITLE_URL
-    main_content = CONFIG.PROGRESS_LIST_MAIN_URL
-    sub_content = CONFIG.PROGRESS_LIST_SUB_URL
+    page_title = CONFIG.PROGRESS_PAGE_TITLE_URL
+    main_content = CONFIG.PROGRESS_MAIN_URL
+    sub_content = CONFIG.PROGRESS_SUB_URL
 #     form = {'form':ProgressManagementForm()}
     url_dict = {'main_url':main_url, 
                 'page_title':page_title, 

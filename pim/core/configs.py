@@ -6,9 +6,9 @@ HOME_PAGE_TITLE_URL = 'home/page_title.html'
 HOME_MAIN_URL = 'home/main_content.html'
 HOME_SUB_URL = 'home/sub_content.html'
 
-PROGRESS_LIST_PAGE_TITLE_URL = 'progress_list/page_title.html'
-PROGRESS_LIST_MAIN_URL = 'progress_list/main_content.html'
-PROGRESS_LIST_SUB_URL = 'progress_list/sub_content.html'
+PROGRESS_PAGE_TITLE_URL = 'progress/page_title.html'
+PROGRESS_MAIN_URL = 'progress/main_content.html'
+PROGRESS_SUB_URL = 'progress/sub_content.html'
 
 TARGET_PAGE_TITLE_URL = 'target/page_title.html'
 TARGET_MAIN_URL = 'target/main_content.html'

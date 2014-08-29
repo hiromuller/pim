@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 import services as SERVICE
 import configs as CONFIG
 import home.views as HOME_VIEWS
-import progress_list.views as PROGRESS_LIST_VIEWS
+import progress.views as PROGRESS_VIEWS
 import target.views as TARGET_VIEWS
 import account.views as ACCOUNT_VIEWS
 import team.views as TEAM_VIEWS
@@ -26,9 +26,9 @@ def show(request):
     if action == CONFIG.ACTION_HOME:
         return HOME_VIEWS.index(request)
     elif action == CONFIG.ACTION_PROGRESS_LIST:
-        return PROGRESS_LIST_VIEWS.index(request)
+        return PROGRESS_VIEWS.index(request)
     elif action == CONFIG.ACTION_PROGRESS_ADD:
-        return PROGRESS_LIST_VIEWS.add(request)
+        return PROGRESS_VIEWS.add(request)
     elif action == CONFIG.ACTION_TARGET_ADD:
         return TARGET_VIEWS.add(request)
     elif action == CONFIG.ACTION_TARGET_LIST:
