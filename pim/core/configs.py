@@ -18,6 +18,10 @@ ACCOUNT_PAGE_TITLE_URL = 'account/page_title.html'
 ACCOUNT_MAIN_URL = 'account/main_content.html'
 ACCOUNT_SUB_URL = 'account/sub_content.html'
 
+TEAM_PAGE_TITLE_URL = 'team/page_title.html'
+TEAM_MAIN_URL = 'team/main_content.html'
+TEAM_SUB_URL = 'team/sub_content.html'
+
 TOP_URL = '/main/'
 
 
@@ -30,6 +34,7 @@ ACTION_PROGRESS_ADD = 'progress_add'
 ACTION_TARGET_LIST = 'target'
 ACTION_TARGET_ADD = 'target_add'
 ACTION_ACCOUNT = 'account'
+ACTION_TEAM = 'team'
 
 ACTION_DICT = {
                 'ACTION_HOME':ACTION_HOME,
@@ -38,6 +43,7 @@ ACTION_DICT = {
                 'ACTION_TARGET_LIST':ACTION_TARGET_LIST,
                 'ACTION_TARGET_ADD':ACTION_TARGET_ADD,
                 'ACTION_ACCOUNT':ACTION_ACCOUNT,
+                'ACTION_TEAM':ACTION_TEAM,
                }
 """
 コンテンツHTML

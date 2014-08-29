@@ -8,6 +8,7 @@ import home.views as HOME_VIEWS
 import progress_list.views as PROGRESS_LIST_VIEWS
 import target.views as TARGET_VIEWS
 import account.views as ACCOUNT_VIEWS
+import team.views as TEAM_VIEWS
 
 #@login_required(login_url='/login/')
 def show(request):
@@ -34,6 +35,8 @@ def show(request):
         return TARGET_VIEWS.index(request)
     elif action == CONFIG.ACTION_ACCOUNT:
         return ACCOUNT_VIEWS.index(request)    
+    elif action == CONFIG.ACTION_TEAM:
+        return TEAM_VIEWS.index(request)    
     else:
         main_url = CONFIG.TOP_URL
         page_title = action + CONFIG.PAGE_TITLE
