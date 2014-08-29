@@ -32,7 +32,7 @@ def show(request):
         return TARGET_VIEWS.add(request)
     elif action == CONFIG.ACTION_TARGET_LIST:
         return TARGET_VIEWS.index(request)
-    elif action == CONFIG.ACTION_ACCOUNT_LIST:
+    elif action == CONFIG.ACTION_ACCOUNT:
         return ACCOUNT_VIEWS.index(request)    
     else:
         main_url = CONFIG.TOP_URL

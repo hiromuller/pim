@@ -29,7 +29,7 @@ ACTION_PROGRESS_LIST = 'progress_list'
 ACTION_PROGRESS_ADD = 'progress_add'
 ACTION_TARGET_LIST = 'target'
 ACTION_TARGET_ADD = 'target_add'
-ACTION_ACCOUNT_LIST = 'account'
+ACTION_ACCOUNT = 'account'
 
 ACTION_DICT = {
                 'ACTION_HOME':ACTION_HOME,
@@ -37,7 +37,7 @@ ACTION_DICT = {
                 'ACTION_PROGRESS_ADD':ACTION_PROGRESS_ADD,
                 'ACTION_TARGET_LIST':ACTION_TARGET_LIST,
                 'ACTION_TARGET_ADD':ACTION_TARGET_ADD,
-                'ACTION_ACCOUNT_LIST':ACTION_ACCOUNT_LIST,
+                'ACTION_ACCOUNT':ACTION_ACCOUNT,
                }
 """
 コンテンツHTML
