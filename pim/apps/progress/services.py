@@ -2,7 +2,6 @@
 import forms as FORMS
 import common.models as MODELS
 import logging
-
 logger = logging.getLogger('app')
 
 def addProgress(user, post_data):

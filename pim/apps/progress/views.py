@@ -6,10 +6,13 @@ from progress.forms import ProgressManagementForm
 import forms as FORMS
 import services as SERVICES
 import messages as MSGS
+import logging
+logger = logging.getLogger('app')
 
 # 
 def index(request):
-    print 'index'
+
+    logger.info('index')
 
     form = {'form':ProgressManagementForm()}
     c = {}    
@@ -18,6 +21,8 @@ def index(request):
 
 
 def add(request):
+    logger.info('add')
+
     if request.method == 'POST':
         result = SERVICES.addProgress(request.user, request.POST)
         if not result == 'success':
@@ -30,7 +35,8 @@ def add(request):
     return show(request, c)
 
 def show(request, c):
-    print 'show'    
+
+    logger.info('show')
 
     # 担当者の進捗一覧を取得し、返却する
     user_progress_list = SERVICES.getUserProgressList(request.user)
