@@ -51,7 +51,7 @@ class Target(models.Model):
     ターゲット情報モデル
     """
     def __unicode__(self):
-        return self.name_en
+        return self.name_kanji
     # 名前（漢字）
     name_kanji = models.CharField(max_length=200, blank=True)
     # 名前（ひらがな）

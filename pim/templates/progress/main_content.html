@@ -6,8 +6,8 @@
             <td class="col-md-10">
                 <table class="table-bordered">
                     <tr>
-                      <td class="col-md-1">progress</td>
-                      <td class="col-md-4">registered_at</td>
+                      <td class="col-md-2">progress</td>
+                      <td class="col-md-3">registered_at</td>
                       <td class="col-md-3">relationship</td>
                       <td class="col-md-4">remarks</td>
                     </tr>
@@ -40,8 +40,8 @@
                     <table class="table-bordered">
               {% endifchanged %}
                           <tr>
-                              <td class="col-md-1">{{ user_progress.progress }}</td>
-                              <td class="col-md-4">{{ user_progress.registered_at|date:"Y-m-d(D)" }}</td>
+                              <td class="col-md-2">{{ user_progress.get_progress_display }}</td>
+                              <td class="col-md-3">{{ user_progress.registered_at|date:"Y-m-d(D)" }}</td>
                               <td class="col-md-3">{{ user_progress.relationship }}</td>
                               <td class="col-md-4">{{ user_progress.remarks }}</td>
                           </tr>
@@ -54,4 +54,8 @@
 
         </tbody>
       </table>
+
+    <hr>
+        ↓ この下に担当者の所属するチームの別メンバの進捗を表示する ↓
+
     </div>
