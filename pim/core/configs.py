@@ -13,6 +13,7 @@ PROGRESS_SUB_URL = 'progress/sub_content.html'
 TARGET_PAGE_TITLE_URL = 'target/page_title.html'
 TARGET_MAIN_URL = 'target/main_content.html'
 TARGET_SUB_URL = 'target/sub_content.html'
+TARGET_DETAIL = 'target/target_detail.html'
 
 ACCOUNT_PAGE_TITLE_URL = 'account/page_title.html'
 ACCOUNT_MAIN_URL = 'account/main_content.html'
@@ -33,6 +34,7 @@ ACTION_PROGRESS_LIST = 'progress_list'
 ACTION_PROGRESS_ADD = 'progress_add'
 ACTION_TARGET_LIST = 'target'
 ACTION_TARGET_ADD = 'target_add'
+ACTION_TARGET_DETAIL = "target_detail"
 ACTION_ACCOUNT = 'account'
 ACTION_TEAM = 'team'
 
@@ -42,6 +44,7 @@ ACTION_DICT = {
                 'ACTION_PROGRESS_ADD':ACTION_PROGRESS_ADD,
                 'ACTION_TARGET_LIST':ACTION_TARGET_LIST,
                 'ACTION_TARGET_ADD':ACTION_TARGET_ADD,
+                'ACTION_TARGET_DETAIL':ACTION_TARGET_DETAIL,
                 'ACTION_ACCOUNT':ACTION_ACCOUNT,
                 'ACTION_TEAM':ACTION_TEAM,
                }

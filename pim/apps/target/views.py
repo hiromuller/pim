@@ -42,6 +42,36 @@ def add(request):
     c.update({'addForm':FORMS.TargetForm()})
     return show(request, c)
 
+def target_detail(request):
+    """
+    ターゲット詳細
+    """
+    logger.info('ターゲット詳細表示')
+
+    if request.method == "POST":
+        key = request.POST["key"]
+        
+    if key is None:
+        return index(request)
+
+    c = {}
+    target = SERVICES.selectTarget(key)
+    c.update({'target':target})
+
+    main_url = CONFIG.TOP_URL
+    page_title = CONFIG.TARGET_PAGE_TITLE_URL
+    main_content = CONFIG.TARGET_DETAIL
+    sub_content = CONFIG.TARGET_SUB_URL
+
+    url_dict = {'main_url':main_url, 
+                'page_title':page_title, 
+                'main_content':main_content,
+                'sub_content':sub_content}
+    c.update(csrf(request))
+    c.update(url_dict)
+    c.update(CONFIG.ACTION_DICT)
+    return render(request, 'common/main.html', c)
+    
 def show(request, c):
     """
     ターゲット一覧表示メソッド
@@ -49,7 +79,7 @@ def show(request, c):
     """
     logger.info('ターゲットリスト表示')
     
-    target_list = SERVICES.getAllTargetList()
+    target_list = SERVICES.selectAllTargetList()
     c.update({'target_list':target_list})
 
     main_url = CONFIG.TOP_URL
