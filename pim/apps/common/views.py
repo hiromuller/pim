@@ -25,18 +25,28 @@ def show(request):
     #ページの振り分け
     if action == CONFIG.ACTION_HOME:
         return HOME_VIEWS.index(request)
+
     elif action == CONFIG.ACTION_PROGRESS_LIST:
         return PROGRESS_VIEWS.index(request)
+    
     elif action == CONFIG.ACTION_PROGRESS_ADD:
         return PROGRESS_VIEWS.add(request)
-    elif action == CONFIG.ACTION_TARGET_ADD:
-        return TARGET_VIEWS.add(request)
+
     elif action == CONFIG.ACTION_TARGET_LIST:
         return TARGET_VIEWS.index(request)
+
+    elif action == CONFIG.ACTION_TARGET_ADD:
+        return TARGET_VIEWS.add(request)
+
+    elif action == CONFIG.ACTION_TARGET_DETAIL:
+        return TARGET_VIEWS.target_detail(request)
+ 
     elif action == CONFIG.ACTION_ACCOUNT:
         return ACCOUNT_VIEWS.index(request)    
+    
     elif action == CONFIG.ACTION_TEAM:
         return TEAM_VIEWS.index(request)    
+    
     else:
         main_url = CONFIG.TOP_URL
         page_title = action + CONFIG.PAGE_TITLE

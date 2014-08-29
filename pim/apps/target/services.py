@@ -48,6 +48,9 @@ def isUserExist(user):
     else:
         return True
 
-def getAllTargetList():
+def selectAllTargetList():
     return MODELS.Target.objects.all().order_by('name_en')
-    
+
+def selectTarget(key):
+    target = MODELS.Target.objects.get(id=key)
+    return target
