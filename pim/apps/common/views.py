@@ -10,7 +10,7 @@ import target.views as TARGET_VIEWS
 import account.views as ACCOUNT_VIEWS
 import team.views as TEAM_VIEWS
 
-#@login_required(login_url='/login/')
+@login_required(login_url='/login/')
 def show(request):
     #暫定的にsessionユーザを定義。あとで消す
     test_user = SERVICE.getUserByLoginId('user1')
@@ -44,6 +44,9 @@ def show(request):
     elif action == CONFIG.ACTION_ACCOUNT:
         return ACCOUNT_VIEWS.index(request)    
     
+    elif action == CONFIG.ACTION_ACCOUNT_UPDATE:
+        return ACCOUNT_VIEWS.update(request)    
+
     elif action == CONFIG.ACTION_TEAM:
         return TEAM_VIEWS.index(request)    
     

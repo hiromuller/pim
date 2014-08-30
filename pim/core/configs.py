@@ -36,6 +36,7 @@ ACTION_TARGET_LIST = 'target'
 ACTION_TARGET_ADD = 'target_add'
 ACTION_TARGET_DETAIL = "target_detail"
 ACTION_ACCOUNT = 'account'
+ACTION_ACCOUNT_UPDATE = 'account_update'
 ACTION_TEAM = 'team'
 
 ACTION_DICT = {
@@ -46,6 +47,7 @@ ACTION_DICT = {
                 'ACTION_TARGET_ADD':ACTION_TARGET_ADD,
                 'ACTION_TARGET_DETAIL':ACTION_TARGET_DETAIL,
                 'ACTION_ACCOUNT':ACTION_ACCOUNT,
+                'ACTION_ACCOUNT_UPDATE':ACTION_ACCOUNT_UPDATE,
                 'ACTION_TEAM':ACTION_TEAM,
                }
 """

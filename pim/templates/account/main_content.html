@@ -1,3 +1,9 @@
     <div id="main_content">
-        {{ form.as_p }}
+        {{form_message}}
+        <form method="POST" action="{{main_url}}">
+            {%csrf_token%}
+            {{ form.as_p }}
+            <input type="hidden" name="action" value="{{ACTION_ACCOUNT_UPDATE}}">
+            <input type="submit" value='保存する' />
+		</form>
     </div>

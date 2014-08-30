@@ -190,33 +190,31 @@ class User (models.Model):
     ユーザモデル
     """
     def __unicode__(self):
-        return self.name_en
+        return self.username
     # ユーザID
     username = models.CharField(max_length=20, primary_key=True)
     # email
-    email = models.CharField(max_length=200)
+    email = models.CharField(max_length=200, verbose_name='Email')
     # last login
     last_login = models.DateTimeField(blank=True, null=True)
     # 名前（漢字）
-    name_kanji = models.CharField(max_length=200, blank=True)
+    name_kanji = models.CharField(max_length=200, blank=True, verbose_name='名前(漢字)')
     # 名前（ひらがな）
-    name_hiragana = models.CharField(max_length=200, blank=True)
+    name_hiragana = models.CharField(max_length=200, blank=True, verbose_name='名前(ひらがな)')
     # 名前（英語）
-    name_en = models.CharField(max_length=200)
-    # パスワード
-#     password = models.CharField(max_length=10)
+    name_en = models.CharField(max_length=200, blank=True, verbose_name='名前(英語)')
     # チーム
-    team = models.ForeignKey(Team, blank=True, null=True)
+    team = models.ForeignKey(Team, blank=True, null=True, verbose_name='チーム')
+    # 誕生日
+    birthday = models.DateField(blank=True, null=True, verbose_name='誕生日')
     # 出身地
-    birthday = models.DateField(blank=True, null=True)
-    #出身地
-    birth_place = models.CharField(max_length=200, blank=True)
+    birth_place = models.CharField(max_length=200, blank=True, verbose_name='出身地')
     # 対象性格1
-    target_type_1 = models.CharField(max_length=200, blank=True, null=True, choices=CONST.TYPE_CHOICES)
+    target_type_1 = models.CharField(max_length=200, blank=True, null=True, choices=CONST.TYPE_CHOICES, verbose_name='対象性格1')
     # 対象性格2
-    target_type_2 = models.CharField(max_length=200, blank=True, null=True, choices=CONST.TYPE_CHOICES)
+    target_type_2 = models.CharField(max_length=200, blank=True, null=True, choices=CONST.TYPE_CHOICES, verbose_name='対象性格2')
     # 対象性格3
-    target_type_3 = models.CharField(max_length=200, blank=True, null=True, choices=CONST.TYPE_CHOICES)
+    target_type_3 = models.CharField(max_length=200, blank=True, null=True, choices=CONST.TYPE_CHOICES, verbose_name='対象性格3')
     # プロファイル画像
     profile_photo = models.URLField(max_length=200, blank=True)
     # is_active

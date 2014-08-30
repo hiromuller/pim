@@ -1,16 +1,22 @@
 # -*- coding: utf-8 -*-
 from django import forms
 import common.models as MODELS
-from django.forms.widgets import Textarea, TextInput
+from django.forms.widgets import TextInput
 
 class UserForm(forms.ModelForm):
     class Meta:
         model = MODELS.User
 
-        # 表示したいフィールド名だけを指定する。
-#         fields = ('target', 'relationship', 'progress', 'remarks')
+        # 除外したいフィールド名を指定する。
+        exclude = (
+                   'username',
+                   'last_login',
+                   'profile_photo',
+                   'is_active',
+                   )
          
-        # remarksのname属性をtextareaに変更
         widgets = {
-            'username': TextInput(attrs={'readonly':True}),
+#             'username': TextInput(attrs={'readonly':True}),
+            'email': TextInput(attrs={'size':40}),
+            'team_id': TextInput(attrs={'readonly':True}),
         }
