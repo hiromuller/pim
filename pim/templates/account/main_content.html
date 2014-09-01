@@ -2,6 +2,7 @@
         {{form_message}}
         <form method="POST" action="{{main_url}}">
             {%csrf_token%}
+            <p><label>プロフィール画像:</label><img src="{{ user.profile_photo }}"></p>
             {{ form.as_p }}
             <input type="hidden" name="action" value="{{ACTION_ACCOUNT_UPDATE}}">
             <input type="submit" value='保存する' />
