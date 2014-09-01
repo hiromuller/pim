@@ -193,10 +193,6 @@ class User (models.Model):
         return self.username
     # ユーザID
     username = models.CharField(max_length=20, primary_key=True)
-    # email
-    email = models.CharField(max_length=200, verbose_name='Email')
-    # last login
-    last_login = models.DateTimeField(blank=True, null=True)
     # 名前（漢字）
     name_kanji = models.CharField(max_length=200, blank=True, verbose_name='名前(漢字)')
     # 名前（ひらがな）
@@ -215,10 +211,14 @@ class User (models.Model):
     target_type_2 = models.CharField(max_length=200, blank=True, null=True, choices=CONST.TYPE_CHOICES, verbose_name='対象性格2')
     # 対象性格3
     target_type_3 = models.CharField(max_length=200, blank=True, null=True, choices=CONST.TYPE_CHOICES, verbose_name='対象性格3')
+    # email
+    email = models.CharField(max_length=200, verbose_name='Email')
     # プロファイル画像
     profile_photo = models.URLField(max_length=200, blank=True)
     # is_active
     is_active  = models.BooleanField(default=True)
+    # last login
+    last_login = models.DateTimeField(blank=True, null=True)
 
     objects = CustomUserManager();
 
