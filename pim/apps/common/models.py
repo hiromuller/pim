@@ -175,7 +175,9 @@ class Team(models.Model):
         return self.name
     # チーム名
     name = models.CharField(max_length=200)
-
+    # メンバー上限
+    team_size = models.IntegerField(default=5)
+    
     def encode(self):
         return {
                 'name': self.name,
@@ -219,6 +221,8 @@ class User (models.Model):
     is_active  = models.BooleanField(default=True)
     # last login
     last_login = models.DateTimeField(blank=True, null=True)
+    #チーム管理者フラグ
+#    team_admin_flg = models.BooleanField(default=False)
 
     objects = CustomUserManager();
 
@@ -239,6 +243,21 @@ class User (models.Model):
                 'target_type_3': self.target_type_3,
                 'profile_photo': self.profile_photo,
                 }
+
+class Membership(models.Model):
+    """
+    チームとメンバーの関係の中間モデル
+    """
+    def __unicode__(self):
+        return self.team
+    
+    # チーム
+    team = models.ForeignKey(Team)
+    # ユーザ
+    user = models.ForeignKey(User)
+    # チーム管理者フラグ
+    team_admin_flg = models.BooleanField(default=False)
+    
 
 #class Progress(models.Model):
 #    """
@@ -301,6 +320,7 @@ admin.site.register(Introduce)
 admin.site.register(Target_relationship)
 admin.site.register(Team)
 admin.site.register(User)
+admin.site.register(Membership)
 #admin.site.register(Progress)
 admin.site.register(Progress_management)
 admin.site.register(Target_register)
