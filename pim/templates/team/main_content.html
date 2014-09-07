@@ -1,3 +1,10 @@
     <div id="main_content">
-      team
+      {% for team_members in team_members_list %}
+        
+        <p>{{team_members.team.name}}</p>
+        
+        {% for members in team_members.members %}
+          <p>{{members.username}}</p>
+        {% endfor %}
+      {% endfor %}
     </div>

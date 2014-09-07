@@ -50,6 +50,9 @@ def show(request):
     elif action == CONFIG.ACTION_TEAM:
         return TEAM_VIEWS.index(request)    
     
+    elif action == CONFIG.ACTION_TEAM_ADD:
+        return TEAM_VIEWS.add(request)
+    
     else:
         main_url = CONFIG.TOP_URL
         page_title = action + CONFIG.PAGE_TITLE

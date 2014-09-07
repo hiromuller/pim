@@ -38,6 +38,7 @@ ACTION_TARGET_DETAIL = "target_detail"
 ACTION_ACCOUNT = 'account'
 ACTION_ACCOUNT_UPDATE = 'account_update'
 ACTION_TEAM = 'team'
+ACTION_TEAM_ADD = 'team_add'
 
 ACTION_DICT = {
                 'ACTION_HOME':ACTION_HOME,
@@ -49,6 +50,7 @@ ACTION_DICT = {
                 'ACTION_ACCOUNT':ACTION_ACCOUNT,
                 'ACTION_ACCOUNT_UPDATE':ACTION_ACCOUNT_UPDATE,
                 'ACTION_TEAM':ACTION_TEAM,
+                'ACTION_TEAM_ADD':ACTION_TEAM_ADD,
                }
 """
 コンテンツHTML
