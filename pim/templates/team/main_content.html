@@ -1,10 +1,78 @@
     <div id="main_content">
       {% for team_members in team_members_list %}
-        
-        <p>{{team_members.team.name}}</p>
-        
-        {% for members in team_members.members %}
-          <p>{{members.username}}</p>
-        {% endfor %}
+        <table>
+          <tbody>
+            <tr>
+              <th>
+                チーム名：{{team_members.team.name}}
+              </th>
+            </tr>
+
+          </tbody>
+        </table>
+        <table class="table table-hover">
+          <tbody>
+          <form id="list_form" method="post" action="{{main_url}}">
+          {% csrf_token %}
+            {% for members in team_members.members %}
+            <tr>
+              <td class="col-md-2">
+                <img src="{{STATIC_URL}}images/no_image.png" width="100%">
+              </td>
+              <td class="col-md-10">
+                <table style="width:100%;">
+                  <tr>
+                    <td class="col-md-12" colspan="4">
+                      {{members.username}}
+                    </td>
+                  <tr>
+                  <tr>
+                    <th class="col-md-2">
+                      出身:
+                    </th>
+                    <td class="col-md-5">
+                      {% if target.occupation  %}
+                      {{ members.birth_place }}
+                      {% else %}
+                      &nbsp;-
+                      {% endif %}
+                    </td>
+                    <th class="col-md-2">
+                      誕生日:
+                    </th>
+                    <td class="col-md-5">
+                      {% if target.birthday  %}
+                      {{ members.birthday }}
+                      {% else %}
+                      &nbsp;-
+                      {% endif %}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th class="col-md-2">
+                      対象:
+                    </th>
+                    <td class="col-md-10" colspan="3">
+                      {% if members.target_type_1  %}
+                      {{ members.target_type_1 }}
+                      {% endif %}
+                      {% if members.target_type_2  %}
+                      {{ members.target_type_2 }}
+                      {% endif %}
+                      {% if members.target_type_3  %}
+                      {{ members.target_type_3 }}
+                      {% endif %}
+                    </td>
+                  </tr>
+
+                </table>
+              </td>
+            </tr>
+            {% endfor %}
+            </form>
+
+          </tbody>
+        </table>
+
       {% endfor %}
     </div>

@@ -1,14 +1,16 @@
     <div id="sub_content">
         {{form_message}}
-        <form method="POST" action="{{main_url}}">
-        {%csrf_token%}
+        {% if teamAddForm %}
+          <form method="POST" action="{{main_url}}">
+          {%csrf_token%}
 
-        <div class="fieldWrapper">
-          {{ teamAddForm.name.errors }}
-          <label for="id_name">チーム名:</label>
-          {{ teamAddForm.name }}
-        </div>
-        <input type="hidden" name="action" value="{{ACTION_TEAM_ADD}}">
-        <input type="submit" value="作成"/>
-      </form>
+          <div class="fieldWrapper">
+            {{ teamAddForm.name.errors }}
+            <label for="id_name">チーム名:</label>
+            {{ teamAddForm.name }}
+          </div>
+          <input type="hidden" name="action" value="{{ACTION_TEAM_ADD}}">
+          <input type="submit" value="作成"/>
+        </form>
+        {% endif %}
     </div>

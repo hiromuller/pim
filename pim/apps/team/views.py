@@ -12,12 +12,13 @@ logger = logging.getLogger('app')
 
 # Create your views here.
 def index(request):
-    logger.info('チーム画面開始')  
-    forms = {'teamAddForm':FORMS.TeamAddForm()}
+    logger.info('チーム画面開始')
     c = {}
-    c.update(forms)
+    if not SERVICES.selectTeamByUser(request.user):
+        forms = {'teamAddForm':FORMS.TeamAddForm()}
+        c.update(forms)
     return show(request, c)
-      
+
 def add(request):
     """
     チーム登録
@@ -30,12 +31,11 @@ def add(request):
 
         if not result == 'success':
             fail_form = FORMS.TeamAddForm(request.POST)
-            c = {'addForm':fail_form}
+            c = {'teamAddForm':fail_form}
             c.update({'form_message':MSGS.ADD_FAIL})
             return show(request, c)
 
     c = {'form_message': MSGS.ADD_SUCCESS}
-    c.update({'addForm':FORMS.TeamAddForm()})
     return show(request, c)
 
 def show(request, c):
@@ -44,14 +44,14 @@ def show(request, c):
     最初に必ず通る
     """
     logger.info('チームメンバーリスト画面開始')
-    
+
     team_members_list = []
     team_list = SERVICES.selectTeamByUser(request.user)
-    
+
     for team in team_list:
-        users = SERVICES.selectUsersByTeam(team)        
+        users = SERVICES.selectUsersByTeam(team)
         team_members_list.append(TEAM_MODELS.Team_Members(team, users))
-        
+
     c.update({'team_members_list':team_members_list})
 
     main_url = CONFIG.TOP_URL
@@ -59,8 +59,8 @@ def show(request, c):
     main_content = CONFIG.TEAM_MAIN_URL
     sub_content = CONFIG.TEAM_SUB_URL
 
-    url_dict = {'main_url':main_url, 
-                'page_title':page_title, 
+    url_dict = {'main_url':main_url,
+                'page_title':page_title,
                 'main_content':main_content,
                 'sub_content':sub_content}
     c.update(csrf(request))
