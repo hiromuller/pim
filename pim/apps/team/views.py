@@ -14,9 +14,7 @@ logger = logging.getLogger('app')
 def index(request):
     logger.info('チーム画面開始')
     c = {}
-    if not SERVICES.selectTeamByUser(request.user):
-        forms = {'teamAddForm':FORMS.TeamAddForm()}
-        c.update(forms)
+
     return show(request, c)
 
 def add(request):
@@ -38,6 +36,15 @@ def add(request):
     c = {'form_message': MSGS.ADD_SUCCESS}
     return show(request, c)
 
+def invite(request):
+    """
+    チーム招待
+    """
+    logger.info('チーム招待')
+    c = {}
+
+    return show(request, c)
+
 def show(request, c):
     """
     チームメンバー一覧画面インデックス
@@ -48,11 +55,19 @@ def show(request, c):
     team_members_list = []
     team_list = SERVICES.selectTeamByUser(request.user)
 
+    # 一覧表示用チームメンバーリスト作成
     for team in team_list:
         users = SERVICES.selectUsersByTeam(team)
         team_members_list.append(TEAM_MODELS.Team_Members(team, users))
 
     c.update({'team_members_list':team_members_list})
+
+    # チーム二所属しているか判定する。所属していない場合、チーム登録フォームを渡す
+    if team_list:
+        c.update({'has_team':True})
+    else:
+        forms = {'teamAddForm':FORMS.TeamAddForm()}
+        c.update(forms)
 
     main_url = CONFIG.TOP_URL
     page_title = CONFIG.TEAM_PAGE_TITLE_URL

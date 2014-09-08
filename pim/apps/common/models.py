@@ -177,7 +177,7 @@ class Team(models.Model):
     name = models.CharField(max_length=200)
     # メンバー上限
     team_size = models.IntegerField(default=5)
-    
+
     def encode(self):
         return {
                 'name': self.name,
@@ -250,14 +250,31 @@ class Membership(models.Model):
     """
     def __unicode__(self):
         return self.team
-    
+
     # チーム
     team = models.ForeignKey(Team)
     # ユーザ
     user = models.ForeignKey(User)
     # チーム管理者フラグ
     team_admin_flg = models.BooleanField(default=False)
-    
+
+class Invitation(models.Model):
+    """
+    チーム招待中間モデル
+    """
+    def __unicode__(self):
+        return self.team
+
+    # チーム
+    team = models.ForeignKey(Team)
+    # 被招待者
+    invited_user = models.ForeignKey(User, related_name="invited_user")
+    # 招待者
+    invited_by = models.ForeignKey(User, related_name="invited_by")
+    # 管理者承認フラグ
+    approve_by_admin_flg = models.BooleanField(default=False)
+    # 被招待者承認フラグ
+    approve_by_user_flf = models.BooleanField(default=False)
 
 #class Progress(models.Model):
 #    """
@@ -321,6 +338,7 @@ admin.site.register(Target_relationship)
 admin.site.register(Team)
 admin.site.register(User)
 admin.site.register(Membership)
+admin.site.register(Invitation)
 #admin.site.register(Progress)
 admin.site.register(Progress_management)
 admin.site.register(Target_register)

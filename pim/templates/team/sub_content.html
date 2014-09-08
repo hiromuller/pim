@@ -13,4 +13,19 @@
           <input type="submit" value="作成"/>
         </form>
         {% endif %}
+
+        {% if has_team %}
+          <form method="POST" action="{{main_url}}">
+          {%csrf_token%}
+
+          <div class="fieldWrapper">
+            {{ teamInviteForm.name.errors }}
+            <label for="id_name">ユーザ:</label>
+            {{ teamInviteForm.user_id }}
+          </div>
+          <input type="hidden" name="action" value="{{ACTION_TEAM_INVITE}}">
+          <input type="submit" value="招待する"/>
+        </form>
+        {% endif %}
+
     </div>
