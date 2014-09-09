@@ -274,7 +274,7 @@ class Invitation(models.Model):
     # 管理者承認フラグ
     approve_by_admin_flg = models.BooleanField(default=False)
     # 被招待者承認フラグ
-    approve_by_user_flf = models.BooleanField(default=False)
+    approve_by_user_flg = models.BooleanField(default=False)
 
 #class Progress(models.Model):
 #    """

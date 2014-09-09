@@ -43,6 +43,18 @@ def invite(request):
     logger.info('チーム招待')
     c = {}
 
+    if request.method == 'POST':
+        team_invite_form = FORMS.TeamInviteForm(request.POST)
+        result = SERVICES.inviteUser(team_invite_form, request.user)
+
+        if not result == 'success':
+            fail_form = FORMS.TeamInviteForm(request.POST)
+            c = {'teamInviteForm':fail_form}
+            c.update({'form_message':MSGS.INVITE_FAIL})
+            return show(request, c)
+
+    c = {'form_message': MSGS.INVITE_SUCCESS}
+
     return show(request, c)
 
 def show(request, c):
@@ -52,22 +64,18 @@ def show(request, c):
     """
     logger.info('チームメンバーリスト画面開始')
 
-    team_members_list = []
     team_list = SERVICES.selectTeamByUser(request.user)
 
     # 一覧表示用チームメンバーリスト作成
-    for team in team_list:
-        users = SERVICES.selectUsersByTeam(team)
-        team_members_list.append(TEAM_MODELS.Team_Members(team, users))
-
+    team_members_list = generateTeamMembersList(team_list)
     c.update({'team_members_list':team_members_list})
 
-    # チーム二所属しているか判定する。所属していない場合、チーム登録フォームを渡す
-    if team_list:
-        c.update({'has_team':True})
-    else:
-        forms = {'teamAddForm':FORMS.TeamAddForm()}
-        c.update(forms)
+    # テンプレートに渡すフォームを作成する
+    forms = generateForms(team_list)
+    c.update(forms)
+    # 承認街ユーザリストを作成する
+    waiting_user_list = SERVICES.selectWaitingUserList(team_list)
+    c.update({'waiting_user_list':waiting_user_list})
 
     main_url = CONFIG.TOP_URL
     page_title = CONFIG.TEAM_PAGE_TITLE_URL
@@ -82,3 +90,28 @@ def show(request, c):
     c.update(url_dict)
     c.update(CONFIG.ACTION_DICT)
     return render(request, 'common/main.html', c)
+
+def generateTeamMembersList(team_list):
+    """
+    表示用チームメンバーリストを作成する
+    """
+    team_members_list = []
+    for team in team_list:
+        users = SERVICES.selectUsersByTeam(team)
+        team_members_list.append(TEAM_MODELS.Team_Members(team, users))
+
+    return team_members_list
+
+def generateForms(team_list):
+    """
+    チームに所属しているか判定する。所属していない場合、チーム登録フォームを渡す
+    所属している場合、招待フォームを渡す
+    return forms{}
+    """
+    if team_list:
+        forms = {'teamInviteForm':FORMS.TeamInviteForm(initial={'team_id':team_list[0].id})}
+        forms.update({'has_team':True})
+    else:
+        forms = {'teamAddForm':FORMS.TeamAddForm()}
+
+    return forms

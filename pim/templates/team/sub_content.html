@@ -19,13 +19,28 @@
           {%csrf_token%}
 
           <div class="fieldWrapper">
-            {{ teamInviteForm.name.errors }}
-            <label for="id_name">ユーザ:</label>
+            {{ teamInviteForm.user_id.errors }}
+            <label for="id_user_id">ユーザ:</label>
             {{ teamInviteForm.user_id }}
           </div>
+
+          {% for hidden in teamInviteForm.hidden_fields %}
+          {{ hidden }}
+          {% endfor %}
+
+
+
           <input type="hidden" name="action" value="{{ACTION_TEAM_INVITE}}">
           <input type="submit" value="招待する"/>
         </form>
+        {% endif %}
+
+        {% if waiting_user_list %}
+        <br><br>
+        承認待ちユーザ<br>
+          {% for user in waiting_user_list %}
+          ・{{ user.username}}<br>
+          {% endfor %}
         {% endif %}
 
     </div>

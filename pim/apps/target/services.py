@@ -5,20 +5,20 @@ import logging
 logger = logging.getLogger('app')
 
 def addNewTarget(addTargetForm, user):
-    
+
     result_flg = False
     if isUserExist(user):
         new_target = addTarget(addTargetForm)
         if new_target:
             addTargetRegister(new_target, user)
             result_flg = True
-    
+
     if result_flg:
         return 'success'
     else:
         return 'fail'
-    
-    
+
+
 def addTarget(add_target_form):
 
     logger.info('登録')
