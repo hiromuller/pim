@@ -100,8 +100,8 @@ class Target(models.Model):
     type_3 = models.CharField(max_length=200, blank=True, null=True, choices=CONST.TYPE_CHOICES)
     # 終了フラグ
     done_flg = models.BooleanField(default=False)
-    # プロファイル画像
-    profile_photo = models.CharField(max_length=200, blank=True)
+    # ターゲット画像
+    target_photo = models.ImageField(upload_to='targetPhoto/', null=True, blank=True)
 
     def encode(self):
         return {

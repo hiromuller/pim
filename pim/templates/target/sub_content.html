@@ -1,6 +1,6 @@
     <div id="sub_content">
         {{form_message}}
-        <form method="POST" action="{{main_url}}">
+        <form enctype="multipart/form-data" method="POST" action="{{main_url}}">
         {%csrf_token%}
 
         <div class="fieldWrapper">
@@ -123,9 +123,9 @@
 	          {{ addForm.type_3 }}
 	        </div>
 	        <div class="fieldWrapper">
-	          {{ addForm.profile_photo.errors }}
+	          {{ addForm.target_photo.errors }}
 	          <label for="id_profile_photo">写真:</label>
-	          {{ addForm.profile_photo }}
+	          {{ addForm.target_photo }}
 	        </div>
         </div>
 

@@ -28,7 +28,7 @@ def add(request):
     logger.info('ターゲット登録')
 
     if request.method == 'POST':
-        addTargetForm = FORMS.TargetForm(request.POST)
+        addTargetForm = FORMS.TargetForm(request.POST, request.FILES)
         result = SERVICES.addNewTarget(addTargetForm, request.user)
 
         if not result == 'success':

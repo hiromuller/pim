@@ -36,5 +36,5 @@ class TargetForm(ModelForm):
         self.fields['type_2'].required = False
         self.fields['type_3'].required = False
         self.fields['done_flg'].required = False
-        self.fields['profile_photo'].required = False
+        self.fields['target_photo'].required = False
         
