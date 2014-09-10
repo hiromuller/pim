@@ -71,19 +71,28 @@ def inviteUser(team_invite_form, user):
     logger.info('チーム招待')
 
     if team_invite_form.is_valid():
+
+        do_next = True
+
+        # 被招待者存在確認
         input_user = selectUserById(team_invite_form.cleaned_data['user_id'])
-        team = selectTeamById(team_invite_form.cleaned_data['team_id'])
 
-        if team:
-            user_has_membership = chkUserMemberShip(user, team)
-        else:
-            user_has_membership = False
+        # 被招待者がどのチームにも所属していないことを確認
+        if not hasTeam(input_user):
+            do_next = False
 
-        if input_user and user_has_membership:
-            is_team_admin = isTeamAdmin(user, team)
-            approve_by_admin_flg = False
-            if is_team_admin:
+        # チーム存在確認及びユーザメンバーシップ確認
+        if do_next:
+            team = selectTeamById(team_invite_form.cleaned_data['team_id'])
+
+            if not team:
+                do_next = False
+
+        if do_next:
+            if isTeamAdmin(user, team):
                 approve_by_admin_flg = True
+            else:
+                approve_by_admin_flg = False
             invitation = addInvitation(team, input_user, user, approve_by_admin_flg)
             if invitation:
                 return 'success'
@@ -156,6 +165,18 @@ def chkUserMemberShip(user, team):
             return False
     except MODELS.Membership.DoesNotExist:
         return False
+
+def hasTeam(user):
+    """
+    ユーザがチームに所属しているか確認する
+    return boolean
+    """
+    logger.info('hasTeam: '  + user.username)
+
+    if len(MODELS.Membership.objects.filter(user=user)) == 0:
+        return False
+    else:
+        return True
 
 def selectWaitingUserList(team_list):
     """
