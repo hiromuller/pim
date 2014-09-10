@@ -117,9 +117,10 @@ def generateForms(team_list, user):
         forms.update({'teamAddForm':FORMS.TeamAddForm()})
 
     # 承認待ちユーザ管理者用
-    if SERVICES.isTeamAdmin(team_list[0], user):
-        admin_approval_waiting_user_list = SERVICES.selectAdminApprovalWaitingUserList(team_list[0])
-        forms.update({'admin_approval_waiting_user_list':admin_approval_waiting_user_list})
+    if team_list:
+        if SERVICES.isTeamAdmin(team_list[0], user):
+            admin_approval_waiting_user_list = SERVICES.selectAdminApprovalWaitingUserList(team_list[0])
+            forms.update({'admin_approval_waiting_user_list':admin_approval_waiting_user_list})
 
     # 承認待ちチーム被招待者用
     inviting_team_list = SERVICES.selectInvitingTeamList(user)
