@@ -1,5 +1,7 @@
     <div id="sub_content">
         {{form_message}}
+
+        <!-- 新規チーム追加フォーム -->
         {% if teamAddForm %}
           <form method="POST" action="{{main_url}}">
           {%csrf_token%}
@@ -13,7 +15,9 @@
           <input type="submit" value="作成"/>
         </form>
         {% endif %}
+        <!-- ここまで -->
 
+        <!-- メンバー招待フォーム -->
         {% if has_team %}
           <form method="POST" action="{{main_url}}">
           {%csrf_token%}
@@ -34,7 +38,18 @@
           <input type="submit" value="招待する"/>
         </form>
         {% endif %}
+        <!-- ここまで -->
 
+        <!-- 承認待ちユーザ管理者用 -->
+        {% if admin_approval_waiting_user_list %}
+          管理者承認待ちユーザ
+          {% for admin_approval_waiting_user in admin_approval_waiting_user_list %}
+          ・{{ admin_approval_waiting_user.username }} &nbsp;<a href="#" onclick="">承認</a>
+          {%  endfor %}
+        {% endif %}
+        <!-- ここまで -->
+
+        <!-- 承認待ちユーザ表示 -->
         {% if waiting_user_list %}
         <br><br>
         承認待ちユーザ<br>
@@ -42,5 +57,6 @@
           ・{{ user.username}}<br>
           {% endfor %}
         {% endif %}
+        <!-- ここまで -->
 
     </div>

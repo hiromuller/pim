@@ -11,4 +11,3 @@ class TeamAddForm(forms.Form):
 class TeamInviteForm(forms.Form):
     team_id = forms.CharField(max_length=50, widget=forms.HiddenInput())
     user_id = forms.CharField(max_length=200)
-

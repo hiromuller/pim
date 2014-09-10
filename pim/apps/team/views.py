@@ -71,9 +71,10 @@ def show(request, c):
     c.update({'team_members_list':team_members_list})
 
     # テンプレートに渡すフォームを作成する
-    forms = generateForms(team_list)
+    forms = generateForms(team_list, request.user)
     c.update(forms)
-    # 承認街ユーザリストを作成する
+
+    # 承認待ちユーザリストを作成する
     waiting_user_list = SERVICES.selectWaitingUserList(team_list)
     c.update({'waiting_user_list':waiting_user_list})
 
@@ -102,16 +103,27 @@ def generateTeamMembersList(team_list):
 
     return team_members_list
 
-def generateForms(team_list):
+def generateForms(team_list, user):
     """
     チームに所属しているか判定する。所属していない場合、チーム登録フォームを渡す
     所属している場合、招待フォームを渡す
     return forms{}
     """
+    forms = {}
     if team_list:
-        forms = {'teamInviteForm':FORMS.TeamInviteForm(initial={'team_id':team_list[0].id})}
+        forms.update({'teamInviteForm':FORMS.TeamInviteForm(initial={'team_id':team_list[0].id})})
         forms.update({'has_team':True})
     else:
-        forms = {'teamAddForm':FORMS.TeamAddForm()}
+        forms.update({'teamAddForm':FORMS.TeamAddForm()})
+
+    # 承認待ちユーザ管理者用
+    if SERVICES.isTeamAdmin(team_list[0], user):
+        admin_approval_waiting_user_list = SERVICES.selectAdminApprovalWaitingUserList(team_list[0])
+        forms.update({'admin_approval_waiting_user_list':admin_approval_waiting_user_list})
+
+    # 承認待ちチーム被招待者用
+    inviting_team_list = SERVICES.selectInvitingTeamList(user)
+    forms.update({'inviting_team_list':inviting_team_list})
 
     return forms
+

@@ -89,7 +89,7 @@ def inviteUser(team_invite_form, user):
                 do_next = False
 
         if do_next:
-            if isTeamAdmin(user, team):
+            if isTeamAdmin(team, user):
                 approve_by_admin_flg = True
             else:
                 approve_by_admin_flg = False
@@ -136,7 +136,7 @@ def isUserExist(user):
     else:
         return True
 
-def isTeamAdmin(user, team):
+def isTeamAdmin(team, user):
     """
     チーム管理者か確認する
     return boolean
@@ -180,7 +180,7 @@ def hasTeam(user):
 
 def selectWaitingUserList(team_list):
     """
-    承認街ユーザリストを取得する
+    承認待ちユーザリストを取得する
     return user[]
     """
     logger.info('selectWaitingUserList')
@@ -192,5 +192,22 @@ def selectWaitingUserList(team_list):
                 user_list.append(invitation.invited_user)
     return user_list
 
+def selectAdminApprovalWaitingUserList(team):
+    """
+    管理者承認待ちユーザリストを取得する
+    return user[]
+    """
+    logger.info('selectAdminApprovalWaitingUserList: ' + team.name)
 
+    user_list = MODELS.Invitation.objects.filter(team=team, approve_by_admin_flg=False)
+    return user_list
 
+def selectInvitingTeamList(user):
+    """
+    被招待者承認待ちの招待を取得する
+    return team[]
+    """
+    logger.info('selectInvitingTeam: ' + user.username)
+
+    team_list = MODELS.Team.objects.filter(invitation__invited_user=user, invitation__approve_by_user_flg=False)
+    return team_list
