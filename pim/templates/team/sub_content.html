@@ -65,12 +65,13 @@
           </form>
           {% endif %}
         <!-- ここまで -->
+
         <!-- 承認待ちユーザ表示 -->
         {% if waiting_user_list %}
         <br><br>
         承認待ちユーザ<br>
-          {% for user in waiting_user_list %}
-          ・{{ user.username}}<br>
+          {% for waiting_user in waiting_user_list %}
+          ・{{ waiting_user.username }}<br>
           {% endfor %}
         {% endif %}
         <!-- ここまで -->

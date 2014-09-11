@@ -66,19 +66,21 @@ def acceptMember(request):
     if request.method == "POST":
         invited_username = request.POST["invited_username"]
 
+    print invited_username
     if invited_username:
         invited_user = SERVICES.selectUserById(invited_username)
         if invited_user is None:
-            return index(request)
+            c.update({'form_message':MSGS.INVITE_ACCEPT_FAIL})
+            return show(request, c)
     else:
-        return index(request)
+        c.update({'form_message':MSGS.INVITE_ACCEPT_FAIL})
+        return show(request, c)
 
     result = SERVICES.acceptMember(invited_user, SERVICES.selectTeamByUser(request.user))
 
     if result == 'success':
         c.update({'form_message': MSGS.INVITE_ACCEPT_SUCCESS})
     else:
-        fail_form = FORMS.TeamInviteForm(request.POST)
         c.update({'form_message':MSGS.INVITE_ACCEPT_FAIL})
 
     return show(request, c)
@@ -105,7 +107,6 @@ def acceptTeam(request):
     if result == 'success':
         c.update({'form_message': MSGS.INVITE_ACCEPT_SUCCESS})
     else:
-        fail_form = FORMS.TeamInviteForm(request.POST)
         c.update({'form_message':MSGS.INVITE_ACCEPT_FAIL})
 
 

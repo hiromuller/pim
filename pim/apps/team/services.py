@@ -77,7 +77,7 @@ def inviteUser(team_invite_form, user):
         input_user = selectUserById(team_invite_form.cleaned_data['user_id'])
 
         # 被招待者がどのチームにも所属していないことを確認
-        if not hasTeam(input_user):
+        if hasTeam(input_user):
             do_next = False
 
         # チーム存在確認及びユーザメンバーシップ確認
@@ -209,8 +209,10 @@ def hasTeam(user):
     logger.info('hasTeam: '  + user.username)
 
     if len(MODELS.Membership.objects.filter(user=user)) == 0:
+        logger.info('False')
         return False
     else:
+        logger.info('True')
         return True
 
 def selectWaitingUserList(team_list):
@@ -234,7 +236,11 @@ def selectAdminApprovalWaitingUserList(team):
     """
     logger.info('selectAdminApprovalWaitingUserList: ' + team.name)
 
-    user_list = MODELS.Invitation.objects.filter(team=team, approve_by_admin_flg=False)
+    user_list = []
+    invitation_list = MODELS.Invitation.objects.filter(team=team, approve_by_admin_flg=False)
+
+    for invitation in invitation_list:
+        user_list.append(invitation.invited_user)
     return user_list
 
 def selectInvitingTeamList(user):
