@@ -40,6 +40,8 @@ ACTION_ACCOUNT_UPDATE = 'account_update'
 ACTION_TEAM = 'team'
 ACTION_TEAM_ADD = 'team_add'
 ACTION_TEAM_INVITE = 'team_invite'
+ACTION_TEAM_INVITE_ACCEPT_USER = 'team_invite_accept_user'
+ACTION_TEAM_INVITE_ACCEPT_TEAM = 'team_invite_accept_team'
 
 ACTION_DICT = {
                 'ACTION_HOME':ACTION_HOME,
@@ -53,6 +55,8 @@ ACTION_DICT = {
                 'ACTION_TEAM':ACTION_TEAM,
                 'ACTION_TEAM_ADD':ACTION_TEAM_ADD,
                 'ACTION_TEAM_INVITE':ACTION_TEAM_INVITE,
+                'ACTION_TEAM_INVITE_ACCEPT_USER':ACTION_TEAM_INVITE_ACCEPT_USER,
+                'ACTION_TEAM_INVITE_ACCEPT_TEAM':ACTION_TEAM_INVITE_ACCEPT_TEAM
                }
 """
 コンテンツHTML

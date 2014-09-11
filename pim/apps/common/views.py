@@ -39,7 +39,7 @@ def show(request):
         return TARGET_VIEWS.add(request)
 
     elif action == CONFIG.ACTION_TARGET_DETAIL:
-        return TARGET_VIEWS.target_detail(request)
+        return TARGET_VIEWS.targetDetail(request)
 
     elif action == CONFIG.ACTION_ACCOUNT:
         return ACCOUNT_VIEWS.index(request)
@@ -55,6 +55,12 @@ def show(request):
 
     elif action == CONFIG.ACTION_TEAM_INVITE:
         return TEAM_VIEWS.invite(request)
+
+    elif action == CONFIG.ACTION_TEAM_INVITE_ACCEPT_USER:
+        return TEAM_VIEWS.acceptMember(request)
+
+    elif action == CONFIG.ACTION_TEAM_INVITE_ACCEPT_TEAM:
+        return TEAM_VIEWS.acceptTeam(request)
 
     else:
         main_url = CONFIG.TOP_URL

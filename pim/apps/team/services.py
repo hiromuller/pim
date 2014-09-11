@@ -33,7 +33,7 @@ def addNewTeam(teamAddForm, user):
     if isUserExist(user):
         new_team = addTeam(teamAddForm)
         if new_team:
-            new_membership = addNewMembership(new_team, user)
+            new_membership = addMembership(new_team, user, True)
             if new_membership:
                 result_flg = True
 
@@ -54,16 +54,15 @@ def addTeam(team_add_form):
     else:
         return None
 
-def addNewMembership(team, user):
+def addMembership(team, user, admin_flg):
     '''
     チームが新しく作成された時、管理者フラグをONにする
     '''
-
     logger.info('メンバーシップ登録')
     membership = MODELS.Membership()
     membership.team = team
     membership.user = user
-    membership.team_admin_flg = True
+    membership.team_admin_flg = admin_flg
     membership.save()
     return membership
 
@@ -109,6 +108,42 @@ def addInvitation(team, invited_user, invited_by, approve_by_admin_flg):
     invitation.save()
 
     return invitation
+
+def acceptMember(invited_user, team):
+    """
+    管理者承認待ちユーザを承認する
+    return success or fail
+    """
+    logger.info('acceptMember')
+    invitation_list = MODELS.Invitation.objects.filter(team=team, invited_user=invited_user)
+    if len(invitation_list) == 1:
+        invitation = invitation_list[0]
+        invitation.approve_by_admin_flg = True
+        invitation.save()
+        if invitation.approve_by_user_flg is True:
+            addMembership(team, invited_user, False)
+    else:
+        return 'fail'
+
+    return 'success'
+
+def acceptTeamInvited(user, team):
+    """
+    被招待者がチームからの招待を承認する
+    return success or fail
+    """
+    logger.info('acceptTeamInvite')
+    invitation_list = MODELS.Invitation.objects.filter(team=team, invited_user=user)
+    if len(invitation_list) == 1:
+        invitation = invitation_list[0]
+        invitation.approve_by_user_flg = True
+        invitation.save()
+        if invitation.approve_by_admin_flg is True:
+            addMembership(team, user, False)
+    else:
+        return 'fail'
+
+    return 'success'
 
 def selectUserById(user_id):
     logger.info('selectUserById : ' + user_id)

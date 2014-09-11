@@ -57,6 +57,62 @@ def invite(request):
 
     return show(request, c)
 
+def acceptMember(request):
+    """
+    チームに招待されたユーザを管理者が承認する
+    """
+    logger.info('チーム招待管理者承認')
+    c = {}
+    if request.method == "POST":
+        invited_username = request.POST["invited_username"]
+
+    if invited_username:
+        invited_user = SERVICES.selectUserById(invited_username)
+        if invited_user is None:
+            return index(request)
+    else:
+        return index(request)
+
+    result = SERVICES.acceptMember(invited_user, SERVICES.selectTeamByUser(request.user))
+
+    if result == 'success':
+        c.update({'form_message': MSGS.INVITE_ACCEPT_SUCCESS})
+    else:
+        fail_form = FORMS.TeamInviteForm(request.POST)
+        c.update({'form_message':MSGS.INVITE_ACCEPT_FAIL})
+
+    return show(request, c)
+
+
+def acceptTeam(request):
+    """
+    チームに招待された被招待者が承認する
+    """
+    logger.info('チーム招待被招待者承認')
+    c = {}
+    if request.method == "POST":
+        team_id = request.POST["team_id"]
+
+    if team_id:
+        team = SERVICES.selectTeamById(team_id)
+        if team is None:
+            return index(request)
+    else:
+        return index(request)
+
+    result = SERVICES.acceptTeamInvited(request.user, team)
+
+    if result == 'success':
+        c.update({'form_message': MSGS.INVITE_ACCEPT_SUCCESS})
+    else:
+        fail_form = FORMS.TeamInviteForm(request.POST)
+        c.update({'form_message':MSGS.INVITE_ACCEPT_FAIL})
+
+
+    return show(request, c)
+
+
+
 def show(request, c):
     """
     チームメンバー一覧画面インデックス

@@ -42,7 +42,7 @@ def add(request):
     c.update({'addForm':FORMS.TargetForm()})
     return show(request, c)
 
-def target_detail(request):
+def targetDetail(request):
     """
     ターゲット詳細
     """
