@@ -3,6 +3,7 @@
           <tbody>
           <form id="list_form" method="post" action="{{main_url}}">
           {% csrf_token %}
+          {% for target_list in target_list_list %}
             {% for target in target_list%}
             <tr>
               <td class="col-md-2">
@@ -165,7 +166,8 @@
               </td>
             </tr>
             {% endfor %}
-            </form>
+          {% endfor %}
+          </form>
 
           </tbody>
         </table>

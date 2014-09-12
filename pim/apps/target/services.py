@@ -51,6 +51,38 @@ def isUserExist(user):
 def selectAllTargetList():
     return MODELS.Target.objects.all().order_by('name_en')
 
-def selectTarget(key):
-    target = MODELS.Target.objects.get(id=key)
+def selectTargetById(id):
+    target = MODELS.Target.objects.get(id=id)
     return target
+
+def selectResponsibleTargetList(user):
+    """
+    ユーザが担当しているターゲットリストを返す
+    """
+    logger.info('selectResponsibleTargetList: ' + user.username)
+    target_list = MODELS.Target.objects.filter(progress_management__responsible_by=user)
+    target_list = sorted(set(target_list))
+    return target_list
+
+def selectRegisteredTargetList(user):
+    """
+    ユーザが登録したターゲットリストを返す
+    """
+    logger.info('selectRegisteredTargetList: ' + user.username)
+    target_list = MODELS.Target.objects.filter(target_register__user=user)
+    target_list = sorted(set(target_list))
+    return target_list
+
+def selectTeamTargetList(user):
+    """
+    チームのユーザが登録したターゲットリストを返す
+    """
+    logger.info('selectTeamTargetList: ' + user.username)
+    team_list = MODELS.Team.objects.filter(membership__user=user)
+    target_list = []
+    for team in team_list:
+        user_list = MODELS.User.objects.filter(membership__team=team)
+        for user in user_list:
+            target_list.extend(selectRegisteredTargetList(user))
+    target_list = sorted(set(target_list))
+    return target_list

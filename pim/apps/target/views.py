@@ -17,7 +17,7 @@ def index(request):
     """
     logger.info('ターゲットリスト画面開始')
     forms = {'addForm':FORMS.TargetForm()}
-    c = {}    
+    c = {}
     c.update(forms)
     return show(request, c)
 
@@ -50,12 +50,12 @@ def targetDetail(request):
 
     if request.method == "POST":
         key = request.POST["key"]
-        
+
     if key is None:
         return index(request)
 
     c = {}
-    target = SERVICES.selectTarget(key)
+    target = SERVICES.selectTargetById(key)
     c.update({'target':target})
 
     main_url = CONFIG.TOP_URL
@@ -63,36 +63,45 @@ def targetDetail(request):
     main_content = CONFIG.TARGET_DETAIL
     sub_content = CONFIG.TARGET_SUB_URL
 
-    url_dict = {'main_url':main_url, 
-                'page_title':page_title, 
+    url_dict = {'main_url':main_url,
+                'page_title':page_title,
                 'main_content':main_content,
                 'sub_content':sub_content}
     c.update(csrf(request))
     c.update(url_dict)
     c.update(CONFIG.ACTION_DICT)
     return render(request, 'common/main.html', c)
-    
+
 def show(request, c):
     """
     ターゲット一覧表示メソッド
     URLなど必要な値をセットし、表示する
     """
     logger.info('ターゲットリスト表示')
-    
-    target_list = SERVICES.selectAllTargetList()
-    c.update({'target_list':target_list})
+
+#    target_list = SERVICES.selectAllTargetList()
+#    c.update({'target_list':target_list})
+
+    responsible_target_list = SERVICES.selectResponsibleTargetList(request.user)
+    registered_target_list = SERVICES.selectRegisteredTargetList(request.user)
+    team_target_list = SERVICES.selectTeamTargetList(request.user)
+
+    target_list_list = []
+    target_list_list.append(responsible_target_list)
+    target_list_list.append(registered_target_list)
+    target_list_list.append(team_target_list)
+    c.update({'target_list_list':target_list_list})
 
     main_url = CONFIG.TOP_URL
     page_title = CONFIG.TARGET_PAGE_TITLE_URL
     main_content = CONFIG.TARGET_MAIN_URL
     sub_content = CONFIG.TARGET_SUB_URL
 
-    url_dict = {'main_url':main_url, 
-                'page_title':page_title, 
+    url_dict = {'main_url':main_url,
+                'page_title':page_title,
                 'main_content':main_content,
                 'sub_content':sub_content}
     c.update(csrf(request))
     c.update(url_dict)
     c.update(CONFIG.ACTION_DICT)
     return render(request, 'common/main.html', c)
-    
