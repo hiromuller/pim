@@ -11,6 +11,7 @@ urlpatterns = patterns('',
     url(r'^logout/$', 'auth.views.logout', name='logout'),
     url(r'', include('social.apps.django_app.urls', namespace='social')),
     url(r'^main/$', 'common.views.show', name='show'),
+    url(r'^progress/(?P<user_progress_id>\d+)/update/$', 'progress.views.update'),
     url(r'^', include('django.contrib.staticfiles.urls')),
 )
 
