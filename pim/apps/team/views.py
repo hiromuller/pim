@@ -76,7 +76,7 @@ def acceptMember(request):
         c.update({'form_message':MSGS.INVITE_ACCEPT_FAIL})
         return show(request, c)
 
-    result = SERVICES.acceptMember(invited_user, SERVICES.selectTeamByUser(request.user))
+    result = SERVICES.acceptMember(invited_user, SERVICES.selectTeamsByUser(request.user)[0])
 
     if result == 'success':
         c.update({'form_message': MSGS.INVITE_ACCEPT_SUCCESS})
@@ -84,7 +84,6 @@ def acceptMember(request):
         c.update({'form_message':MSGS.INVITE_ACCEPT_FAIL})
 
     return show(request, c)
-
 
 def acceptTeam(request):
     """
@@ -121,7 +120,7 @@ def show(request, c):
     """
     logger.info('チームメンバーリスト画面開始')
 
-    team_list = SERVICES.selectTeamByUser(request.user)
+    team_list = SERVICES.selectTeamsByUser(request.user)
 
     # 一覧表示用チームメンバーリスト作成
     team_members_list = generateTeamMembersList(team_list)

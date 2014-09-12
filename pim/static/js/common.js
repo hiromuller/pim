@@ -36,13 +36,13 @@ function display(target) {
 
 function acceptMember(invited_username, action) {
     var form = document.getElementById("admin_approval_form");
-    var invited_username = document.createElement("input");
+    var input_invited_username = document.createElement("input");
     var input_action = document.createElement("input");
 
-    invited_username.setAttribute("name", "invited_username");
-    invited_username.setAttribute("type", "hidden");
-    invited_username.setAttribute("value", invited_username);
-    form.appendChild(invited_username);
+    input_invited_username.setAttribute("name", "invited_username");
+    input_invited_username.setAttribute("type", "hidden");
+    input_invited_username.setAttribute("value", invited_username);
+    form.appendChild(input_invited_username);
 
     input_action.setAttribute("name", "action");
     input_action.setAttribute("type", "hidden");

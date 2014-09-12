@@ -4,11 +4,11 @@ import logging
 
 logger = logging.getLogger('app')
 
-def selectTeamByUser(user):
+def selectTeamsByUser(user):
     """
     ユーザが所属するチームのリストを返す
     """
-    logger.info('selectTeamByUser')
+    logger.info('selectTeamsByUser')
     team_list = []
     membership_list = MODELS.Membership.objects.filter(user=user)
     if len(membership_list) >= 1:
