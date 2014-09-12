@@ -10,6 +10,7 @@
                       <td class="col-md-3">registered_at</td>
                       <td class="col-md-3">relationship</td>
                       <td class="col-md-4">remarks</td>
+
                     </tr>
                 </table>
             </td>
@@ -40,10 +41,16 @@
                     <table class="table-bordered">
               {% endifchanged %}
                           <tr>
+                              <td id="id_user_progress_id_{{ user_progress.id }}" style="display:none">{{ user_progress.id }}</td>
+                              <td id="target_{{ user_progress.id }}" style="display:none">{{ user_progress.target.id }}</td>
                               <td class="col-md-2">{{ user_progress.get_progress_display }}</td>
+                              <td id="progress_{{ user_progress.id }}" style="display:none">{{ user_progress.progress }}</td>
                               <td class="col-md-3">{{ user_progress.registered_at|date:"Y-m-d(D)" }}</td>
-                              <td class="col-md-3">{{ user_progress.relationship }}</td>
-                              <td class="col-md-4">{{ user_progress.remarks }}</td>
+                              <td id="relationship_{{ user_progress.id }}" class="col-md-3">{{ user_progress.relationship }}</td>
+                              <td id="remarks_{{ user_progress.id }}" class="col-md-4">{{ user_progress.remarks }}</td>
+                              <td>
+                              <a href="javascript:void(0)" onClick="setSubContentForm('{{ user_progress.id }}');return false;"><i class="glyphicon glyphicon-pencil"></i></a>
+                              </td>
                           </tr>
               {% if forloop.last %}
                             </table>

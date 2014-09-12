@@ -3,8 +3,11 @@
         <form method="POST" action="{{main_url}}">
         {%csrf_token%}
 		{{ form.as_p }}
-        <input type="hidden" name="action" value="{{ACTION_PROGRESS_ADD}}">
+        <input id="id_progress_action" type="hidden" name="action" value="{{ACTION_PROGRESS_ADD}}">
         <input type="hidden" name="responsible_by_id" value="{{ user.username }}">
-		<input type="submit" value="登録" />
+        <input id="id_user_progress_id" type="hidden" name="user_progress_id" value="">
+		<input id="id_submit_progress" type="submit" value="登録" />
 		</form>
+
+        <input type="button" value="キャンセル" onclick="moveTo('progress_list');">
     </div>

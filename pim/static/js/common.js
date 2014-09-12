@@ -34,6 +34,18 @@ function display(target) {
     "none" == obj.style.display ?"" : "none"
 }
 
+function setSubContentForm(userProgressId) {
+	$('#id_select_target').val($('#target_' + userProgressId).text());
+	$('#id_user_progress_id').val($('#id_user_progress_id_' + userProgressId).text());
+	$('#id_progress').val($('#progress_' + userProgressId).text());
+	$('#id_relationship').val($('#relationship_' + userProgressId).text());
+	$('#id_remarks').val($('#remarks_' + userProgressId).text());
+	$('#id_submit_progress').val("更新");
+	$('#id_progress_action').val("progress_update");
+//	alert ($("#id_progress_action").val());
+
+}
+
 function test() {
 	window.alert("TEST!!");
 }

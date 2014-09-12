@@ -14,7 +14,7 @@ def index(request):
 
     logger.info('index')
 
-    form = {'form':ProgressManagementForm()}
+    form = {'form':ProgressManagementForm(request.user)}
     c = {}    
     c.update(form)
     return show(request, c)
@@ -26,12 +26,26 @@ def add(request):
     if request.method == 'POST':
         result = SERVICES.addProgress(request.user, request.POST)
         if not result == 'success':
-            fail_form = FORMS.ProgressManagementForm(request.POST)
+            fail_form = FORMS.ProgressManagementForm(request.user, request.POST)
             c = {'form':fail_form}
             c.update({'form_message':MSGS.ADD_FAIL})
             return show(request, c)
     c = {'form_message': MSGS.ADD_SUCCESS}
-    c.update({'form':FORMS.ProgressManagementForm()})
+    c.update({'form':FORMS.ProgressManagementForm(request.user, )})
+    return show(request, c)
+
+def update(request ):
+    logger.info('update')
+
+    if request.method == 'POST':
+        result = SERVICES.updateProgress(request.user, request.POST)
+        if not result == 'success':
+            fail_form = FORMS.ProgressManagementForm(request.user, request.POST)
+            c = {'form':fail_form}
+            c.update({'form_message':MSGS.UPD_FAIL})
+            return show(request, c)
+    c = {'form_message': MSGS.UPD_SUCCESS}
+    c.update({'form':FORMS.ProgressManagementForm(request.user, )})
     return show(request, c)
 
 def show(request, c):
