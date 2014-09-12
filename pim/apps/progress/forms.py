@@ -2,7 +2,7 @@
 from django import forms
 import common.models as MODELS
 from django.forms.widgets import Textarea
-from common.models import Target, Target_register
+from common.models import Target_register
 
 class ProgressManagementForm(forms.ModelForm):
 
