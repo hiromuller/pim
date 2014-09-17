@@ -6,6 +6,7 @@ import configs as CONFIG
 import forms as FORMS
 import services as SERVICES
 import messages as MSGS
+import consts as CONSTS
 import logging
 
 logger = logging.getLogger('app')
@@ -87,9 +88,9 @@ def show(request, c):
     team_target_list = SERVICES.selectTeamTargetList(request.user)
 
     target_list_list = []
-    target_list_list.append(responsible_target_list)
-    target_list_list.append(registered_target_list)
-    target_list_list.append(team_target_list)
+    target_list_list.append([CONSTS.RESPONSIBLE_TARGET_LIST_NAME,responsible_target_list])
+    target_list_list.append([CONSTS.REGISTERED_TARGET_LIST_NAME,registered_target_list])
+    target_list_list.append([CONSTS.TEAM_TARGET_LIST_NAME,team_target_list])
     c.update({'target_list_list':target_list_list})
 
     main_url = CONFIG.TOP_URL

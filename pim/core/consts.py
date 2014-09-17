@@ -64,3 +64,10 @@ DIFFICULTY_CHOICES = (
                       ('NOMRAL', u'普通'),
                       ('HARD', u'難しい')
                       )
+
+"""
+定数
+"""
+RESPONSIBLE_TARGET_LIST_NAME = u'担当ターゲット'
+REGISTERED_TARGET_LIST_NAME = u'登録したターゲット'
+TEAM_TARGET_LIST_NAME = u'チームターゲット'

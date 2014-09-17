@@ -1,10 +1,17 @@
     <div id="main_content">
+          {% for target_list in target_list_list %}
         <table class="table table-hover">
+          <thead>
+            <tr>
+             <th class="col-md-12" colspan="2">
+              {{ target_list.0 }}
+             </th>
+            </tr>
+          </thead>
           <tbody>
           <form id="list_form" method="post" action="{{main_url}}">
           {% csrf_token %}
-          {% for target_list in target_list_list %}
-            {% for target in target_list%}
+            {% for target in target_list.1 %}
             <tr>
               <td class="col-md-2">
                 <img src="{{STATIC_URL}}images/no_image.png" width="100%">
@@ -166,9 +173,9 @@
               </td>
             </tr>
             {% endfor %}
-          {% endfor %}
           </form>
 
           </tbody>
         </table>
+          {% endfor %}
     </div>
