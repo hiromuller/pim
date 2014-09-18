@@ -119,13 +119,13 @@
                     </th>
                     <td class="col-md-10" colspan="3">
                       {% if target.type_1  %}
-                      {{ target.type_1 }}
+                      {{ target.get_type_1_display }}
                       {% endif %}
                       {% if target.type_2  %}
-                      {{ target.type_2 }}
+                      {{ target.get_type_2_display }}
                       {% endif %}
                       {% if target.type_3  %}
-                      {{ target.type_3 }}
+                      {{ target.get_type_3_display }}
                       {% endif %}
                     </td>
                   </tr>

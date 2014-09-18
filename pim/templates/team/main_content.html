@@ -80,13 +80,13 @@
                     </th>
                     <td class="col-md-10" colspan="3">
                       {% if members.target_type_1  %}
-                      {{ members.target_type_1 }}
+                      {{ members.get_target_type_1_display }}
                       {% endif %}
                       {% if members.target_type_2  %}
-                      {{ members.target_type_2 }}
+                      {{ members.get_target_type_2_display }}
                       {% endif %}
                       {% if members.target_type_3  %}
-                      {{ members.target_type_3 }}
+                      {{ members.get_target_type_3_display }}
                       {% endif %}
                     </td>
                   </tr>
