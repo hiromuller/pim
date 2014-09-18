@@ -1,16 +1,19 @@
     <div id="main_content">
     target_detail
-        <table class="table table-hover">
+        {{form_message}}
+        <form enctype="multipart/form-data" method="POST" action="{{main_url}}">
+        {%csrf_token%}
+        <table class="table">
           <tbody>
             <tr>
               <td class="col-md-2">
                 <img src="{{STATIC_URL}}images/no_image.png" width="100%">
               </td>
               <td class="col-md-10">
-                <table style="width:100%;">
+                <table style="width:100%;" class="table">
                   <tr>
                     <td class="col-md-12" colspan="4">
-                      {{ target.name_kanji}} : {{ target.name_en }} {%if target.nick_name %}({{ target.nick_name }}){% endif %}
+                      {{ targetForm.name_kanji}} : {{ targetForm.name_en }} ({{ targetForm.nick_name }})
                     </td>
                   <tr>
                   <tr>
@@ -18,21 +21,13 @@
                       職業:
                     </th>
                     <td class="col-md-5">
-                      {% if target.occupation  %}
-                      {{ target.occupation }}
-                      {% else %}
-                      &nbsp;-
-                      {% endif %}
+                      {{ targetForm.occupation }}
                     </td>
                     <th class="col-md-2">
                       誕生日:
                     </th>
                     <td class="col-md-5">
-                      {% if target.birthday  %}
-                      {{ target.birthday }}
-                      {% else %}
-                      &nbsp;-
-                      {% endif %}
+                      {{ targetForm.birthday }}
                     </td>
                   </tr>
                   <tr>
@@ -40,21 +35,13 @@
                       <span style="font-size:13px;">電話番号:</span>
                     </th>
                     <td class="col-md-5">
-                      {% if target.phone_number  %}
-                      {{ target.phone_number }}
-                      {% else %}
-                      &nbsp;-
-                      {% endif %}
+                      {{ targetForm.phone_number }}
                     </td>
                     <th class="col-md-2">
                       メール
                     </th>
                     <td class="col-md-5">
-                      {% if target.mail  %}
-                      {{ target.mail }}
-                      {% else %}
-                      &nbsp;-
-                      {% endif %}
+                      {{ targetForm.mail }}
                     </td>
                   </tr>
                   <tr>
@@ -62,21 +49,13 @@
                       住所:
                     </th>
                     <td class="col-md-5">
-                      {% if target.address  %}
-                      {{ target.address }}
-                      {% else %}
-                      &nbsp;-
-                      {% endif %}
+                      {{ targetForm.address }}
                     </td>
                     <th class="col-md-2">
                       状況:
                     </th>
                     <td class="col-md-5">
-                      {% if target.living_situation  %}
-                      {{ target.living_situation }}
-                      {% else %}
-                      &nbsp;-
-                      {% endif %}
+                      {{ targetForm.living_situation }}
                     </td>
                   </tr>
                   <tr>
@@ -84,21 +63,13 @@
                       <span style="font-size:13px;">きっかけ:</span>
                     </th>
                     <td class="col-md-5">
-                      {% if target.met_situation  %}
-                      {{ target.met_situation }}
-                      {% else %}
-                      &nbsp;-
-                      {% endif %}
+                      {{ targetForm.met_situation }}
                     </td>
                     <th class="col-md-2">
                       趣味:
                     </th>
                     <td class="col-md-5">
-                      {% if target.hobby  %}
-                      {{ target.hobby }}
-                      {% else %}
-                      &nbsp;-
-                      {% endif %}
+                      {{ targetForm.hobby }}
                     </td>
                   </tr>
                   <tr>
@@ -106,15 +77,9 @@
                       性格:
                     </th>
                     <td class="col-md-10" colspan="3">
-                      {% if target.type_1  %}
-                      {{ target.type_1 }}
-                      {% endif %}
-                      {% if target.type_2  %}
-                      {{ target.type_2 }}
-                      {% endif %}
-                      {% if target.type_3  %}
-                      {{ target.type_3 }}
-                      {% endif %}
+                      {{ targetForm.type_1 }}
+                      {{ targetForm.type_2 }}
+                      {{ targetForm.type_3 }}
                     </td>
                   </tr>
                   <tr>
@@ -122,21 +87,13 @@
                       目的:
                     </th>
                     <td class="col-md-5">
-                      {% if target.purpose  %}
-                      {{ target.purpose }}
-                      {% else %}
-                      &nbsp;-
-                      {% endif %}
+                      {{ targetForm.purpose }}
                     </td>
                     <th class="col-md-2">
                       接触日:
                     </th>
                     <td class="col-md-5">
-                      {% if target.met_date  %}
-                      {{ target.met_date }}
-                      {% else %}
-                      &nbsp;-
-                      {% endif %}
+                      {{ targetForm.met_date }}
                     </td>
                   </tr>
                   <tr>
@@ -144,23 +101,25 @@
                       level:
                     </th>
                     <td class="col-md-5">
-                      1
+                      {{ targetForm.level }}
                     </td>
                     <th class="col-md-2">
                       難易度:
                     </th>
                     <td class="col-md-5">
-                      {% if target.difficulty %}
-                      {{ target.difficulty }}
-                      {% else %}
-                      &nbsp;-
-                      {% endif %}
+                      {{ targetForm.difficulty }}
                     </td>
                   </tr>
                 </table>
               </td>
             </tr>
-
+            <tr>
+            <td colspan="2">
+        <input type="hidden" name="action" value="{{ACTION_TARGET_UPDATE}}">
+        <span style="float:right;"><input type="submit" value="更新"/></span>
+            </td>
+            </tr>
           </tbody>
         </table>
+    </form>
     </div>

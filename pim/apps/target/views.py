@@ -43,6 +43,15 @@ def add(request):
     c.update({'addForm':FORMS.TargetForm()})
     return show(request, c)
 
+def targetUpdate(request):
+    """
+    ターゲット更新
+    """
+    logger.info('ターゲット更新')
+    c = {}
+
+    return show(request, c)
+
 def targetDetail(request):
     """
     ターゲット詳細
@@ -58,6 +67,9 @@ def targetDetail(request):
     c = {}
     target = SERVICES.selectTargetById(key)
     c.update({'target':target})
+
+    targetForm = FORMS.TargetForm(instance=target)
+    c.update({'targetForm':targetForm})
 
     main_url = CONFIG.TOP_URL
     page_title = CONFIG.TARGET_PAGE_TITLE_URL

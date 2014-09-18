@@ -44,6 +44,9 @@ def show(request):
     elif action == CONFIG.ACTION_TARGET_DETAIL:
         return TARGET_VIEWS.targetDetail(request)
 
+    elif action == CONFIG.ACTION_TARGET_UPDATE:
+        return TARGET_VIEWS.targetUpdate(request)
+
     elif action == CONFIG.ACTION_ACCOUNT:
         return ACCOUNT_VIEWS.index(request)
 

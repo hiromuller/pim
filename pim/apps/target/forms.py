@@ -10,7 +10,7 @@ import common.models as MODELS
 class TargetForm(ModelForm):
     class Meta:
         model = MODELS.Target
-        
+
     def __init__(self, *args, **kwargs):
         super(TargetForm, self).__init__(*args, **kwargs)
 
@@ -37,4 +37,3 @@ class TargetForm(ModelForm):
         self.fields['type_3'].required = False
         self.fields['done_flg'].required = False
         self.fields['target_photo'].required = False
-        
