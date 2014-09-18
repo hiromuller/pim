@@ -1,4 +1,5 @@
     <div id="main_content">
+      <span style="color:red;">{{ team_delete_message }}</span>
       {% for team_members in team_members_list %}
         <table>
           <tbody>
@@ -12,6 +13,14 @@
             <tr>
               <th>
                 チーム名：{{team_members.team.name}}
+                 &nbsp;
+                 {% if team_members.team_admin == user  %}
+                   <span style="font-size:8px">
+                     <a href="javascript:void(0)" onClick="deleteObject('{{team_members.team.id}}', '', '{{ACTION_TEAM_DELETE_TEAM}}');return false;">
+                       チーム削除
+                     </a>
+                   </span>
+                 {% endif %}
               </th>
             </tr>
 
@@ -37,7 +46,7 @@
                      <img src="{{STATIC_URL}}images/admin.png" width="20px">
                     {% endif %}
                     {% if team_members.team_admin == user and members != user %}
-                      <a href="javascript:void(0)" onClick="deleteObject('{{members.username}}', '{{team_members.team.id}}', '{{ACTION_TEAM_DELETE_MEMBER}}');">
+                      <a href="javascript:void(0)" onClick="deleteObject('{{members.username}}', '{{team_members.team.id}}', '{{ACTION_TEAM_DELETE_MEMBER}}');return false;">
                         <i class="glyphicon glyphicon-remove"></i>
                       </a>
                     {% endif %}

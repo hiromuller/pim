@@ -48,7 +48,7 @@
           <form id="admin_approval_form" method="POST" action="{{main_url}}">
           {%csrf_token%}
           {% for admin_approval_waiting_user in admin_approval_waiting_user_list %}
-          ・{{ admin_approval_waiting_user.username }} &nbsp;<a href="#" onclick="acceptMember('{{ admin_approval_waiting_user.username }}', '{{ ACTION_TEAM_INVITE_ACCEPT_USER }}');">承認</a>
+          ・{{ admin_approval_waiting_user.username }} &nbsp;<a href="#" onclick="acceptMember('{{ admin_approval_waiting_user.username }}', '{{ ACTION_TEAM_INVITE_ACCEPT_USER }}');">承認</a><br>
           {%  endfor %}
           </form>
         {% endif %}
@@ -60,7 +60,7 @@
           <form id="invited_user_approval_form" method="POST" action="{{main_url}}">
           {%csrf_token%}
           {% for inviting_team in inviting_team_list %}
-          ・{{ inviting_team.name }} &nbsp;<a href="#" onclick="acceptTeam('{{ inviting_team.id }}', '{{ ACTION_TEAM_INVITE_ACCEPT_TEAM }}');">承認</a>
+          ・{{ inviting_team.name }} &nbsp;<a href="#" onclick="acceptTeam('{{ inviting_team.id }}', '{{ ACTION_TEAM_INVITE_ACCEPT_TEAM }}');">承認</a><br>
           {% endfor %}
           </form>
           {% endif %}

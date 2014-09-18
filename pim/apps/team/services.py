@@ -274,3 +274,18 @@ def deleteMember(user, team):
         return 'success'
     except:
         return 'fail'
+
+def deleteTeam(team):
+    """
+    チームを削除する
+    return success or fail
+    """
+    logger.info('deleteTeam: ' + team.name)
+
+    try:
+        MODELS.Membership.objects.filter(team = team).delete()
+        MODELS.Invitation.objects.filter(team = team).delete()
+        MODELS.Team.objects.get(id = team.id).delete()
+        return 'success'
+    except:
+        return 'fail'
