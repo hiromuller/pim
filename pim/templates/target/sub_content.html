@@ -23,8 +23,8 @@
           <label for="id_met_date">会った日:</label>
           {{ addForm.met_date }}
         </div>
-        <a href="#" onclick="display('target_detail_inputs');">詳細入力</a>
-        
+        <a href="javascript:void(0)" onclick="display('target_detail_inputs');">詳細入力</a>
+
         <!-- 以下詳細登録とする。ボタン押したらニュって出てくる感じ-->
         <div id="target_detail_inputs" style="display:none;">
 	        <div class="fieldWrapper">
@@ -132,6 +132,5 @@
         <input type="hidden" name="action" value="{{ACTION_TARGET_ADD}}">
         <input type="submit" value="登録"/>
       </form>
-      
+
     </div>
-    

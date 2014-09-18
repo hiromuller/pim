@@ -261,3 +261,16 @@ def selectInvitingTeamList(user):
 
     team_list = MODELS.Team.objects.filter(invitation__invited_user=user, invitation__approve_by_user_flg=False)
     return team_list
+
+def deleteMember(user, team):
+    """
+    チームからメンバーを削除する
+    return success or fail
+    """
+    logger.info('deleteMember: ' + user.username + ', ' + team.name)
+    try:
+        MODELS.Invitation.objects.get(invited_user = user, team = team).delete()
+        MODELS.Membership.objects.get(user = user, team = team).delete()
+        return 'success'
+    except:
+        return 'fail'

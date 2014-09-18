@@ -82,6 +82,30 @@ function setSubContentForm(userProgressId) {
 
 }
 
+function deleteObject(object_id, delete_from_id, action) {
+    var form = document.getElementById("list_form");
+    var input_object_id = document.createElement("input");
+    var input_delete_from_id = document.createElement("input");
+    var input_action = document.createElement("input");
+
+    input_object_id.setAttribute("name", "object_id");
+    input_object_id.setAttribute("type", "hidden");
+    input_object_id.setAttribute("value", object_id);
+    form.appendChild(input_object_id);
+
+    input_delete_from_id.setAttribute("name", "delete_from_id");
+    input_delete_from_id.setAttribute("type", "hidden");
+    input_delete_from_id.setAttribute("value", delete_from_id);
+    form.appendChild(input_delete_from_id);
+
+    input_action.setAttribute("name", "action");
+    input_action.setAttribute("type", "hidden");
+    input_action.setAttribute("value", action);
+    form.appendChild(input_action);
+
+    form.submit();
+}
+
 function test() {
 	window.alert("TEST!!");
 }

@@ -2,6 +2,13 @@
       {% for team_members in team_members_list %}
         <table>
           <tbody>
+            {% if list_form_message %}
+             <tr>
+              <td>
+                <span style="color:red;">{{list_form_message}}</span>
+              </td>
+             </tr>
+            {% endif %}
             <tr>
               <th>
                 チーム名：{{team_members.team.name}}
@@ -28,6 +35,11 @@
                     <td>
                     {% if team_members.team_admin == members %}
                      <img src="{{STATIC_URL}}images/admin.png" width="20px">
+                    {% endif %}
+                    {% if team_members.team_admin == user and members != user %}
+                      <a href="javascript:void(0)" onClick="deleteObject('{{members.username}}', '{{team_members.team.id}}', '{{ACTION_TEAM_DELETE_MEMBER}}');">
+                        <i class="glyphicon glyphicon-remove"></i>
+                      </a>
                     {% endif %}
                     </td>
                   <tr>

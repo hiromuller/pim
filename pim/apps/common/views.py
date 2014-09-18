@@ -65,6 +65,9 @@ def show(request):
     elif action == CONFIG.ACTION_TEAM_INVITE_ACCEPT_TEAM:
         return TEAM_VIEWS.acceptTeam(request)
 
+    elif action == CONFIG.ACTION_TEAM_DELETE_MEMBER:
+        return TEAM_VIEWS.deleteMember(request)
+
     else:
         main_url = CONFIG.TOP_URL
         page_title = action + CONFIG.PAGE_TITLE

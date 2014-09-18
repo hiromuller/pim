@@ -111,6 +111,31 @@ def acceptTeam(request):
 
     return show(request, c)
 
+def deleteMember(request):
+    """
+    チームからメンバーを削除する
+    """
+    logger.info('チームメンバ^－削除')
+    c = {}
+
+    if request.method == "POST":
+        username = request.POST["object_id"]
+        team_id = request.POST["delete_from_id"]
+
+    user = SERVICES.selectUserById(username)
+    team = SERVICES.selectTeamById(team_id)
+
+    if user and team:
+        result = SERVICES.deleteMember(user, team)
+
+    if result == 'success':
+        c.update({'list_form_message': MSGS.DELETE_MEMBER_SUCCESS})
+    else:
+        c.update({'list_form_message':MSGS.DELETE_MEMBER_FAIL})
+
+
+    return show(request, c)
+
 def show(request, c):
     """
     チームメンバー一覧画面インデックス
