@@ -186,6 +186,15 @@ def isTeamAdmin(team, user):
     except MODELS.Membership.DoesNotExist:
         return False
 
+def selectTeamAdmin(team):
+    """
+    チーム管理者を取得する
+    return user
+    """
+    logger.info('selectTeamAdmin: ' + team.name)
+
+    return MODELS.User.objects.get(membership__team = team, membership__team_admin_flg = True)
+
 def chkUserMemberShip(user, team):
     """
     ユーザがチームに所属しているか確認する

@@ -111,8 +111,6 @@ def acceptTeam(request):
 
     return show(request, c)
 
-
-
 def show(request, c):
     """
     チームメンバー一覧画面インデックス
