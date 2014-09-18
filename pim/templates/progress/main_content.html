@@ -95,10 +95,7 @@
                         <table class="table-striped">
                   {% endifchanged %}
                               <tr>
-                                  <td id="id_team_progress_id_{{ team_progress.id }}" style="display:none">{{ team_progress.id }}</td>
-                                  <td id="target_{{ team_progress.id }}" style="display:none">{{ team_progress.target.id }}</td>
                                   <td class="col-md-2">{{ team_progress.get_progress_display }}</td>
-                                  <td id="progress_{{ team_progress.id }}" style="display:none">{{ team_progress.progress }}</td>
                                   <td class="col-md-3">{{ team_progress.registered_at|date:"Y-m-d(D)" }}</td>
                                   <td id="relationship_{{ team_progress.id }}" class="col-md-3">{{ team_progress.relationship }}</td>
                                   <td id="remarks_{{ team_progress.id }}" class="col-md-4">{{ team_progress.remarks }}</td>
