@@ -249,7 +249,7 @@ class Membership(models.Model):
     チームとメンバーの関係の中間モデル
     """
     def __unicode__(self):
-        return self.team
+        return self.team.name
 
     # チーム
     team = models.ForeignKey(Team)
@@ -257,6 +257,14 @@ class Membership(models.Model):
     user = models.ForeignKey(User)
     # チーム管理者フラグ
     team_admin_flg = models.BooleanField(default=False)
+
+    def encode(self):
+        return {
+                'team': self.team.encode(),
+                'user': self.ruser.encode(),
+                'team_admin_flg': self.team_admin_flg.encode(),
+                }
+
 
 class Invitation(models.Model):
     """

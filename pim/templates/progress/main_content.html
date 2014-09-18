@@ -62,7 +62,56 @@
         </tbody>
       </table>
 
-    <hr>
-        ↓ この下に担当者の所属するチームの別メンバの進捗を表示する ↓
+        {% comment %}
+            <!-- ↓ この下に担当者の所属するチームの別メンバの進捗を表示する ↓ -->
+        {% endcomment %}
 
+        {% for team_progress_list in team_progress_lists%}
+      <table class="table table-hover">
+           <tbody>
+            {% for team_progress in team_progress_list%}
+                  {% ifchanged team_progress.responsible_by %}
+                        チームメンバ:{{ team_progress.responsible_by }} の進捗状況
+                  {% endifchanged %}
+                  {% comment %}
+                    <!-- 前と顧客が変わったら印字する -->
+                  {% endcomment %}
+                  {% ifchanged team_progress.target.pk %}
+                        {% if forloop.first %}
+                        <tr>
+                             <td class="col-md-2" valign="middle">
+                        {% else %}
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-2" valign="middle">
+                        {% endif %}
+                                  名前:{{ team_progress.target.name_kanji }}<br>
+                                  LV:{{ team_progress.target.level }}<br>
+                                  目的:{{ team_progress.target.purpose }}<br>
+                            </td>
+                    <td class="col-md-10">
+                        <table class="table-striped">
+                  {% endifchanged %}
+                              <tr>
+                                  <td id="id_team_progress_id_{{ team_progress.id }}" style="display:none">{{ team_progress.id }}</td>
+                                  <td id="target_{{ team_progress.id }}" style="display:none">{{ team_progress.target.id }}</td>
+                                  <td class="col-md-2">{{ team_progress.get_progress_display }}</td>
+                                  <td id="progress_{{ team_progress.id }}" style="display:none">{{ team_progress.progress }}</td>
+                                  <td class="col-md-3">{{ team_progress.registered_at|date:"Y-m-d(D)" }}</td>
+                                  <td id="relationship_{{ team_progress.id }}" class="col-md-3">{{ team_progress.relationship }}</td>
+                                  <td id="remarks_{{ team_progress.id }}" class="col-md-4">{{ team_progress.remarks }}</td>
+                              </tr>
+                  {% if forloop.last %}
+                                </table>
+                            </td>
+                        </tr>
+                  {% endif %}
+            {% endfor %}
+
+            </tbody>
+           </table>
+           <hr>
+        {% endfor %}
     </div>
