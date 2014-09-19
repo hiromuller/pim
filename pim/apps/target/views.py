@@ -49,8 +49,26 @@ def targetUpdate(request):
     """
     logger.info('ターゲット更新')
     c = {}
+    result = ''
 
-    return show(request, c)
+    if request.method == 'POST':
+        target_form = FORMS.TargetForm(request.POST)
+        target_id = request.POST['id']
+        target = SERVICES.selectTargetById(target_id)
+        if SERVICES.userOwnsTarget(request.user, target):
+            result = SERVICES.updateTarget(target_form, target_id)
+
+    if result == 'success':
+        c.update({'form_message': MSGS.TARGET_UPDATE_SUCCESS})
+    else:
+        c.update({'form_message':MSGS.TARGET_UPDATE_FAIL})
+
+    target = SERVICES.selectTargetById(target_id)
+    c.update({'target':target})
+
+    targetForm = FORMS.TargetForm(instance=target)
+    c.update({'targetForm':targetForm})
+    return targetDetailShow(request, c)
 
 def targetDetail(request):
     """
@@ -71,6 +89,13 @@ def targetDetail(request):
     targetForm = FORMS.TargetForm(instance=target)
     c.update({'targetForm':targetForm})
 
+    return targetDetailShow(request, c)
+
+
+def targetDetailShow(request, c):
+    """
+    ターゲット詳細表示
+    """
     main_url = CONFIG.TOP_URL
     page_title = CONFIG.TARGET_PAGE_TITLE_URL
     main_content = CONFIG.TARGET_DETAIL

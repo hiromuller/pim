@@ -1,6 +1,6 @@
     <div id="main_content">
+        <span style="color:red;">{{form_message}}</span><br>
     target_detail
-        {{form_message}}
         <form enctype="multipart/form-data" method="POST" action="{{main_url}}">
         {%csrf_token%}
         <table class="table">
@@ -13,6 +13,7 @@
                 <table style="width:100%;" class="table">
                   <tr>
                     <td class="col-md-12" colspan="4">
+                      {{ targetForm.name_kanji.errors }}{{ targetForm.name_en.errors }}{{ targetForm.nick_name.errors }}
                       {{ targetForm.name_kanji}} : {{ targetForm.name_en }} ({{ targetForm.nick_name }})
                     </td>
                   <tr>
@@ -21,12 +22,14 @@
                       職業:
                     </th>
                     <td class="col-md-5">
+                      {{ targetForm.occupation.errors }}
                       {{ targetForm.occupation }}
                     </td>
                     <th class="col-md-2">
                       誕生日:
                     </th>
                     <td class="col-md-5">
+                      {{ targetForm.birthday.errors }}
                       {{ targetForm.birthday }}
                     </td>
                   </tr>
@@ -35,12 +38,14 @@
                       <span style="font-size:13px;">電話番号:</span>
                     </th>
                     <td class="col-md-5">
+                      {{ targetForm.phone_number.errors }}
                       {{ targetForm.phone_number }}
                     </td>
                     <th class="col-md-2">
                       メール
                     </th>
                     <td class="col-md-5">
+                      {{ targetForm.mail.errors }}
                       {{ targetForm.mail }}
                     </td>
                   </tr>
@@ -49,12 +54,14 @@
                       住所:
                     </th>
                     <td class="col-md-5">
+                      {{ targetForm.address.errors }}
                       {{ targetForm.address }}
                     </td>
                     <th class="col-md-2">
                       状況:
                     </th>
                     <td class="col-md-5">
+                      {{ targetForm.living_situation.errors }}
                       {{ targetForm.living_situation }}
                     </td>
                   </tr>
@@ -63,12 +70,14 @@
                       <span style="font-size:13px;">きっかけ:</span>
                     </th>
                     <td class="col-md-5">
+                      {{ targetForm.met_situation.errors }}
                       {{ targetForm.met_situation }}
                     </td>
                     <th class="col-md-2">
                       趣味:
                     </th>
                     <td class="col-md-5">
+                      {{ targetForm.hobby.errors }}
                       {{ targetForm.hobby }}
                     </td>
                   </tr>
@@ -87,12 +96,14 @@
                       目的:
                     </th>
                     <td class="col-md-5">
+                      {{ targetForm.purpose.errors }}
                       {{ targetForm.purpose }}
                     </td>
                     <th class="col-md-2">
                       接触日:
                     </th>
                     <td class="col-md-5">
+                      {{ targetForm.met_date.errors }}
                       {{ targetForm.met_date }}
                     </td>
                   </tr>
@@ -101,12 +112,14 @@
                       level:
                     </th>
                     <td class="col-md-5">
+                      {{ targetForm.level.errors }}
                       {{ targetForm.level }}
                     </td>
                     <th class="col-md-2">
                       難易度:
                     </th>
                     <td class="col-md-5">
+                      {{ targetForm.difficulty.errors }}
                       {{ targetForm.difficulty }}
                     </td>
                   </tr>
@@ -115,6 +128,7 @@
             </tr>
             <tr>
             <td colspan="2">
+        <input type="hidden" name="id" value="{{target.id}}">
         <input type="hidden" name="action" value="{{ACTION_TARGET_UPDATE}}">
         <span style="float:right;"><input type="submit" value="更新"/></span>
             </td>

@@ -38,6 +38,22 @@ def addTargetRegister(target, user):
     target_register.save()
 
 
+def updateTarget(target_form, id):
+    """
+    ターゲット更新
+    return success or fail
+    """
+    logger.info('updateTarget')
+
+    if target_form.is_valid():
+        target = target_form.save(commit=False)
+        target.id = id
+        target.save()
+        return 'success'
+
+    return 'fail'
+
+
 def isUserExist(user):
     logger.info('username = ' + user.username)
 
@@ -47,6 +63,45 @@ def isUserExist(user):
         return False
     else:
         return True
+
+def userOwnsTarget(user, target):
+    """
+    ユーザが対象ターゲットの担当者もしくは登録者か確認する
+    return boolean
+    """
+    logger.info('userOwnsTarget')
+
+    registered_flg = userRegisteredTarget(user, target)
+    responsible_flg = userIsResponsibleForTarget(user, target)
+
+    if registered_flg and responsible_flg:
+        return True
+    else:
+        return False
+
+def userRegisteredTarget(user, target):
+    """
+    ユーザが対象ターゲットの登録者か確認する
+    return boolean
+    """
+    logger.info('userRegisteredTarget')
+
+    if MODELS.Target_register.objects.filter(user=user, target=target):
+        return True
+    else:
+        return False
+
+def userIsResponsibleForTarget(user, target):
+    """
+    ユーザが対象ターゲットの担当者か確認する
+    return boolean
+    """
+    logger.info('userIsResponsibleForTarget')
+
+    if MODELS.Progress_management.objects.filter(responsible_by=user, target=target):
+        return True
+    else:
+        return False
 
 def selectAllTargetList():
     return MODELS.Target.objects.all().order_by('name_en')
