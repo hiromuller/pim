@@ -5,11 +5,10 @@
         </div>
         <div class="col-xs-8 col-sm-10">
         <div style="margin-top:25px;border-bottom:1px solid #d9d9d9;padding-bottom:50px;">
-          <span style="float:left;">
+          <span style="vertical-align:middle;float:right;">
             <a href="#" onClick="moveTo('{{ACTION_ACCOUNT}}');">
               [<img src="{{ user.profile_photo }}" width="30">  {{ user.username }}]</a>
-          </span>
-          <span style="float:right;">
+              &nbsp;&nbsp;
             <a href="{% url 'logout' %}">ログアウト</a>
           </span>
         </div>
