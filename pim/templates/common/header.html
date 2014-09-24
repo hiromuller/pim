@@ -1,6 +1,6 @@
     <div class="row">
       <div id="header">
-        <div class="col-xs-4 col-sm-2">
+        <div class="col-xs-4 col-sm-2" style="margin-top:5px;margin-bottom:5pv;">
           <img src="{{STATIC_URL}}images/head_logo2.png" style="height:85px;width:150px;">
         </div>
         <div class="col-xs-8 col-sm-10">
@@ -10,7 +10,7 @@
               [<img src="{{ user.profile_photo }}" width="30">  {{ user.username }}]</a>
           </span>
           <span style="float:right;">
-            <a href="{% url 'logout' %}">ログアウト</a>  
+            <a href="{% url 'logout' %}">ログアウト</a>
           </span>
         </div>
         </div>
