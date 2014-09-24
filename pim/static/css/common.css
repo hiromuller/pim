@@ -1,5 +1,19 @@
 .page_title {
-	font-size:40px;
-	height:90px;
+	font-family:"Verdana";
+	font-size:20px;
+	color:#ffffff;
+	font-weight:bold;
+	margin-top:10px;
+	-moz-box-shadow: 2px 2px 3px 3px #CCC;
+	-webkit-box-shadow: 2px 2px 3px 3px #CCC;
+	box-shadow: 0px 2px 1px 0px #CCC;
+	background: #0285dd; /* Old browsers */
+	background: -moz-linear-gradient(left, #0285dd 0%, #99c5ff 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#0285dd), color-stop(100%,#99c5ff)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left, #0285dd 0%,#99c5ff 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left, #0285dd 0%,#99c5ff 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(left, #0285dd 0%,#99c5ff 100%); /* IE10+ */
+	background: linear-gradient(to right, #0285dd 0%,#99c5ff 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0285dd', endColorstr='#99c5ff',GradientType=1 ); /* IE6-9 */
 }
 
