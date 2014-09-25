@@ -5,19 +5,24 @@
         {%csrf_token%}
 
         <div class="fieldWrapper">
-          {{ addForm.name_kanji.errors }}
-          <label for="id_name_kanji">名前(漢字):</label>
-          {{ addForm.name_kanji }}
+          {{ addForm.name.errors }}
+          <label for="id_name">名前:</label>
+          {{ addForm.name }}
         </div>
         <div class="fieldWrapper">
-          {{ addForm.name_hiragana.errors }}
-          <label for="id_name_hiragana">よみかた:</label>
-          {{ addForm.name_hiragana }}
+          {{ addForm.reading.errors }}
+          <label for="id_reading">よみかた:</label>
+          {{ addForm.reading }}
         </div>
         <div class="fieldWrapper">
-          {{ addForm.name_en.errors }}
-          <label for="id_name_en">名前(英語):</label>
-          {{ addForm.name_en }}
+          {{ addForm.level.errors }}
+          <label for="id_level">レベル:</label>
+          {{ addForm.level }}
+        </div>
+        <div class="fieldWrapper">
+          {{ addForm.purpose.errors }}
+          <label for="id_purpose">目的:</label>
+          {{ addForm.purpose }}
         </div>
         <div class="fieldWrapper">
           {{ addForm.met_date.errors }}
@@ -37,16 +42,6 @@
 	          {{ addForm.difficulty.errors }}
 	          <label for="id_difficulty">難易度:</label>
 	          {{ addForm.difficulty }}
-	        </div>
-	        <div class="fieldWrapper">
-	          {{ addForm.level.errors }}
-	          <label for="id_level">レベル:</label>
-	          {{ addForm.level }}
-	        </div>
-	        <div class="fieldWrapper">
-	          {{ addForm.purpose.errors }}
-	          <label for="id_purpose">目的:</label>
-	          {{ addForm.purpose }}
 	        </div>
 	        <div class="fieldWrapper">
 	          {{ addForm.met_place.errors }}

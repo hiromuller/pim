@@ -51,21 +51,19 @@ class Target(models.Model):
     ターゲット情報モデル
     """
     def __unicode__(self):
-        return self.name_kanji
+        return self.name
     # 名前（漢字）
-    name_kanji = models.CharField(max_length=200, blank=True)
-    # 名前（ひらがな）
-    name_hiragana = models.CharField(max_length=200, blank=True)
-    # 名前（英語）
-    name_en = models.CharField(max_length=200)
+    name = models.CharField(max_length=200)
+    # よみかた）
+    reading = models.CharField(max_length=200)
     # 呼び名
     nick_name = models.CharField(max_length=200, blank=True)
     # 難易度
     difficulty = models.CharField(max_length=200, blank=True, null=True, choices=CONST.DIFFICULTY_CHOICES)
     #レベル
-    level = models.IntegerField(null=True, choices=CONST.LEVEL_CHOICES)
+    level = models.IntegerField(choices=CONST.LEVEL_CHOICES)
     # 接触の目的
-    purpose = models.CharField(max_length=50, blank=True)
+    purpose = models.CharField(max_length=50)
     # 会った日
     met_date = models.DateField()
     # 会った場所
@@ -105,9 +103,8 @@ class Target(models.Model):
 
     def encode(self):
         return {
-                'name_kanji': self.name_kanji,
-                'name_hiragana': self.name_hiragana,
-                'name_en': self.name_en,
+                'name': self.name,
+                'reading': self.reading,
                 'difficulty': self.difficulty,
                 'level': self.level,
                 'purpose': self.purpose,
@@ -196,7 +193,7 @@ class User (models.Model):
     # ユーザID
     username = models.CharField(max_length=20, primary_key=True)
     # 名前（漢字）
-    name_kanji = models.CharField(max_length=200, blank=True, verbose_name='名前(漢字)')
+    name = models.CharField(max_length=200, blank=True, verbose_name='名前(漢字)')
     # 名前（ひらがな）
     name_hiragana = models.CharField(max_length=200, blank=True, verbose_name='名前(ひらがな)')
     # 名前（英語）
@@ -232,7 +229,7 @@ class User (models.Model):
     def encode(self):
         return {
                 'username': self.username,
-                'name_kanji': self.name_kanji,
+                'name': self.name,
                 'name_hiragana': self.name_hiragana,
                 'name_en': self.name_en,
                 'team': self.team,

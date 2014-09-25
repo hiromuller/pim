@@ -115,8 +115,8 @@ def selectResponsibleTargetList(user):
     ユーザが担当しているターゲットリストを返す
     """
     logger.info('selectResponsibleTargetList: ' + user.username)
-    target_list = MODELS.Target.objects.filter(progress_management__responsible_by=user)
-    target_list = sorted(set(target_list))
+    target_list = MODELS.Target.objects.filter(progress_management__responsible_by=user).order_by('reading')
+    target_list = set(target_list)
     return target_list
 
 def selectRegisteredTargetList(user):
@@ -124,8 +124,8 @@ def selectRegisteredTargetList(user):
     ユーザが登録したターゲットリストを返す
     """
     logger.info('selectRegisteredTargetList: ' + user.username)
-    target_list = MODELS.Target.objects.filter(target_register__user=user)
-    target_list = sorted(set(target_list))
+    target_list = MODELS.Target.objects.filter(target_register__user=user).order_by('reading')
+    target_list = set(target_list)
     return target_list
 
 def selectTeamTargetList(user):
@@ -139,5 +139,5 @@ def selectTeamTargetList(user):
         user_list = MODELS.User.objects.filter(membership__team=team)
         for user in user_list:
             target_list.extend(selectRegisteredTargetList(user))
-    target_list = sorted(set(target_list))
+    target_list = set(target_list)
     return target_list

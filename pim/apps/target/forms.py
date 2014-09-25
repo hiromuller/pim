@@ -14,16 +14,11 @@ class TargetForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(TargetForm, self).__init__(*args, **kwargs)
 
-        self.fields['name_kanji'].required = False
-        self.fields['name_kanji'].widget.attrs['style'] = 'width:150px'
-        self.fields['name_hiragana'].required = False
-        self.fields['name_hiragana'].widget.attrs['style'] = 'width:150px'
+        self.fields['name'].widget.attrs['style'] = 'width:150px'
         self.fields['nick_name'].required = False
         self.fields['nick_name'].widget.attrs['style'] = 'width:150px'
         self.fields['difficulty'].required = False
-        self.fields['level'].required = False
         self.fields['level'].widget.attrs['style'] = 'width:180px;'
-        self.fields['purpose'].required = False
         self.fields['met_place'].required = False
         self.fields['met_situation'].required = False
         self.fields['birthday'].required = False
