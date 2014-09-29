@@ -1,50 +1,26 @@
     <div id="main_content">
-      <table class="table table-hover">
+      <table class="table table-hover" style="font-size:12px;">
         <thead>
           <tr>
             <th>Date</th>
             <th>Name</th>
             <th>Progress</th>
+            <th>Relationship</th>
             <th>Assignee</th>
             <th>Remarks</th>
           </tr>
         </thead>
         <tbody>
+        {%for progress in progress_list%}
           <tr>
-            <td>2014/07/29</td>
-            <td>TargetName</td>
-            <td>着手</td>
-            <td>UserName</td>
-            <td>notenotenotenotenotenotenotenote</td>
+            <td>{{ progress.registered_at|date:"Y-m-d(D)" }}</td>
+            <td>{{ progress.target.name }}</td>
+            <td>{{ progress.get_progress_display }}</td>
+            <td>{{ progress.relationship }}</td>
+            <td>{{ progress.responsible_by.username }}</td>
+            <td>{{ progress.remarks }}</td>
           </tr>
-          <tr>
-            <td>2014/07/29</td>
-            <td>TargetName</td>
-            <td>着手</td>
-            <td>UserName</td>
-            <td>notenotenotenotenotenotenotenote</td>
-          </tr>
-          <tr>
-            <td>2014/07/29</td>
-            <td>TargetName</td>
-            <td>着手</td>
-            <td>UserName</td>
-            <td>notenotenotenotenotenotenotenote</td>
-          </tr>
-          <tr>
-            <td>2014/07/29</td>
-            <td>TargetName</td>
-            <td>着手</td>
-            <td>UserName</td>
-            <td>notenotenotenotenotenotenotenote</td>
-          </tr>
-          <tr>
-            <td>2014/07/29</td>
-            <td>TargetName</td>
-            <td>着手</td>
-            <td>UserName</td>
-            <td>notenotenotenotenotenotenotenote</td>
-          </tr>
+         {% endfor %}
         </tbody>
       </table>
     </div>

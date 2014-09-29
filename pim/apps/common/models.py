@@ -312,7 +312,7 @@ class Progress_management(models.Model):
     # 備考
     remarks = models.CharField(max_length=200, blank=True, verbose_name='備考')
     # 登録日時
-    registered_at = models.DateField(auto_now_add=True, verbose_name='登録日時')
+    registered_at = models.DateTimeField(auto_now_add=True, verbose_name='登録日時')
 
     def encode(self):
         return {
