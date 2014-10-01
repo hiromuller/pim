@@ -9,6 +9,8 @@ import progress.views as PROGRESS_VIEWS
 import target.views as TARGET_VIEWS
 import account.views as ACCOUNT_VIEWS
 import team.views as TEAM_VIEWS
+import help.views as HELP_VIEWS
+import manual.views as MANUAL_VIEWS
 
 @login_required(login_url='/login/')
 def show(request):
@@ -73,6 +75,12 @@ def show(request):
 
     elif action == CONFIG.ACTION_TEAM_DELETE_TEAM:
         return TEAM_VIEWS.deleteTeam(request)
+
+    elif action == CONFIG.ACTION_HELP:
+        return HELP_VIEWS.index(request)
+
+    elif action == CONFIG.ACTION_MANUAL:
+        return MANUAL_VIEWS.index(request)
 
     else:
         main_url = CONFIG.TOP_URL

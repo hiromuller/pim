@@ -23,6 +23,15 @@ TEAM_PAGE_TITLE_URL = 'team/page_title.html'
 TEAM_MAIN_URL = 'team/main_content.html'
 TEAM_SUB_URL = 'team/sub_content.html'
 
+HELP_PAGE_TITLE_URL = 'help/page_title.html'
+HELP_MAIN_URL = 'help/main_content.html'
+HELP_SUB_URL = 'help/sub_content.html'
+
+MANUAL_PAGE_TITLE_URL = 'manual/page_title.html'
+MANUAL_MAIN_URL = 'manual/main_content.html'
+MANUAL_SUB_URL = 'manual/sub_content.html'
+
+
 TOP_URL = '/main/'
 
 
@@ -46,6 +55,9 @@ ACTION_TEAM_INVITE_ACCEPT_USER = 'team_invite_accept_user'
 ACTION_TEAM_INVITE_ACCEPT_TEAM = 'team_invite_accept_team'
 ACTION_TEAM_DELETE_MEMBER = 'team_delete_member'
 ACTION_TEAM_DELETE_TEAM = 'team_delete_team'
+ACTION_HELP = 'help'
+ACTION_MANUAL = 'manual'
+
 
 ACTION_DICT = {
                 'ACTION_HOME':ACTION_HOME,
@@ -64,7 +76,9 @@ ACTION_DICT = {
                 'ACTION_TEAM_INVITE_ACCEPT_USER':ACTION_TEAM_INVITE_ACCEPT_USER,
                 'ACTION_TEAM_INVITE_ACCEPT_TEAM':ACTION_TEAM_INVITE_ACCEPT_TEAM,
                 'ACTION_TEAM_DELETE_MEMBER':ACTION_TEAM_DELETE_MEMBER,
-                'ACTION_TEAM_DELETE_TEAM': ACTION_TEAM_DELETE_TEAM
+                'ACTION_TEAM_DELETE_TEAM':ACTION_TEAM_DELETE_TEAM,
+                'ACTION_HELP':ACTION_HELP,
+                'ACTION_MANUAL':ACTION_MANUAL
                }
 """
 コンテンツHTML
