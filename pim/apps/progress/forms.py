@@ -10,10 +10,10 @@ class ProgressManagementForm(forms.ModelForm):
 
     class Meta:
         model = MODELS.Progress_management
-        
+
         # 表示したいフィールド名だけを指定する。
         fields = ('select_target',  'relationship', 'progress', 'remarks')
-        
+
         # remarksのname属性をtextareaに変更
         widgets = {
             'remarks': Textarea(attrs={'cols': 40, 'rows': 10}),
@@ -24,7 +24,10 @@ class ProgressManagementForm(forms.ModelForm):
         # formの__init__を上書きして、ユーザが登録したターゲットを表示するように
         target_dict = [(target_register.target.id, target_register.target) for target_register in Target_register.objects.filter(user=user)]
         self.fields['select_target'] = forms.ChoiceField(choices=target_dict)
-        self.fields['select_target'].label = '担当者'
+        self.fields['select_target'].label = '担当'
+        self.fields['select_target'].widget.attrs['class'] = 'form-control'
 
-
+        self.fields['relationship'].widget.attrs['class'] = 'form-control'
+        self.fields['progress'].widget.attrs['class'] = 'form-control'
+        self.fields['remarks'].widget.attrs['class'] = 'form-control'
 

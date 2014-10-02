@@ -4,121 +4,121 @@
         <form enctype="multipart/form-data" method="POST" action="{{main_url}}">
         {%csrf_token%}
 
-        <div class="fieldWrapper">
+        <div class="fieldWrapper form-group">
           {{ addForm.name.errors }}
           <label for="id_name">名前:</label>
           {{ addForm.name }}
         </div>
-        <div class="fieldWrapper">
+        <div class="fieldWrapper form-group">
           {{ addForm.reading.errors }}
           <label for="id_reading">よみかた:</label>
           {{ addForm.reading }}
         </div>
-        <div class="fieldWrapper">
+        <div class="fieldWrapper form-group">
           {{ addForm.level.errors }}
           <label for="id_level">レベル:</label>
           {{ addForm.level }}
         </div>
-        <div class="fieldWrapper">
+        <div class="fieldWrapper form-group">
           {{ addForm.purpose.errors }}
           <label for="id_purpose">目的:</label>
           {{ addForm.purpose }}
         </div>
-        <div class="fieldWrapper">
+        <div class="fieldWrapper form-group">
           {{ addForm.met_date.errors }}
-          <label for="id_met_date">会った日:</label>
+          <label for="id_met_date">接触日:</label>
           {{ addForm.met_date }}
         </div>
         <a href="javascript:void(0)" onclick="display('target_detail_inputs');">詳細入力</a>
 
         <!-- 以下詳細登録とする。ボタン押したらニュって出てくる感じ-->
         <div id="target_detail_inputs" style="display:none;">
-	        <div class="fieldWrapper">
+	        <div class="fieldWrapper form-group">
 	          {{ addForm.nick_name.errors }}
 	          <label for="id_nick_name">ニックネーム:</label>
 	          {{ addForm.nick_name }}
 	        </div>
-	        <div class="fieldWrapper">
+	        <div class="fieldWrapper form-group">
 	          {{ addForm.difficulty.errors }}
 	          <label for="id_difficulty">難易度:</label>
 	          {{ addForm.difficulty }}
 	        </div>
-	        <div class="fieldWrapper">
+	        <div class="fieldWrapper form-group">
 	          {{ addForm.met_place.errors }}
 	          <label for="id_met_place">場所:</label>
 	          {{ addForm.met_place }}
 	        </div>
-	        <div class="fieldWrapper">
+	        <div class="fieldWrapper form-group">
 	          {{ addForm.met_situation.errors }}
 	          <label for="id_met_situation">きっかけ:</label>
 	          {{ addForm.met_situation }}
 	        </div>
-	        <div class="fieldWrapper">
+	        <div class="fieldWrapper form-group">
 	          {{ addForm.birthday.errors }}
 	          <label for="id_birthday">誕生日:</label>
 	          {{ addForm.birthday }}
 	        </div>
-	        <div class="fieldWrapper">
+	        <div class="fieldWrapper form-group">
 	          {{ addForm.phone_number.errors }}
 	          <label for="id_phone_number">電話番号:</label>
 	          {{ addForm.phone_number }}
 	        </div>
-	        <div class="fieldWrapper">
+	        <div class="fieldWrapper form-group">
 	          {{ addForm.mail.errors }}
 	          <label for="id_mail">メール:</label>
 	          {{ addForm.mail }}
 	        </div>
-	        <div class="fieldWrapper">
+	        <div class="fieldWrapper form-group">
 	          {{ addForm.address.errors }}
 	          <label for="id_address">住所:</label>
 	          {{ addForm.address }}
 	        </div>
-	        <div class="fieldWrapper">
+	        <div class="fieldWrapper form-group">
 	          {{ addForm.occupation.errors }}
 	          <label for="id_occupation">職業:</label>
 	          {{ addForm.occupation }}
 	        </div>
-	        <div class="fieldWrapper">
+	        <div class="fieldWrapper form-group">
 	          {{ addForm.company.errors }}
 	          <label for="id_company">会社:</label>
 	          {{ addForm.company }}
 	        </div>
-	        <div class="fieldWrapper">
+	        <div class="fieldWrapper form-group">
 	          {{ addForm.hobbu.errors }}
 	          <label for="id_hobby">趣味:</label>
 	          {{ addForm.hobby }}
 	        </div>
-	        <div class="fieldWrapper">
+	        <div class="fieldWrapper form-group">
 	          {{ addForm.birth_place.errors }}
 	          <label for="id_birth_place">出身地:</label>
 	          {{ addForm.birth_place }}
 	        </div>
-	        <div class="fieldWrapper">
+	        <div class="fieldWrapper form-group">
 	          {{ addForm.living_situation.errors }}
 	          <label for="id_living_situation">暮らし方:</label>
 	          {{ addForm.living_situation }}
 	        </div>
-	        <div class="fieldWrapper">
+	        <div class="fieldWrapper form-group">
 	          {{ addForm.remarks.errors }}
 	          <label for="id_remarks">備考:</label>
 	          {{ addForm.remarks }}
 	        </div>
-	        <div class="fieldWrapper">
+	        <div class="fieldWrapper form-group">
 	          {{ addForm.type_1.errors }}
 	          <label for="id_type_1">性格1:</label>
 	          {{ addForm.type_1 }}
 	        </div>
-	        <div class="fieldWrapper">
+	        <div class="fieldWrapper form-group">
 	          {{ addForm.type_2.errors }}
 	          <label for="id_type_2">性格2:</label>
 	          {{ addForm.type_2 }}
 	        </div>
-	        <div class="fieldWrapper">
+	        <div class="fieldWrapper form-group">
 	          {{ addForm.type_3.errors }}
 	          <label for="id_type_3">性格3:</label>
 	          {{ addForm.type_3 }}
 	        </div>
-	        <div class="fieldWrapper">
+	        <div class="fieldWrapper form-group">
 	          {{ addForm.target_photo.errors }}
 	          <label for="id_profile_photo">写真:</label>
 	          {{ addForm.target_photo }}
@@ -126,7 +126,7 @@
         </div>
 
         <input type="hidden" name="action" value="{{ACTION_TARGET_ADD}}">
-        <input type="submit" value="登録"/>
+        <button type="submit" class="btn btn-default">登録</button>
       </form>
     {% endif %}
     </div>

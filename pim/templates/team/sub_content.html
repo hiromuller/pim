@@ -6,13 +6,13 @@
           <form method="POST" action="{{main_url}}">
           {%csrf_token%}
 
-          <div class="fieldWrapper">
+          <div class="fieldWrapper form-group">
             {{ teamAddForm.name.errors }}
             <label for="id_name">チーム名:</label>
             {{ teamAddForm.name }}
           </div>
           <input type="hidden" name="action" value="{{ACTION_TEAM_ADD}}">
-          <input type="submit" value="作成"/>
+          <button type="submit" class="btn btn-default">作成</button>
         </form>
         {% endif %}
         <!-- ここまで -->
@@ -22,7 +22,7 @@
           <form method="POST" action="{{main_url}}">
           {%csrf_token%}
 
-          <div class="fieldWrapper">
+          <div class="fieldWrapper form-group">
             {{ teamInviteForm.user_id.errors }}
             <label for="id_user_id">ユーザ:</label>
             {{ teamInviteForm.user_id }}
@@ -35,7 +35,7 @@
 
 
           <input type="hidden" name="action" value="{{ACTION_TEAM_INVITE}}">
-          <input type="submit" value="招待する"/>
+          <button type="submit" class="btn btn-default">招待する</button>
         </form>
         {% endif %}
         <!-- ここまで -->
