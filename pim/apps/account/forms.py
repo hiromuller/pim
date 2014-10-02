@@ -14,9 +14,23 @@ class UserForm(forms.ModelForm):
                    'profile_photo',
                    'is_active',
                    )
-         
+
         widgets = {
 #             'username': TextInput(attrs={'readonly':True}),
             'email': TextInput(attrs={'size':40}),
             'team_id': TextInput(attrs={'readonly':True}),
         }
+
+    def __init__(self, *args, **kwargs):
+        super(UserForm, self).__init__(*args, **kwargs)
+
+        self.fields['name'].widget.attrs['class'] = 'form-control'
+        self.fields['name_hiragana'].widget.attrs['class'] = 'form-control'
+        self.fields['name_en'].widget.attrs['class'] = 'form-control'
+        self.fields['team'].widget.attrs['class'] = 'form-control'
+        self.fields['birthday'].widget.attrs['class'] = 'form-control'
+        self.fields['birth_place'].widget.attrs['class'] = 'form-control'
+        self.fields['target_type_1'].widget.attrs['class'] = 'form-control'
+        self.fields['target_type_2'].widget.attrs['class'] = 'form-control'
+        self.fields['target_type_3'].widget.attrs['class'] = 'form-control'
+        self.fields['email'].widget.attrs['class'] = 'form-control'
