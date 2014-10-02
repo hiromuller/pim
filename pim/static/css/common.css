@@ -15,4 +15,15 @@
 	background: -ms-linear-gradient(left, #0285dd 0%,#99c5ff 100%); /* IE10+ */
 	background: linear-gradient(to right, #0285dd 0%,#99c5ff 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0285dd', endColorstr='#99c5ff',GradientType=1 ); /* IE6-9 */
+	 border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+
+.header_profile {
+	 margin-bottom:5px;
+	 width:30px;
+	 border-radius: 30px;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
 }
