@@ -116,9 +116,9 @@ $(document).ready(function() {
     $('#id_met_date').datepicker({ dateFormat: "yy-mm-dd" });
     $('#id_birthday').datepicker({ dateFormat: "yy-mm-dd" });
     // 2重押し防止
-    $('#id_target_register_submit').attr('disabled',true);
-    $('#id_submit_progress').attr('disabled',true);
-    $('#id_team_add_submit').attr('disabled',true);
-    $('#id_team_invite_submit').attr('disabled',true);
+    //$('#id_target_register_submit').attr('disabled',true);
+    //$('#id_submit_progress').attr('disabled',true);
+    //$('#id_team_add_submit').attr('disabled',true);
+    //$('#id_team_invite_submit').attr('disabled',true);
 });
 

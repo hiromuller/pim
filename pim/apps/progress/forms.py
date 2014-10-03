@@ -2,7 +2,8 @@
 from django import forms
 import common.models as MODELS
 from django.forms.widgets import Textarea
-from common.models import Target_register
+#from common.models import Target_register
+import services as SERVICES
 
 class ProgressManagementForm(forms.ModelForm):
 
@@ -25,7 +26,15 @@ class ProgressManagementForm(forms.ModelForm):
         # formの__init__を上書きして、ターゲットを表示するようにする
         # 表示ターゲット：自分が登録したターゲット、チームターゲット
         # リストから除外するターゲット：自分以外が担当しているターゲット
-        target_dict = [(target_register.target.id, target_register.target) for target_register in Target_register.objects.filter(user=user)]
+        target_list = SERVICES.selectTeamTargetList(user)
+        target_dict = []
+        for target in target_list:
+            if not SERVICES.targetTakenByOthers(target, user):
+                target_dict.append((target.id, target))
+
+#        target_dict = [(target_register.target.id, target_register.target)
+#                       for target_register
+#                       in Target_register.objects.filter(Q(user=user) | Q(target__target_register__user))]
 
         self.fields['select_target'] = forms.ChoiceField(choices=target_dict)
         self.fields['select_target'].label = '担当'

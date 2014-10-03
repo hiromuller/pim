@@ -102,5 +102,41 @@ def getTeamProgressList(user):
 
     return team_progress_lists
 
+def selectTeamTargetList(user):
+    """
+    チームのユーザが登録したターゲットリストを返す
+    """
+    logger.info('selectTeamTargetList: ' + user.username)
+    team_list = MODELS.Team.objects.filter(membership__user=user)
+    target_list = []
+    for team in team_list:
+        user_list = MODELS.User.objects.filter(membership__team=team)
+        for user in user_list:
+            target_list.extend(selectRegisteredTargetList(user))
+    target_list = set(target_list)
+    return target_list
 
+def selectRegisteredTargetList(user):
+    """
+    ユーザが登録したターゲットリストを返す
+    """
+    logger.info('selectRegisteredTargetList: ' + user.username)
+    target_list = MODELS.Target.objects.filter(target_register__user=user).order_by('reading')
+    target_list = set(target_list)
+    return target_list
 
+def targetTakenByOthers(target, user):
+    """
+    ターゲットがほかのユーザに採られているか
+    return boolean
+    """
+    if target.taken_flg == True:
+        if not user == selectLatestProgressManagementByTarget(target).responsible_by:
+            return True
+    return False
+
+def selectLatestProgressManagementByTarget(target):
+    """
+    ターゲットをキーに最新の進捗状況を返す
+    """
+    return MODELS.Progress_management.objects.filter(target=target).latest('registered_at')
