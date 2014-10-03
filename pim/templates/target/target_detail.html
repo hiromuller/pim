@@ -16,19 +16,12 @@
                       {{ targetForm.name.errors }}{{ targetForm.reading.errors }}{{ targetForm.nick_name.errors }}
                       {{ targetForm.name}} {{ targetForm.reading }} {{ targetForm.nick_name }}
                     </td>
+                  </tr>
                   <tr>
-                  <tr>
-                    <th class="col-md-2">
-                      職業:
-                    </th>
-                    <td class="col-md-5">
-                      {{ targetForm.occupation.errors }}
-                      {{ targetForm.occupation }}
-                    </td>
                     <th class="col-md-2">
                       誕生日:
                     </th>
-                    <td class="col-md-5">
+                    <td class="col-md-10" colspan="3">
                       {{ targetForm.birthday.errors }}
                       {{ targetForm.birthday }}
                     </td>
@@ -67,6 +60,22 @@
                   </tr>
                   <tr>
                     <th class="col-md-2">
+                      職業:
+                    </th>
+                    <td class="col-md-5">
+                      {{ targetForm.occupation.errors }}
+                      {{ targetForm.occupation }}
+                    </td>
+                    <th class="col-md-2">
+                      勤務先:
+                    </th>
+                    <td class="col-md-5">
+                      {{ targetForm.company.errors }}
+                      {{ targetForm.company }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th class="col-md-2">
                       <span style="font-size:13px;">きっかけ:</span>
                     </th>
                     <td class="col-md-5">
@@ -79,16 +88,6 @@
                     <td class="col-md-5">
                       {{ targetForm.hobby.errors }}
                       {{ targetForm.hobby }}
-                    </td>
-                  </tr>
-                  <tr>
-                    <th class="col-md-2">
-                      性格:
-                    </th>
-                    <td class="col-md-10" colspan="3">
-                      {{ targetForm.type_1 }}
-                      {{ targetForm.type_2 }}
-                      {{ targetForm.type_3 }}
                     </td>
                   </tr>
                   <tr>
@@ -121,6 +120,14 @@
                     <td class="col-md-5">
                       {{ targetForm.difficulty.errors }}
                       {{ targetForm.difficulty }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th class="col-md-2">
+                      備考:
+                    </th>
+                    <td class="col-md-10" colspan="3">
+                      {{ targetForm.remarks }}
                     </td>
                   </tr>
                 </table>
