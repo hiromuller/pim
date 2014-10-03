@@ -12,7 +12,7 @@
             {{ teamAddForm.name }}
           </div>
           <input type="hidden" name="action" value="{{ACTION_TEAM_ADD}}">
-          <button type="submit" class="btn btn-default">作成</button>
+          <button id="id_team_add_submit" type="submit" class="btn btn-default">作成</button>
         </form>
         {% endif %}
         <!-- ここまで -->
@@ -35,7 +35,7 @@
 
 
           <input type="hidden" name="action" value="{{ACTION_TEAM_INVITE}}">
-          <button type="submit" class="btn btn-default">招待する</button>
+          <button id="id_team_invite_submit" type="submit" class="btn btn-default">招待する</button>
         </form>
         {% endif %}
         <!-- ここまで -->

@@ -27,19 +27,9 @@
                   <tr>
                   <tr>
                     <th class="col-md-2">
-                      職業:
-                    </th>
-                    <td class="col-md-5">
-                      {% if target.occupation  %}
-                      {{ target.occupation }}
-                      {% else %}
-                      &nbsp;-
-                      {% endif %}
-                    </td>
-                    <th class="col-md-2">
                       誕生日:
                     </th>
-                    <td class="col-md-5">
+                    <td class="col-md-10" colspan="3">
                       {% if target.birthday  %}
                       {{ target.birthday }}
                       {% else %}
@@ -85,7 +75,29 @@
                     </th>
                     <td class="col-md-5">
                       {% if target.living_situation  %}
-                      {{ target.living_situation }}
+                      {{ target.get_living_situation_display }}
+                      {% else %}
+                      &nbsp;-
+                      {% endif %}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th class="col-md-2">
+                      <span style="font-size:13px;">職業:</span>
+                    </th>
+                    <td class="col-md-5">
+                      {% if target.occupation  %}
+                      {{ target.occupation }}
+                      {% else %}
+                      &nbsp;-
+                      {% endif %}
+                    </td>
+                    <th class="col-md-2">
+                      勤務先:
+                    </th>
+                    <td class="col-md-5">
+                      {% if target.company  %}
+                      {{ target.company }}
                       {% else %}
                       &nbsp;-
                       {% endif %}
@@ -167,7 +179,19 @@
                     </th>
                     <td class="col-md-5">
                       {% if target.difficulty %}
-                      {{ target.difficulty }}
+                      {{ target.get_difficulty_display }}
+                      {% else %}
+                      &nbsp;-
+                      {% endif %}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th class="col-md-2">
+                      備考:
+                    </th>
+                    <td class="col-md-10" colspan="3">
+                      {% if target.remarks  %}
+                      {{ target.remarks }}
                       {% else %}
                       &nbsp;-
                       {% endif %}
