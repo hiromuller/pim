@@ -96,6 +96,8 @@ class Target(models.Model):
     type_2 = models.CharField(max_length=200, blank=True, null=True, choices=CONST.TYPE_CHOICES)
     # 性格3
     type_3 = models.CharField(max_length=200, blank=True, null=True, choices=CONST.TYPE_CHOICES)
+    # 担当者ありフラグ
+    taken_flg = models.BooleanField(default=False)
     # 終了フラグ
     done_flg = models.BooleanField(default=False)
     # ターゲット画像

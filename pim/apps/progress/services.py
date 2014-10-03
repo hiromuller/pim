@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import forms as FORMS
 import common.models as MODELS
+import consts as CONSTS
 import logging
 logger = logging.getLogger('app')
 
@@ -23,10 +24,11 @@ def addProgress(user, post_data):
     # progress_managementクラスを利用してフォームを作成
     # http://docs.djangoproject.jp/en/latest/topics/forms/modelforms.html
     new_progress_form = FORMS.ProgressManagementForm(user, post_data, instance=progress_management)
-    
+
     if new_progress_form.is_valid():
         logger.info('is_valid')
         new_progress_form.save()
+        updateTargetTakenFlg(post_data)
         return 'success'
     else:
         return 'fail'
@@ -48,6 +50,25 @@ def updateProgress(user, post_data):
     progress_management.progress = post_data['progress']
     progress_management.remarks = post_data['remarks']
     progress_management.save()
+
+    updateTargetTakenFlg(post_data)
+
+    return 'success'
+
+def updateTargetTakenFlg(post_data):
+    """
+    ターゲットの担当者ありフラグを進捗状況によって更新する
+    """
+    logger.info('updateTargetTakenFlg')
+    target = MODELS.Target.objects.get(id=post_data['select_target'])
+    if post_data['progress'] == CONSTS.PROGRESS_COMPLETED or post_data['progress'] == CONSTS.PROGRESS_FINISHED:
+        target.taken_flg = 0
+        target.save()
+    else:
+        if target.taken_flg == 0:
+            target.taken_flg = 1
+            target.save()
+
     return 'success'
 
 def getUserProgressList(user):

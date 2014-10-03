@@ -57,6 +57,7 @@ class TargetForm(ModelForm):
         self.fields['type_2'].widget.attrs['class'] = 'form-control'
         self.fields['type_3'].required = False
         self.fields['type_3'].widget.attrs['class'] = 'form-control'
+        self.fields['taken_flg'].required = False
         self.fields['done_flg'].required = False
         self.fields['target_photo'].required = False
         self.fields['target_photo'].widget.attrs['class'] = 'form-control'

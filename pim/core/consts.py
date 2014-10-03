@@ -6,6 +6,18 @@ Created on 2014/08/13
 '''
 
 """
+定数
+"""
+RESPONSIBLE_TARGET_LIST_NAME = u'担当ターゲット'
+REGISTERED_TARGET_LIST_NAME = u'登録したターゲット'
+TEAM_TARGET_LIST_NAME = u'チームターゲット'
+
+MAX_NUM_LATEST_PROGRESS_LIST = 50
+
+PROGRESS_FINISHED = 'FINISHED'
+PROGRESS_COMPLETED = 'COMPLETED'
+
+"""
 CHOICES
 """
 """
@@ -49,8 +61,8 @@ PROGRESS_CHOICES = (
                     ('NEW',u'新規'),
                     ('TOUCH',u'着手'),
                     ('IN_PROGRESS',u'進行中'),
-                    ('COMPLETED',u'完了'),
-                    ('FINISHED',u'終了')
+                    (PROGRESS_COMPLETED,u'完了'),
+                    (PROGRESS_FINISHED,u'終了')
                     )
 """
 difficulty
@@ -60,12 +72,3 @@ DIFFICULTY_CHOICES = (
                       ('NOMRAL', u'普通'),
                       ('HARD', u'難しい')
                       )
-
-"""
-定数
-"""
-RESPONSIBLE_TARGET_LIST_NAME = u'担当ターゲット'
-REGISTERED_TARGET_LIST_NAME = u'登録したターゲット'
-TEAM_TARGET_LIST_NAME = u'チームターゲット'
-
-MAX_NUM_LATEST_PROGRESS_LIST = 50
