@@ -35,9 +35,29 @@ type
 """
 TYPE_CHOICES = (
                 ('OUTGOING',u'元気'),
+                ('QUIET', u'静か'),
                 ('DRINKER',u'酒好き'),
+                ('NONDRINKER', u'酒飲めない'),
+                ('SOCIALDRINKER', u'付き合い程度に飲む'),
                 ('LEADER',u'幹事'),
-                ('STUDIOUS',u'真面目')
+                ('GROUPY', u'とりまき'),
+                ('STUDIOUS',u'真面目'),
+                ('HONEST',u'正直'),
+                ('EASY', '軽い'),
+                ('KIND', u'優しい'),
+                ('TALKER', u'話好き'),
+                ('SHY', u'人見知り'),
+                ('WHIM', u'気まぐれ'),
+                ('CAUTIOUS', u'用心深い'),
+                ('COOL', u'クール'),
+                ('FRIENDS', u'友達多い'),
+                ('NOFRIENDS', u'友達少ない'),
+                ('SMART', u'頭がいい'),
+                ('NEGSATIVE', u'ネガティブ'),
+                ('POSITIVE', u'ポジティブ'),
+                ('DEPRESSED', u'うつっぽい'),
+                ('PERSISTENT', u'しつこい'),
+                ('FRIENDLY', u'人懐こい')
                 )
 """
 level
