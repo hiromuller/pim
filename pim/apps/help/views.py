@@ -24,6 +24,7 @@ def index(request):
                 'main_content':main_content,
                 'sub_content':sub_content}
     c.update(csrf(request))
+    c.update({'html_title':CONFIG.HELP_HTML_TITLE})
     c.update(url_dict)
     c.update(action_dict)
 #     c.update(user_dict)

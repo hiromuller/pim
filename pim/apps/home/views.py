@@ -41,8 +41,10 @@ def index(request):
     url_dict = {'main_url':main_url,
                 'page_title':page_title,
                 'main_content':main_content,
-                'sub_content':sub_content}
+                'sub_content':sub_content,
+                }
     c.update(csrf(request))
+    c.update({'html_title':CONFIG.HOME_HTML_TITLE})
     c.update(url_dict)
     c.update(action_dict)
 #     c.update(user_dict)

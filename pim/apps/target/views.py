@@ -140,6 +140,7 @@ def show(request, c):
                 'main_content':main_content,
                 'sub_content':sub_content}
     c.update(csrf(request))
+    c.update({'html_title':CONFIG.TARGET_HTML_TITLE})
     c.update(url_dict)
     c.update(CONFIG.ACTION_DICT)
     return render(request, 'common/main.html', c)

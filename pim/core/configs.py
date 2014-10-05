@@ -86,3 +86,15 @@ ACTION_DICT = {
 PAGE_TITLE = '/page_title.html'
 CONTENT_MAIN = '/main_content.html'
 CONTENT_SUB = '/sub_content.html'
+
+"""
+HTMLタイトル
+"""
+HOME_HTML_TITLE = 'Home'
+PROGRESS_HTML_TITLE = 'Progress'
+TARGET_HTML_TITLE = 'Target'
+ACCOUNT_HTML_TITLE = 'Account'
+TEAM_HTML_TITLE = 'Team'
+HELP_HTML_TITLE = 'Help'
+MANUAL_HTML_TITLE = 'Manual'
+
