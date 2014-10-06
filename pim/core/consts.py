@@ -53,7 +53,7 @@ TYPE_CHOICES = (
                 ('FRIENDS', u'友達多い'),
                 ('NOFRIENDS', u'友達少ない'),
                 ('SMART', u'頭がいい'),
-                ('NEGSATIVE', u'ネガティブ'),
+                ('NEGATIVE', u'ネガティブ'),
                 ('POSITIVE', u'ポジティブ'),
                 ('DEPRESSED', u'うつっぽい'),
                 ('PERSISTENT', u'しつこい'),
