@@ -26,15 +26,16 @@ class ProgressManagementForm(forms.ModelForm):
         # formの__init__を上書きして、ターゲットを表示するようにする
         # 表示ターゲット：自分が登録したターゲット、チームターゲット
         # リストから除外するターゲット：自分以外が担当しているターゲット
-        target_list = SERVICES.selectTeamTargetList(user)
-        target_dict = []
-        for target in target_list:
-            if not SERVICES.targetTakenByOthers(target, user):
-                target_dict.append((target.id, target))
-
-#        target_dict = [(target_register.target.id, target_register.target)
-#                       for target_register
-#                       in Target_register.objects.filter(Q(user=user) | Q(target__target_register__user))]
+        if SERVICES.hasTeam(user):
+            target_list = SERVICES.selectTeamTargetList(user)
+            target_dict = []
+            for target in target_list:
+                if not SERVICES.targetTakenByOthers(target, user):
+                    target_dict.append((target.id, target))
+        else:
+            target_dict = [(target_register.target.id, target_register.target)
+                           for target_register
+                           in MODELS.Target_register.objects.filter(user=user)]
 
         self.fields['select_target'] = forms.ChoiceField(choices=target_dict)
         self.fields['select_target'].label = '担当'

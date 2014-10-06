@@ -140,3 +140,17 @@ def selectLatestProgressManagementByTarget(target):
     ターゲットをキーに最新の進捗状況を返す
     """
     return MODELS.Progress_management.objects.filter(target=target).latest('registered_at')
+
+def hasTeam(user):
+    """
+    ユーザがチームに所属しているか確認する
+    return boolean
+    """
+    logger.info('hasTeam: '  + user.username)
+
+    if len(MODELS.Membership.objects.filter(user=user)) == 0:
+        logger.info('False')
+        return False
+    else:
+        logger.info('True')
+        return True
