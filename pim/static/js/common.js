@@ -1,5 +1,5 @@
 
-function moveTo(action){
+function movePage(action){
     var form = document.getElementById("navigation_form");
     var elm = document.createElement("input");
     elm.setAttribute("name", "action");
@@ -120,5 +120,5 @@ $(document).ready(function() {
     //$('#id_submit_progress').attr('disabled',true);
     //$('#id_team_add_submit').attr('disabled',true);
     //$('#id_team_invite_submit').attr('disabled',true);
-});
+   });
 
