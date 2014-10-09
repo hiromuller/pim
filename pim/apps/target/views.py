@@ -123,6 +123,10 @@ def show(request, c):
     responsible_target_list = SERVICES.selectResponsibleTargetList(request.user)
     registered_target_list = SERVICES.selectRegisteredTargetList(request.user)
     team_target_list = SERVICES.selectTeamTargetList(request.user)
+    if SERVICES.hasTeam(request.user):
+        done_target_list = SERVICES.selectDoneTeamTargetList(request.user)
+    else:
+        done_target_list = SERVICES.selectDoneRegisteredTargetList(request.user)
 
     target_list_list = []
     target_list_list.append([CONSTS.RESPONSIBLE_TARGET_LIST_NAME,
@@ -131,6 +135,8 @@ def show(request, c):
                              registered_target_list])
     target_list_list.append([CONSTS.TEAM_TARGET_LIST_NAME,
                              team_target_list])
+    target_list_list.append([CONSTS.DONE_TARGET_LIST_NAME,
+                             done_target_list])
     c.update({'target_list_list':target_list_list})
 
     main_url = CONFIG.TOP_URL

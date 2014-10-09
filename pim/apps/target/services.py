@@ -115,7 +115,7 @@ def selectResponsibleTargetList(user):
     ユーザが担当しているターゲットリストを返す
     """
     logger.info('selectResponsibleTargetList: ' + user.username)
-    target_list = MODELS.Target.objects.filter(progress_management__responsible_by=user).order_by('reading')
+    target_list = MODELS.Target.objects.filter(progress_management__responsible_by=user, done_flg=False).order_by('reading')
     target_list = set(target_list)
     return target_list
 
@@ -124,7 +124,7 @@ def selectRegisteredTargetList(user):
     ユーザが登録したターゲットリストを返す
     """
     logger.info('selectRegisteredTargetList: ' + user.username)
-    target_list = MODELS.Target.objects.filter(target_register__user=user).order_by('reading')
+    target_list = MODELS.Target.objects.filter(target_register__user=user, done_flg=False).order_by('reading')
     target_list = set(target_list)
     return target_list
 
@@ -141,3 +141,40 @@ def selectTeamTargetList(user):
             target_list.extend(selectRegisteredTargetList(user))
     target_list = set(target_list)
     return target_list
+
+def selectDoneRegisteredTargetList(user):
+    """
+    ユーザが登録した完了ターゲットリストを返す
+    """
+    logger.info('selectDoneRegisteredTargetList: ' + user.username)
+    target_list = MODELS.Target.objects.filter(target_register__user=user, done_flg=True).order_by('reading')
+    target_list = set(target_list)
+    return target_list
+
+def selectDoneTeamTargetList(user):
+    """
+    チームのユーザが登録した完了ターゲットリストを返す
+    """
+    logger.info('selectDoneTeamTargetList: ' + user.username)
+    team_list = MODELS.Team.objects.filter(membership__user=user)
+    target_list = []
+    for team in team_list:
+        user_list = MODELS.User.objects.filter(membership__team=team)
+        for user in user_list:
+            target_list.extend(selectDoneRegisteredTargetList(user))
+    target_list = set(target_list)
+    return target_list
+
+def hasTeam(user):
+    """
+    ユーザがチームに所属しているか確認する
+    return boolean
+    """
+    logger.info('hasTeam: '  + user.username)
+
+    if len(MODELS.Membership.objects.filter(user=user)) == 0:
+        logger.info('False')
+        return False
+    else:
+        logger.info('True')
+        return True

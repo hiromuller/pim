@@ -3,7 +3,7 @@
               <div class="category_name"><p class="switchHat">&nbsp;{{ target_list.0 }}</p></div>
         <div class="switchDetail">
         <table class="table table-hover">
-          <tbody>
+          <tbody {% if target_list.0 == '完了ターゲット' %}style="background:#E6E6E6;{% endif %}">
           <form id="list_form" method="post" action="{{main_url}}">
           {% csrf_token %}
             {% for target in target_list.1 %}
