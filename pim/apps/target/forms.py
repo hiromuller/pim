@@ -33,6 +33,7 @@ class TargetForm(ModelForm):
         self.fields['met_situation'].widget.attrs['class'] = 'form-control'
         self.fields['birthday'].required = False
         self.fields['birthday'].widget.attrs['class'] = 'form-control'
+        self.fields['birthday'].widget.attrs['placeholder'] = 'yyyy-mm-dd'
         self.fields['phone_number'].required = False
         self.fields['phone_number'].widget.attrs['class'] = 'form-control'
         self.fields['mail'].required = False
