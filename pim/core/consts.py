@@ -82,7 +82,7 @@ PROGRESS_CHOICES = (
                     ('TOUCH',u'着手'),
                     ('IN_PROGRESS',u'進行中'),
                     (PROGRESS_COMPLETED,u'完了'),
-                    (PROGRESS_FINISHED,u'終了')
+                    (PROGRESS_FINISHED,u'手詰まり')
                     )
 """
 difficulty

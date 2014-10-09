@@ -29,10 +29,10 @@
           <label for="id_met_date">接触日:</label>
           {{ addForm.met_date }}
         </div>
-        <a href="javascript:void(0)" onclick="display('target_detail_inputs');">詳細入力</a>
-
+        <!-- <a href="javascript:void(0)" onclick="display('target_detail_inputs');">詳細入力</a> -->
+		<p class="switchHat" style="color:blue;">詳細入力</p>
         <!-- 以下詳細登録とする。ボタン押したらニュって出てくる感じ-->
-        <div id="target_detail_inputs" style="display:none;">
+        <div class="switchDetail" id="target_detail_inputs" style="display:none;">
 	        <div class="fieldWrapper form-group">
 	          {{ addForm.nick_name.errors }}
 	          <label for="id_nick_name">ニックネーム:</label>

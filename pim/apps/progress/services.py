@@ -27,8 +27,9 @@ def addProgress(user, post_data):
 
     if new_progress_form.is_valid():
         logger.info('is_valid')
-        new_progress_form.save()
-        updateTargetTakenFlg(post_data)
+        new_progress_management = new_progress_form.save()
+        updateTargetTakenFlg(new_progress_management)
+        updateTargetDoneFlg(new_progress_management)
         return 'success'
     else:
         return 'fail'
@@ -50,26 +51,46 @@ def updateProgress(user, post_data):
     progress_management.progress = post_data['progress']
     progress_management.remarks = post_data['remarks']
     progress_management.save()
-
-    updateTargetTakenFlg(post_data)
+    updateTargetTakenFlg(progress_management)
+    updateTargetDoneFlg(progress_management)
 
     return 'success'
 
-def updateTargetTakenFlg(post_data):
+def updateTargetTakenFlg(progress_management):
     """
     ターゲットの担当者ありフラグを進捗状況によって更新する
     """
     logger.info('updateTargetTakenFlg')
-    target = MODELS.Target.objects.get(id=post_data['select_target'])
-    if post_data['progress'] == CONSTS.PROGRESS_COMPLETED or post_data['progress'] == CONSTS.PROGRESS_FINISHED:
-        target.taken_flg = 0
-        target.save()
-    else:
-        if target.taken_flg == 0:
-            target.taken_flg = 1
+#    target = MODELS.Target.objects.get(id=post_data['select_target'])
+    target = progress_management.target
+#    if post_data['progress'] == CONSTS.PROGRESS_COMPLETED or post_data['progress'] == CONSTS.PROGRESS_FINISHED:
+#    if post_data['progress'] == CONSTS.PROGRESS_FINISHED:
+    if progress_management == MODELS.Progress_management.objects.filter().latest("registered_at"):
+        if progress_management.progress == CONSTS.PROGRESS_FINISHED:
+            target.taken_flg = 0
             target.save()
+        else:
+            if target.taken_flg == 0:
+                target.taken_flg = 1
+                target.save()
 
     return 'success'
+
+def updateTargetDoneFlg(progress_management):
+    """
+    ターゲットの完了フラグを更新する
+    進捗が「完了」の場合、且つ対象の進捗が最新の場合、done_flgを立てる
+    進捗が最新、且つ「完了」以外の場合はdone_flgを下げる
+    """
+    logger.info('updateTargetDoneFlg')
+    target = progress_management.target
+    if progress_management == MODELS.Progress_management.objects.filter().latest("registered_at"):
+        if progress_management.progress == CONSTS.PROGRESS_COMPLETED:
+            target.done_flg = 1
+        else:
+            target.done_flg = 0
+        target.save()
+    return None
 
 def getUserProgressList(user):
     return MODELS.Progress_management.objects.filter(responsible_by=user.username).order_by('target', 'registered_at')
