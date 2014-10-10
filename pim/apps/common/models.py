@@ -222,6 +222,8 @@ class User (models.Model):
     last_login = models.DateTimeField(blank=True, null=True)
     #チーム管理者フラグ
 #    team_admin_flg = models.BooleanField(default=False)
+    # ユーザの状態。0=アカウント停止、1=仮登録、2=無料会員、3=有料会員
+    status = models.IntegerField(default=0)
 
     objects = CustomUserManager();
 
