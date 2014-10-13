@@ -76,14 +76,14 @@ function setSubContentForm(userProgressId) {
 	$('#id_progress').val($('#progress_' + userProgressId).text());
 	$('#id_relationship').val($('#relationship_' + userProgressId).text());
 	$('#id_remarks').val($('#remarks_' + userProgressId).text());
-	$('#id_submit_progress').val("更新");
+	$('#id_submit_progress').val("譖ｴ譁ｰ");
 	$('#id_progress_action').val("progress_update");
 //	alert ($("#id_progress_action").val());
 
 }
 
 function deleteObject(object_id, delete_from_id, action) {
-	if(window.confirm('削除しちゃいます')){
+	if(window.confirm('蜑企勁縺励■繧�＞縺ｾ縺�')){
         var form = document.getElementById("list_form");
         var input_object_id = document.createElement("input");
 	    var input_delete_from_id = document.createElement("input");
@@ -112,10 +112,11 @@ function test() {
 	window.alert("TEST!!");
 }
 
+
 $(document).ready(function() {
     $('#id_met_date').datepicker({ dateFormat: "yy-mm-dd" });
-    $('#id_birthday').datepicker({ dateFormat: "yy-mm-dd" });
-    // 2重押し防止
+    // $('#id_birthday').datepicker({ dateFormat: "yy-mm-dd" });
+    // 2驥肴款縺鈴亟豁｢
     //$('#id_target_register_submit').attr('disabled',true);
     //$('#id_submit_progress').attr('disabled',true);
     //$('#id_team_add_submit').attr('disabled',true);

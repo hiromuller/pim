@@ -15,11 +15,15 @@
     <div class="container">
 		<div class="row">
             <div align="center" style="margin-top:50px;">
-            <img style="width:700px;" src="{{STATIC_URL}}images/pim_login.png" alt="PersonalInfoManager" usemap="#login">
-            <map name="login">
+            <img style="width:700px;" src="{{STATIC_URL}}images/pim_login3.jpg" alt="PersonalInfoManager" usemap="#login" class='login_bg'>
+              <img style="width:150px;" src="{{STATIC_URL}}images/pim_logo.gif" class='login-logo'>
+            <a href={% url 'social:begin' 'twitter' %}>
+              <img style="width:150px;" src="{{STATIC_URL}}images/sign-in-with-twitter-gray.png" class='login-button-twitter'>
+            </a>
+<!--             <map name="login">
             <area shape="rect" coords="470,183,600,208" href={% url 'social:begin' 'twitter' %}>
             </map>
-
+-->
               <br>
             <!--<h1 class="page-header text-center">pim</h1> -->
             <!--
