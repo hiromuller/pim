@@ -1,0 +1,55 @@
+{% load templatetags %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="shortcut icon" type="image/png" href="{{STATIC_URL}}favicon/pimcon.ico"/>
+  <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/common.css">
+  <!-- Bootstrap -->
+  <link href="{{STATIC_URL}}css/bootstrap.min.css" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+  <link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script type="text/javascript" src="{{STATIC_URL}}js/common.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="{{STATIC_URL}}js/jquery.switchHat.js"></script>
+  <title>{% block title %}{{ html_title }} | pim{% endblock %}</title>
+</head>
+<body>
+  <section class="container">
+
+      <div class="row" style="margin-top:50px;">
+        <div class="col-sm-8 col-sm-offset-2" style="height:50px;">
+	      {{statement.title}}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+	      {{statement.statement|linebreaks}}
+        </div>
+      </div>
+
+      <div class="row" style="margin-top:10px;">
+        <div class="col-sm-2 col-sm-offset-4" style="height:10px;">
+          <form method="POST" action="{{main_url}}">
+            {%csrf_token%}
+            <input type="hidden" name="statement_id" value="{{ statement.pk }}">
+            <input type="hidden" name="action" value="{{ACTION_DO_AGREE}}">
+            <button id="id_target_register_submit" type="submit" class="btn btn-default">同意する</button>
+          </form>
+        </div>
+        <div class="col-sm-2" style="height:50px;">
+          <button class="btn btn-default" onclick="location.href='http://google.com'">同意しない</button>
+        </div>
+      </div>
+
+  </section>
+
+</body>
+</html>

@@ -60,6 +60,7 @@ ACTION_TEAM_DELETE_MEMBER = 'team_delete_member'
 ACTION_TEAM_DELETE_TEAM = 'team_delete_team'
 ACTION_HELP = 'help'
 ACTION_MANUAL = 'manual'
+ACTION_DO_AGREE = 'do_agree'
 
 
 ACTION_DICT = {
@@ -81,7 +82,8 @@ ACTION_DICT = {
                 'ACTION_TEAM_DELETE_MEMBER':ACTION_TEAM_DELETE_MEMBER,
                 'ACTION_TEAM_DELETE_TEAM':ACTION_TEAM_DELETE_TEAM,
                 'ACTION_HELP':ACTION_HELP,
-                'ACTION_MANUAL':ACTION_MANUAL
+                'ACTION_MANUAL':ACTION_MANUAL,
+                'ACTION_DO_AGREE':ACTION_DO_AGREE
                }
 """
 コンテンツHTML
@@ -100,4 +102,5 @@ ACCOUNT_HTML_TITLE = 'Account'
 TEAM_HTML_TITLE = 'Team'
 HELP_HTML_TITLE = 'Help'
 MANUAL_HTML_TITLE = 'Manual'
+AGREEMENT_HTML_TITLE = 'Agreement'
 

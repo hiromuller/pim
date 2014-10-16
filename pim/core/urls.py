@@ -10,7 +10,7 @@ urlpatterns = patterns('',
     url(r'^login/$', 'auth.views.logged_in'),
     url(r'^logout/$', 'auth.views.logout', name='logout'),
     url(r'', include('social.apps.django_app.urls', namespace='social')),
-    url(r'^main/$', 'common.views.show', name='show'),
+    url(r'^main/$', 'common.views.index', name='index'),
     url(r'^', include('django.contrib.staticfiles.urls')),
 )
 

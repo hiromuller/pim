@@ -223,7 +223,7 @@ class User (models.Model):
     #チーム管理者フラグ
 #    team_admin_flg = models.BooleanField(default=False)
     # ユーザの状態。0=アカウント停止、1=仮登録、2=無料会員、3=有料会員
-    status = models.IntegerField(default=0)
+    status = models.IntegerField(default=1)
 
     objects = CustomUserManager();
 
@@ -338,6 +338,35 @@ class Target_register(models.Model):
     # ユーザ
     user = models.ForeignKey(User)
 
+class Statement(models.Model):
+    """
+    承諾書モデル
+    """
+    def __unicode__(self):
+        return unicode(self.pk)
+    #種別 とりあえず１
+    type = models.IntegerField(default = 1)
+    #タイトル
+    title = models.CharField(max_length=200)
+    #本文
+    statement = models.CharField(max_length=1000)
+
+class Statement_Agreement(models.Model):
+    """
+    個人情報取り扱い注意同意テーブル
+    """
+    def __unicode__(self):
+        return unicode(self.pk)
+    #ユーザ
+    user = models.ForeignKey(User)
+    #同意
+    agreement = models.BooleanField(default=False)
+    #同意した時間
+    agreement_time = models.DateTimeField(auto_now_add=True)
+    #本文
+    statement = models.ForeignKey(Statement)
+
+
 #admin.site.register(Living_situation)
 #admin.site.register(Type)
 #admin.site.register(Level)
@@ -351,3 +380,5 @@ admin.site.register(Invitation)
 #admin.site.register(Progress)
 admin.site.register(Progress_management)
 admin.site.register(Target_register)
+admin.site.register(Statement)
+admin.site.register(Statement_Agreement)
