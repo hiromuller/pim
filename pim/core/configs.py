@@ -31,13 +31,16 @@ MANUAL_PAGE_TITLE_URL = 'manual/page_title.html'
 MANUAL_MAIN_URL = 'manual/main_content.html'
 MANUAL_SUB_URL = 'manual/sub_content.html'
 
-
 TOP_URL = '/main/'
+TOP_PAGE_TITLE = HOME_PAGE_TITLE_URL
+TOP_CONTENT_MAIN = HOME_MAIN_URL
+TOP_CONTENT_SUB = HOME_SUB_URL
 
 
 """
 アクションの設定
 """
+ACTION_LOGIN = 'login'
 ACTION_HOME = 'home'
 ACTION_PROGRESS_LIST = 'progress_list'
 ACTION_PROGRESS_ADD = 'progress_add'

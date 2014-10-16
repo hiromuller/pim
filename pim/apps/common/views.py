@@ -15,14 +15,14 @@ import manual.views as MANUAL_VIEWS
 @login_required(login_url='/login/')
 def show(request):
     #暫定的にsessionユーザを定義。あとで消す
-    test_user = SERVICE.getUserByLoginId('user1')
-    request.session['user'] = test_user
+#    test_user = SERVICE.getUserByLoginId('user1')
+#    request.session['user'] = test_user
     #ここまで
 
     if request.method == "POST":
         action = request.POST["action"]
     else:
-        action = CONFIG.ACTION_HOME
+        action = CONFIG.ACTION_LOGIN
 
     #ページの振り分け
     if action == CONFIG.ACTION_HOME:
@@ -84,9 +84,9 @@ def show(request):
 
     else:
         main_url = CONFIG.TOP_URL
-        page_title = action + CONFIG.PAGE_TITLE
-        main_content = action + CONFIG.CONTENT_MAIN
-        sub_content = action + CONFIG.CONTENT_SUB
+        page_title = CONFIG.TOP_PAGE_TITLE
+        main_content = CONFIG.TOP_CONTENT_MAIN
+        sub_content = CONFIG.TOP_CONTENT_SUB
 
         c = {}
         url_dict = {'main_url':main_url,
@@ -95,4 +95,5 @@ def show(request):
                     'sub_content':sub_content}
         c.update(csrf(request))
         c.update(url_dict)
+        c.update(CONFIG.ACTION_DICT)
         return render(request, 'common/main.html', c)
