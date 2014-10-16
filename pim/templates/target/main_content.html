@@ -15,9 +15,13 @@
                 <table style="width:100%;">
                   <tr>
                     <td class="col-md-12" colspan="4">
+                    {% if target_list.0 == '担当ターゲット' or target_list.0 == '登録したターゲット' %}
                     <a href="javascript:void(0)" onClick="moveToDetail('{{ACTION_TARGET_DETAIL}}', '{{target.id}}');">
                       {{ target.name}} : {{ target.reading }} {%if target.nick_name %}({{ target.nick_name }}){% endif %}
                     </a>
+                    {% else %}
+                      {{ target.name}} : {{ target.reading }} {%if target.nick_name %}({{ target.nick_name }}){% endif %}
+                    {% endif %}
                     </td>
                   </tr>
                   <tr>
