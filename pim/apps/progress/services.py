@@ -2,9 +2,11 @@
 import forms as FORMS
 import common.models as MODELS
 import consts as CONSTS
+from django.db import transaction
 import logging
 logger = logging.getLogger('app')
 
+@transaction.atomic
 def addProgress(user, post_data):
     logger.info('addProgress')
 
@@ -34,6 +36,7 @@ def addProgress(user, post_data):
     else:
         return 'fail'
 
+@transaction.atomic
 def updateProgress(user, post_data):
     logger.info('updateProgress')
 
@@ -56,12 +59,14 @@ def updateProgress(user, post_data):
 
     return 'success'
 
+@transaction.atomic
 def updateTargetTakenFlg(progress_management):
     """
     ターゲットの担当者ありフラグを進捗状況によって更新する
     """
     logger.info('updateTargetTakenFlg')
 #    target = MODELS.Target.objects.get(id=post_data['select_target'])
+
     target = progress_management.target
 #    if post_data['progress'] == CONSTS.PROGRESS_COMPLETED or post_data['progress'] == CONSTS.PROGRESS_FINISHED:
 #    if post_data['progress'] == CONSTS.PROGRESS_FINISHED:
@@ -74,8 +79,9 @@ def updateTargetTakenFlg(progress_management):
                 target.taken_flg = 1
                 target.save()
 
-    return 'success'
+    return
 
+@transaction.atomic
 def updateTargetDoneFlg(progress_management):
     """
     ターゲットの完了フラグを更新する
@@ -83,6 +89,7 @@ def updateTargetDoneFlg(progress_management):
     進捗が最新、且つ「完了」以外の場合はdone_flgを下げる
     """
     logger.info('updateTargetDoneFlg')
+
     target = progress_management.target
     if progress_management == MODELS.Progress_management.objects.filter().latest("registered_at"):
         if progress_management.progress == CONSTS.PROGRESS_COMPLETED:
@@ -90,7 +97,8 @@ def updateTargetDoneFlg(progress_management):
         else:
             target.done_flg = 0
         target.save()
-    return None
+    return
+
 
 def getUserProgressList(user):
     return MODELS.Progress_management.objects.filter(responsible_by=user.username).order_by('target', 'registered_at')

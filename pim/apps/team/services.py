@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import common.models as MODELS
+from django.db import transaction
 import logging
 
 logger = logging.getLogger('app')
@@ -27,6 +28,7 @@ def selectUsersByTeam(team):
         user_list.append(membership.user)
     return user_list
 
+@transaction.atomic
 def addNewTeam(teamAddForm, user):
 
     result_flg = False
@@ -42,6 +44,7 @@ def addNewTeam(teamAddForm, user):
     else:
         return 'fail'
 
+@transaction.atomic
 def addTeam(team_add_form):
 
     logger.info('チーム登録')
@@ -54,6 +57,7 @@ def addTeam(team_add_form):
     else:
         return None
 
+@transaction.atomic
 def addMembership(team, user, admin_flg):
     '''
     チームが新しく作成された時、管理者フラグをONにする
@@ -66,6 +70,7 @@ def addMembership(team, user, admin_flg):
     membership.save()
     return membership
 
+@transaction.atomic
 def inviteUser(team_invite_form, user):
     logger.info('チーム招待')
 
@@ -98,6 +103,7 @@ def inviteUser(team_invite_form, user):
 
     return 'fail'
 
+@transaction.atomic
 def addInvitation(team, invited_user, invited_by, approve_by_admin_flg):
     logger.info('addInvitation')
     invitation = MODELS.Invitation()
@@ -109,6 +115,7 @@ def addInvitation(team, invited_user, invited_by, approve_by_admin_flg):
 
     return invitation
 
+@transaction.atomic
 def acceptMember(invited_user, team):
     """
     管理者承認待ちユーザを承認する
@@ -127,6 +134,7 @@ def acceptMember(invited_user, team):
 
     return 'success'
 
+@transaction.atomic
 def acceptTeamInvited(user, team):
     """
     被招待者がチームからの招待を承認する
@@ -262,6 +270,7 @@ def selectInvitingTeamList(user):
     team_list = MODELS.Team.objects.filter(invitation__invited_user=user, invitation__approve_by_user_flg=False)
     return team_list
 
+@transaction.atomic
 def deleteMember(user, team):
     """
     チームからメンバーを削除する
@@ -275,6 +284,7 @@ def deleteMember(user, team):
     except:
         return 'fail'
 
+@transaction.atomic
 def deleteTeam(team):
     """
     チームを削除する

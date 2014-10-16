@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 import common.models as MODELS
+from django.db import transaction
 import logging
 
 logger = logging.getLogger('app')
 
+@transaction.atomic
 def addNewTarget(addTargetForm, user):
 
     result_flg = False
@@ -19,6 +21,7 @@ def addNewTarget(addTargetForm, user):
         return 'fail'
 
 
+@transaction.atomic
 def addTarget(add_target_form):
 
     logger.info('登録')
@@ -30,6 +33,7 @@ def addTarget(add_target_form):
         return None
 
 
+@transaction.atomic
 def addTargetRegister(target, user):
 
     target_register = MODELS.Target_register()
@@ -38,6 +42,7 @@ def addTargetRegister(target, user):
     target_register.save()
 
 
+@transaction.atomic
 def updateTarget(target_form, id):
     """
     ターゲット更新
