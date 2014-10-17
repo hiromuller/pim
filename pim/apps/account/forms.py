@@ -13,6 +13,7 @@ class UserForm(forms.ModelForm):
                    'last_login',
                    'profile_photo',
                    'is_active',
+                   'status',
                    )
 
         widgets = {
