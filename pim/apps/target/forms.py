@@ -5,10 +5,10 @@ Created on 2014/07/23
 @author: h-nagata
 '''
 from django.db import models
-from django.forms import ModelForm
+from django import forms
 import common.models as MODELS
 
-class TargetForm(ModelForm):
+class TargetForm(forms.ModelForm):
     class Meta:
         model = MODELS.Target
 
@@ -62,3 +62,19 @@ class TargetForm(ModelForm):
         self.fields['done_flg'].required = False
         self.fields['target_photo'].required = False
         self.fields['target_photo'].widget.attrs['class'] = 'form-control'
+
+class IntroducerForm(forms.Form):
+
+    introducer = forms.ChoiceField(choices=())
+
+    def __init__(self, target_list, *args, **kwargs):
+        super(IntroducerForm, self).__init__(*args, **kwargs)
+        # formの__init__を上書きして、ターゲットを表示するようにする
+        # 引数に渡されたターゲットリストをディクショナリ形式に整形し、choice_fieldとする
+        target_dict = [('-','-')]
+        for target in target_list:
+            target_dict.append((target.id, target))
+
+        self.fields['introducer'] = forms.ChoiceField(choices=target_dict)
+        self.fields['introducer'].widget.attrs['class'] = 'form-control'
+        self.fields['introducer'].required = False

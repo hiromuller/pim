@@ -6,14 +6,17 @@ import logging
 logger = logging.getLogger('app')
 
 @transaction.atomic
-def addNewTarget(addTargetForm, user):
+def addNewTarget(addTargetForm, user, introducer):
 
     result_flg = False
     if isUserExist(user):
         new_target = addTarget(addTargetForm)
         if new_target:
             addTargetRegister(new_target, user)
-            result_flg = True
+        if introducer:
+            if isRegisteredTarget(user, introducer) or isTeamTarget(user, introducer):
+                addIntroducer(new_target, introducer)
+        result_flg = True
 
     if result_flg:
         return 'success'
@@ -40,6 +43,19 @@ def addTargetRegister(target, user):
     target_register.target = target
     target_register.user = user
     target_register.save()
+    return target_register
+
+@transaction.atomic
+def addIntroducer(new_target, introducer):
+    """
+    紹介者を登録する
+    """
+    logger.info('addIntroducer')
+
+    introduce = MODELS.Introduce()
+    introduce.target = new_target
+    introduce.introduced_by = introducer
+    introduce.save()
 
 
 @transaction.atomic
@@ -112,8 +128,11 @@ def selectAllTargetList():
     return MODELS.Target.objects.all().order_by('name_en')
 
 def selectTargetById(id):
-    target = MODELS.Target.objects.get(id=id)
-    return target
+    try:
+        target = MODELS.Target.objects.get(id=id)
+        return target
+    except:
+        return None
 
 def selectResponsibleTargetList(user):
     """
@@ -169,6 +188,30 @@ def selectDoneTeamTargetList(user):
             target_list.extend(selectDoneRegisteredTargetList(user))
     target_list = set(target_list)
     return target_list
+
+def isRegisteredTarget(user, target):
+    """
+    ターゲットがユーザの登録ターゲットか確認する
+    return boolean
+    """
+    logger.info('isRegisteredTarget')
+
+    if len(MODELS.Target_register.objects.filter(user=user, target=target)) == 0:
+        return False
+    else:
+        return True
+
+def isTeamTarget(user, target):
+    """
+    ターゲットがチームターゲットか確認する
+    """
+    logger.info('isTeamTarget')
+
+    target_list = selectTeamTargetList(user)
+    if target in target_list:
+        return True
+    else:
+        return False
 
 def hasTeam(user):
     """

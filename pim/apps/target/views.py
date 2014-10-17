@@ -30,7 +30,8 @@ def add(request):
 
     if request.method == 'POST':
         addTargetForm = FORMS.TargetForm(request.POST, request.FILES)
-        result = SERVICES.addNewTarget(addTargetForm, request.user)
+        introducer = SERVICES.selectTargetById(request.POST['introducer'])
+        result = SERVICES.addNewTarget(addTargetForm, request.user, introducer)
 
         if not result == 'success':
             fail_form = FORMS.TargetForm(request.POST)
@@ -128,6 +129,7 @@ def show(request, c):
     else:
         done_target_list = SERVICES.selectDoneRegisteredTargetList(request.user)
 
+    #表示するターゲットを取得する
     target_list_list = []
     target_list_list.append([CONSTS.RESPONSIBLE_TARGET_LIST_NAME,
                              responsible_target_list])
@@ -138,6 +140,13 @@ def show(request, c):
     target_list_list.append([CONSTS.DONE_TARGET_LIST_NAME,
                              done_target_list])
     c.update({'target_list_list':target_list_list})
+
+    #紹介者用ターゲットリストをセット
+    if SERVICES.hasTeam(request.user):
+        introducer_form = {'introducer_form':FORMS.IntroducerForm(team_target_list)}
+    else:
+        introducer_form = {'introducer_form':FORMS.IntroducerForm(registered_target_list)}
+    c.update(introducer_form)
 
     main_url = CONFIG.TOP_URL
     page_title = CONFIG.TARGET_PAGE_TITLE_URL

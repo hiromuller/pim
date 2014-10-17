@@ -123,6 +123,11 @@
 	          <label for="id_profile_photo">写真:</label>
 	          {{ addForm.target_photo }}
 	        </div>
+	        <div class="fieldWrapper form-group">
+	          {{ introducer_form.introducer.errors }}
+	          <label for="id_introducer">紹介者:</label>
+	          {{ introducer_form.introducer }}
+	        </div>
         </div>
 
         <input type="hidden" name="action" value="{{ACTION_TARGET_ADD}}">
