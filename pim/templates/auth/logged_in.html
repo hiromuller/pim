@@ -12,26 +12,23 @@
 </head>
 <body>
 
-    <div class="container">
-		<div class="row">
-            <div align="center" style="margin-top:50px;">
-            <img style="width:700px;" src="{{STATIC_URL}}images/pim_login3.jpg" alt="PersonalInfoManager" usemap="#login" class='login_bg'>
+    <div class="container login_image" style="width:500px;
+                                  height:500px;
+                                  margin:0 auto;
+                                  background-image:url({{STATIC_URL}}images/login_bg/1.jpg);
+                                  background-size:100%;">
               <img style="width:150px;" src="{{STATIC_URL}}images/pim_logo.gif" class='login-logo'>
-            <a href={% url 'social:begin' 'twitter' %}>
-              <img style="width:150px;" src="{{STATIC_URL}}images/sign-in-with-twitter-gray.png" class='login-button-twitter'>
-            </a>
-<!--             <map name="login">
-            <area shape="rect" coords="470,183,600,208" href={% url 'social:begin' 'twitter' %}>
-            </map>
--->
-              <br>
-            <!--<h1 class="page-header text-center">pim</h1> -->
-            <!--
-                <a href={% url 'social:begin' 'twitter' %}>
-                    <img src="{{STATIC_URL}}images/sign-in-with-twitter-gray.png" alt="Sign in with Twitter">
-                </a>
-             -->
-        </div>
+
+      <!-- http://noht.co.jp/2_5dbutton で生成 -->
+      <div class="login-button-twitter">
+        <a href={% url 'social:begin' 'twitter' %}>
+          <div class="general-button">
+            <div class="button-content">
+              <span class="button-text" style="color:#ffffff;">Sign in with Twitter</span>
+            </div>
+          </div>
+        </a>
+      </div>
     </div>
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
