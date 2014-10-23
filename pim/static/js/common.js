@@ -112,6 +112,18 @@ function test() {
 	window.alert("TEST!!");
 }
 
+/* ===================================================================
+
+ * 二重サブミット防止
+
+ =================================================================== */
+$(function() {
+	$('#id_target_register_submit').disableOnSubmit();
+	$('#id_submit_progress').disableOnSubmit();
+	$('#id_team_add_submit').disableOnSubmit();
+	$('#id_team_invite_submit').disableOnSubmit();
+});
+
 
 $(document).ready(function() {
     $('#id_met_date').datepicker({ dateFormat: "yy-mm-dd" });
