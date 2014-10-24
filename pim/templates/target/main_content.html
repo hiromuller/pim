@@ -200,7 +200,7 @@
                     </th>
                     <td class="col-md-10" colspan="3">
                       {% if target.remarks  %}
-                      {{ target.remarks }}
+                      {{ target.remarks|linebreaks }}
                       {% else %}
                       &nbsp;-
                       {% endif %}

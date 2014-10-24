@@ -98,7 +98,7 @@
                                   <td class="col-md-2">{{ team_progress.get_progress_display }}</td>
                                   <td class="col-md-3">{{ team_progress.registered_at|date:"Y-m-d(D)" }}</td>
                                   <td id="relationship_{{ team_progress.id }}" class="col-md-3">{{ team_progress.relationship }}</td>
-                                  <td id="remarks_{{ team_progress.id }}" class="col-md-4">{{ team_progress.remarks }}</td>
+                                  <td id="remarks_{{ team_progress.id }}" class="col-md-4">{{ team_progress.remarks|linebreaks }}</td>
                               </tr>
                   {% if forloop.last %}
                                 </table>
