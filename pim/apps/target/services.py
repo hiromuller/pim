@@ -95,7 +95,7 @@ def userOwnsTarget(user, target):
     registered_flg = userRegisteredTarget(user, target)
     responsible_flg = userIsResponsibleForTarget(user, target)
 
-    if registered_flg and responsible_flg:
+    if registered_flg or responsible_flg:
         return True
     else:
         return False
