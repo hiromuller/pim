@@ -1,7 +1,32 @@
+<!DOCTYPE html>
 <html>
 <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <!-- Bootstrap -->
+  <link href="{{STATIC_URL}}css/errpage.css" rel="stylesheet">
+  <link href="{{STATIC_URL}}css/bootstrap.min.css" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+  <script type="text/javascript" src="{{STATIC_URL}}js/common.js"></script>
+  <title>404 Not Found | pim</title>
 </head>
-<body>
-404 aaa
-</body>
+
+  <body>
+    <div class="container table">
+        <div class="row">
+            <div class="col-md-12">
+                <h1> Oops!</h1>
+                <h3> 404 Not Found</h3>
+                <br>
+                    <a href="{% url 'logout' %}" class="btn btn-primary "><span class="glyphicon glyphicon-home"></span>
+                        Back To Home </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+  </body>
 </html>
