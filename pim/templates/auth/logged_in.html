@@ -7,17 +7,39 @@
   <link href="{{STATIC_URL}}css/signin.css" rel="stylesheet">
   <link href="{{STATIC_URL}}css/bootstrap.min.css" rel="stylesheet">
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script type="text/javascript" src="{{STATIC_URL}}js/common.js"></script>
+<script type="text/javascript">
+$(function(){
+	var setImg = '#login_image';
+	var fadeSpeed = 1500;
+	var switchDelay = 5000;
+
+	$(setImg).children('img').css({opacity:'0'});
+	$(setImg + ' img:first').stop().animate({opacity:'1',zIndex:'20'},fadeSpeed);
+
+	setInterval(function(){
+		$(setImg + ' :first-child').animate({opacity:'0'},fadeSpeed).next('img').animate({opacity:'1'},fadeSpeed).end().appendTo(setImg);
+	},switchDelay);
+});
+</script>
   <title>Log in | pim</title>
 </head>
 <body>
-
+<!--
     <div class="container login_image" style="width:500px;
                                   height:500px;
                                   margin:0 auto;
-                                  background-image:url({{STATIC_URL}}images/login_bg/1.jpg);
+                                  background-image:url({{STATIC_URL}}images/login_bg/2.jpg);
                                   background-size:100%;">
-              <img style="width:150px;" src="{{STATIC_URL}}images/pim_logo.gif" class='login-logo'>
+ -->
+    <div class="container" style="width:500px;height:500px;margin:0 auto;">
+      <div id="login_image">
+        <img src="{{STATIC_URL}}images/login_bg/3.jpg" style="width:500px;height:500px;" />
+        <img src="{{STATIC_URL}}images/login_bg/1.jpg" style="width:500px;height:500px;" />
+        <img src="{{STATIC_URL}}images/login_bg/2.jpg" style="width:500px;height:500px;" />
+      </div>
+      <img style="width:150px;" src="{{STATIC_URL}}images/pim_logo.gif" class='login-logo'>
 
       <!-- http://noht.co.jp/2_5dbutton で生成 -->
       <div class="login-button-twitter">
