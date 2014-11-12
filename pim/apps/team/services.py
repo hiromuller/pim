@@ -81,25 +81,26 @@ def inviteUser(team_invite_form, user):
         # 被招待者存在確認
         input_user = selectUserById(team_invite_form.cleaned_data['user_id'])
 
-        # 被招待者がどのチームにも所属していないことを確認
-        if hasTeam(input_user):
-            do_next = False
-
-        # チーム存在確認及びユーザメンバーシップ確認
-        if do_next:
-            team = selectTeamById(team_invite_form.cleaned_data['team_id'])
-
-            if not team:
+        if input_user:
+            # 被招待者がどのチームにも所属していないことを確認
+            if hasTeam(input_user):
                 do_next = False
 
-        if do_next:
-            if isTeamAdmin(team, user):
-                approve_by_admin_flg = True
-            else:
-                approve_by_admin_flg = False
-            invitation = addInvitation(team, input_user, user, approve_by_admin_flg)
-            if invitation:
-                return 'success'
+            # チーム存在確認及びユーザメンバーシップ確認
+            if do_next:
+                team = selectTeamById(team_invite_form.cleaned_data['team_id'])
+
+                if not team:
+                    do_next = False
+
+            if do_next:
+                if isTeamAdmin(team, user):
+                    approve_by_admin_flg = True
+                else:
+                    approve_by_admin_flg = False
+                invitation = addInvitation(team, input_user, user, approve_by_admin_flg)
+                if invitation:
+                    return 'success'
 
     return 'fail'
 
