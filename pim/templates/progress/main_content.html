@@ -2,14 +2,14 @@
       <table class="table table-hover">
         <thead>
           <tr>
-            <td class="col-md-2"></td>
-            <td class="col-md-10">
+            <td class="col-md-3 col-sm-3"></td>
+            <td class="col-md-9 col-sm-9">
                 <table class="table-bordered">
                     <tr>
-                      <td class="col-md-2">progress</td>
-                      <td class="col-md-3">registered_at</td>
-                      <td class="col-md-3">relationship</td>
-                      <td class="col-md-4">remarks</td>
+                      <td class="col-md-2 col-sm-2">progress</td>
+                      <td class="col-md-3 col-sm-3">registered_at</td>
+                      <td class="col-md-3 col-sm-3">relationship</td>
+                      <td class="col-md-4 col-sm-4">remarks</td>
 
                     </tr>
                 </table>
@@ -25,19 +25,19 @@
               {% ifchanged user_progress.target.pk %}
                     {% if forloop.first %}
                     <tr>
-                         <td class="col-md-2" valign="middle">
+                         <td class="col-md-3" valign="middle">
                     {% else %}
                             </table>
                         </td>
                     </tr>
                     <tr>
-                        <td class="col-md-2" valign="middle">
+                        <td class="col-md-3" valign="middle">
                     {% endif %}
                               名前:{{ user_progress.target.name }}<br>
                               LV:{{ user_progress.target.level }}<br>
                               目的:{{ user_progress.target.purpose }}<br>
                         </td>
-                <td class="col-md-10">
+                <td class="col-md-9">
                     <table class="table-striped">
               {% endifchanged %}
                           <tr>

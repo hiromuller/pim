@@ -152,7 +152,7 @@ def show(request, c):
     page_title = CONFIG.TARGET_PAGE_TITLE_URL
     main_content = CONFIG.TARGET_MAIN_URL
     sub_content = CONFIG.TARGET_SUB_URL
-    insert_button = CONFIG.TARGET_INSERT_BUTTON
+    insert_button = CONFIG.INSERT_BUTTON
 
     url_dict = {'main_url':main_url,
                 'page_title':page_title,

@@ -120,15 +120,9 @@ function test() {
 
 //ターゲットページ用
 $(function() {
-	$('.popup_insert_target').magnificPopup({
-
-	});
-});
-
-//進捗ページ用
-$(function() {
-	$('.popup_insert_progress').magnificPopup({
-
+	$('.popup_insert').magnificPopup({
+		  type:'inline',
+		  midClick: true,
 	});
 });
 

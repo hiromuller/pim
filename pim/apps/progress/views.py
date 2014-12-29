@@ -64,7 +64,7 @@ def show(request, c):
     page_title = CONFIG.PROGRESS_PAGE_TITLE_URL
     main_content = CONFIG.PROGRESS_MAIN_URL
     sub_content = CONFIG.PROGRESS_SUB_URL
-    insert_button = CONFIG.PROGRESS_INSERT_BUTTON
+    insert_button = CONFIG.INSERT_BUTTON
 #     form = {'form':ProgressManagementForm()}
     url_dict = {'main_url':main_url,
                 'page_title':page_title,

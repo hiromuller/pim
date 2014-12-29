@@ -9,13 +9,11 @@ HOME_SUB_URL = 'home/sub_content.html'
 PROGRESS_PAGE_TITLE_URL = 'progress/page_title.html'
 PROGRESS_MAIN_URL = 'progress/main_content.html'
 PROGRESS_SUB_URL = 'progress/sub_content.html'
-PROGRESS_INSERT_BUTTON = 'popup_insert_progress'
 
 TARGET_PAGE_TITLE_URL = 'target/page_title.html'
 TARGET_MAIN_URL = 'target/main_content.html'
 TARGET_SUB_URL = 'target/sub_content.html'
 TARGET_DETAIL = 'target/target_detail.html'
-TARGET_INSERT_BUTTON = 'popup_insert_target'
 
 ACCOUNT_PAGE_TITLE_URL = 'account/page_title.html'
 ACCOUNT_MAIN_URL = 'account/main_content.html'
@@ -37,6 +35,8 @@ TOP_URL = '/main/'
 TOP_PAGE_TITLE = HOME_PAGE_TITLE_URL
 TOP_CONTENT_MAIN = HOME_MAIN_URL
 TOP_CONTENT_SUB = HOME_SUB_URL
+
+INSERT_BUTTON = 'popup_insert'
 
 
 """
