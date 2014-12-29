@@ -9,13 +9,13 @@ import messages as MSGS
 import logging
 logger = logging.getLogger('app')
 
-# 
+#
 def index(request):
 
     logger.info('index')
 
     form = {'form':ProgressManagementForm(request.user)}
-    c = {}    
+    c = {}
     c.update(form)
     return show(request, c)
 
@@ -64,11 +64,13 @@ def show(request, c):
     page_title = CONFIG.PROGRESS_PAGE_TITLE_URL
     main_content = CONFIG.PROGRESS_MAIN_URL
     sub_content = CONFIG.PROGRESS_SUB_URL
+    insert_button = CONFIG.PROGRESS_INSERT_BUTTON
 #     form = {'form':ProgressManagementForm()}
-    url_dict = {'main_url':main_url, 
-                'page_title':page_title, 
+    url_dict = {'main_url':main_url,
+                'page_title':page_title,
                 'main_content':main_content,
-                'sub_content':sub_content}
+                'sub_content':sub_content,
+                'insert_button':insert_button}
     c.update(csrf(request))
     c.update({'html_title':CONFIG.PROGRESS_HTML_TITLE})
     c.update(url_dict)

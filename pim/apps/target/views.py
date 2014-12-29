@@ -152,11 +152,13 @@ def show(request, c):
     page_title = CONFIG.TARGET_PAGE_TITLE_URL
     main_content = CONFIG.TARGET_MAIN_URL
     sub_content = CONFIG.TARGET_SUB_URL
+    insert_button = CONFIG.TARGET_INSERT_BUTTON
 
     url_dict = {'main_url':main_url,
                 'page_title':page_title,
                 'main_content':main_content,
-                'sub_content':sub_content}
+                'sub_content':sub_content,
+                'insert_button':insert_button}
     c.update(csrf(request))
     c.update({'html_title':CONFIG.TARGET_HTML_TITLE})
     c.update(url_dict)
