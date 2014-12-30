@@ -3,6 +3,8 @@
         {{form_message}}
         <form enctype="multipart/form-data" method="POST" action="{{main_url}}">
         {%csrf_token%}
+        
+        <h4>ターゲット登録</h4>
 
         <div class="fieldWrapper form-group">
           {{ addForm.name.errors }}

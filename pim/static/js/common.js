@@ -76,14 +76,15 @@ function setSubContentForm(userProgressId) {
 	$('#id_progress').val($('#progress_' + userProgressId).text());
 	$('#id_relationship').val($('#relationship_' + userProgressId).text());
 	$('#id_remarks').val($('#remarks_' + userProgressId).text());
-	$('#id_submit_progress').val("譖ｴ譁ｰ");
+	$('#id_submit_progress').val("更新");
 	$('#id_progress_action').val("progress_update");
+	document.getElementById('insert_button').click();
 //	alert ($("#id_progress_action").val());
 
 }
 
 function deleteObject(object_id, delete_from_id, action) {
-	if(window.confirm('蜑企勁縺励■繧�＞縺ｾ縺�')){
+	if(window.confirm('削除しちゃいます')){
         var form = document.getElementById("list_form");
         var input_object_id = document.createElement("input");
 	    var input_delete_from_id = document.createElement("input");

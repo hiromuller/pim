@@ -49,7 +49,9 @@
                               <td id="relationship_{{ user_progress.id }}" class="col-md-3">{{ user_progress.relationship }}</td>
                               <td id="remarks_{{ user_progress.id }}" class="col-md-4">{{ user_progress.remarks }}</td>
                               <td>
-                              <a href="javascript:void(0)" onClick="setSubContentForm('{{ user_progress.id }}');return false;"><i class="glyphicon glyphicon-pencil"></i></a>
+<!--                               <a href="javascript:void(0)" onClick="setSubContentForm('{{ user_progress.id }}');return false;"><i class="glyphicon glyphicon-pencil"></i></a>
+ -->
+                              <a href="#sub_content" onClick="setSubContentForm('{{ user_progress.id }}');return false;"><i class="glyphicon glyphicon-pencil"></i></a>
                               </td>
                           </tr>
               {% if forloop.last %}

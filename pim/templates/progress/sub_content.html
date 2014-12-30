@@ -2,6 +2,7 @@
         {{form_message}}
         <form method="POST" action="{{main_url}}">
         {%csrf_token%}
+        <h4>進捗登録</h4>
         {{ form.as_p }}
         <input id="id_progress_action" type="hidden" name="action" value="{{ACTION_PROGRESS_ADD}}">
         <input type="hidden" name="responsible_by_id" value="{{ user.username }}">
