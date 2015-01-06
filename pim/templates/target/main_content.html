@@ -1,11 +1,23 @@
     <div id="main_content">
-          {% for target_list in target_list_list %}
-              <div class="category_name"><p class="switchHat">&nbsp;{{ target_list.0 }}</p></div>
-        <div class="switchDetail">
-        <table class="table table-hover">
-          <tbody {% if target_list.0 == '完了ターゲット' %}style="background:#E6E6E6;{% endif %}">
+      <ul class="nav nav-tabs">
+        {% for target_list in target_list_list %}
+          {% if forloop.counter == 1 %}
+          <li class="active">
+          {% else %}
+          <li>
+          {% endif %}
+            <a href="#{{ target_list.0 }}" data-toggle="tab">{{ target_list.0 }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+      <br>
+      <div id="myTabContent" class="tab-content">
+    {% for target_list in target_list_list %}
+      <div class="tab-pane fade in active" id="{{ target_list.0 }}">
+      <table class="table table-hover">
+        <tbody {% if target_list.0 == '完了ターゲット' %}style="background:#E6E6E6;{% endif %}">
           <form id="list_form" method="post" action="{{main_url}}">
-          {% csrf_token %}
+            {% csrf_token %}
             {% for target in target_list.1 %}
             <tr>
               <td class="col-md-2">
@@ -216,4 +228,5 @@
         </table>
         </div>
           {% endfor %}
+        </div>
     </div>
