@@ -62,7 +62,7 @@ class QuerySetUtil():
         queries = []
         for f in model._meta.fields:
             if model._meta.get_field(f.name).get_internal_type() in ['CharField', 'TextField'] :
-                kwargs = {str('%s__contains' % f.name) : keyword}
+                kwargs = {str('%s__%s__contains' % (model_str, f.name)) : keyword}
                 queries.append(Q(**kwargs))
 
         query = queries.pop()

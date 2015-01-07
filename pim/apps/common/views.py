@@ -40,6 +40,9 @@ def index(request):
     elif action == CONFIG.ACTION_PROGRESS_UPDATE:
         return PROGRESS_VIEWS.update(request)
 
+    elif action == CONFIG.ACTION_PROGRESS_SEARCH:
+        return PROGRESS_VIEWS.search(request)
+
     elif action == CONFIG.ACTION_TARGET_LIST:
         return TARGET_VIEWS.index(request)
 

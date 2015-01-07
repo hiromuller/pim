@@ -3,6 +3,7 @@ import forms as FORMS
 import common.models as MODELS
 import consts as CONSTS
 from django.db import transaction
+from django.db.models import Q
 import logging
 logger = logging.getLogger('app')
 
@@ -103,7 +104,11 @@ def updateTargetDoneFlg(progress_management):
 def getUserProgressList(user):
     return MODELS.Progress_management.objects.filter(responsible_by=user.username).order_by('target', 'registered_at')
 
-def getTeamProgressList(user):
+def getUserProgressListByKey(user, key):
+    return MODELS.Progress_management.objects.filter(responsible_by=user.username).filter(Q(target__name__contains=key) |
+                                                                                          Q(target__reading__contains=key)).order_by('target', 'registered_at')
+
+def getTeamProgressList(user, key=None):
     """
     ユーザからチームの別メンバの進捗を取得する
     return progress_management[]
@@ -122,7 +127,10 @@ def getTeamProgressList(user):
 
         # 自分以外のチームのメンバーシップのユーザに紐づく進捗をリストに詰める
         for team_membership in team_membership_list:
-            team_progress_list= MODELS.Progress_management.objects.filter(responsible_by=team_membership.user).order_by('target', 'registered_at')
+            if key:
+                team_progress_list= MODELS.Progress_management.objects.filter(responsible_by=team_membership.user).filter(Q(target__name__contains=key) | Q(target__reading__contains=key)).order_by('target', 'registered_at')
+            else:
+                team_progress_list= MODELS.Progress_management.objects.filter(responsible_by=team_membership.user).order_by('target', 'registered_at')
             team_progress_lists.append(team_progress_list)
 
     else:
