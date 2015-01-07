@@ -5,6 +5,23 @@
         </div>
         <div class="col-xs-8 col-sm-10">
         <div style="margin-top:25px;border-bottom:1px solid #d9d9d9;padding-bottom:50px;">
+          <span style="vertical-align:middle;float:left;">
+            {% if search_action %}
+              <form enctype="multipart/form-data" method="POST" action="{{main_url}}">
+                {%csrf_token%}
+                <div class="fieldWrapper form-group form-inline">
+                  <input class="form-control" id="search_action" name="key" style="width:300px;" placeholder="type search word..." type="text"
+                    {% if key %}
+                    value="{{key}}"
+                    {% endif%}
+                    >
+                  <input type="hidden" name="action" value="{{ search_action }}">
+                  <input type="submit" class="btn btn-primary" value="search">
+                </div>
+              </form>
+            {% endif %}
+          </span>
+
           <span style="vertical-align:middle;float:right;">
             {% if insert_button %}
             <a id="insert_button" class="{{ insert_button }}" href="#sub_content">

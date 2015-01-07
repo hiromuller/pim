@@ -52,6 +52,9 @@ def index(request):
     elif action == CONFIG.ACTION_TARGET_UPDATE:
         return TARGET_VIEWS.targetUpdate(request)
 
+    elif action == CONFIG.ACTION_TARGET_SEARCH:
+        return TARGET_VIEWS.targetSearch(request)
+
     elif action == CONFIG.ACTION_ACCOUNT:
         return ACCOUNT_VIEWS.index(request)
 

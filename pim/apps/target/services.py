@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import common.models as MODELS
+from common.services import QuerySetUtil
 from django.db import transaction
 import logging
 
@@ -143,12 +144,32 @@ def selectResponsibleTargetList(user):
     target_list = set(target_list)
     return target_list
 
+def selectResponsibleTargetListByKey(user, key):
+    """
+    ユーザが担当しているターゲットリストを返す
+    """
+    logger.info('selectResponsibleTargetListByKey: ' + user.username)
+    kwargs = QuerySetUtil.getKeywordSearchFilterArgsAll(MODELS.Target, "progress_management__target", key)
+    target_list = MODELS.Target.objects.filter(progress_management__responsible_by=user, done_flg=False).filter(kwargs).order_by('reading')
+    target_list = set(target_list)
+    return target_list
+
 def selectRegisteredTargetList(user):
     """
     ユーザが登録したターゲットリストを返す
     """
     logger.info('selectRegisteredTargetList: ' + user.username)
     target_list = MODELS.Target.objects.filter(target_register__user=user, done_flg=False).order_by('reading')
+    target_list = set(target_list)
+    return target_list
+
+def selectRegisteredTargetListByKey(user, key):
+    """
+    ユーザが登録したターゲットリストを返す
+    """
+    logger.info('selectRegisteredTargetListByKey: ' + user.username)
+    kwargs = QuerySetUtil.getKeywordSearchFilterArgsAll(MODELS.Target, "target_register__target", key)
+    target_list = MODELS.Target.objects.filter(target_register__user=user, done_flg=False).filter(kwargs).order_by('reading')
     target_list = set(target_list)
     return target_list
 
@@ -166,12 +187,36 @@ def selectTeamTargetList(user):
     target_list = set(target_list)
     return target_list
 
+def selectTeamTargetListByKey(user, key):
+    """
+    チームのユーザが登録したターゲットリストを返す
+    """
+    logger.info('selectTeamTargetListByKey: ' + user.username)
+    team_list = MODELS.Team.objects.filter(membership__user=user)
+    target_list = []
+    for team in team_list:
+        user_list = MODELS.User.objects.filter(membership__team=team)
+        for user in user_list:
+            target_list.extend(selectRegisteredTargetListByKey(user, key))
+    target_list = set(target_list)
+    return target_list
+
 def selectDoneRegisteredTargetList(user):
     """
     ユーザが登録した完了ターゲットリストを返す
     """
     logger.info('selectDoneRegisteredTargetList: ' + user.username)
     target_list = MODELS.Target.objects.filter(target_register__user=user, done_flg=True).order_by('reading')
+    target_list = set(target_list)
+    return target_list
+
+def selectDoneRegisteredTargetListByKey(user, key):
+    """
+    ユーザが登録した完了ターゲットリストを返す
+    """
+    logger.info('selectDoneRegisteredTargetListByKey: ' + user.username)
+    kwargs = QuerySetUtil.getKeywordSearchFilterArgsAll(MODELS.Target, "target_register__target", key)
+    target_list = MODELS.Target.objects.filter(target_register__user=user, done_flg=True).filter(kwargs).order_by('reading')
     target_list = set(target_list)
     return target_list
 
@@ -186,6 +231,20 @@ def selectDoneTeamTargetList(user):
         user_list = MODELS.User.objects.filter(membership__team=team)
         for user in user_list:
             target_list.extend(selectDoneRegisteredTargetList(user))
+    target_list = set(target_list)
+    return target_list
+
+def selectDoneTeamTargetListByKey(user, key):
+    """
+    チームのユーザが登録した完了ターゲットリストを返す
+    """
+    logger.info('selectDoneTeamTargetListByKey: ' + user.username)
+    team_list = MODELS.Team.objects.filter(membership__user=user)
+    target_list = []
+    for team in team_list:
+        user_list = MODELS.User.objects.filter(membership__team=team)
+        for user in user_list:
+            target_list.extend(selectDoneRegisteredTargetListByKey(user, key))
     target_list = set(target_list)
     return target_list
 

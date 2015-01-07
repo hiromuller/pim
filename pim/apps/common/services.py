@@ -7,6 +7,7 @@ Created on 2014/07/23
 from django.db import transaction
 import common.models as MODELS
 import consts as CONSTS
+from django.db.models import Q
 
 def getUserByLoginId(username):
     user = MODELS.User.objects.filter(username = username)
@@ -51,3 +52,20 @@ def addAgreement(user, statement_id):
     statement_agreement.agreement = True
     statement_agreement.statement = statement
     statement_agreement.save()
+
+class QuerySetUtil():
+    '''
+    django QuerySet操作補助関連のUtilを集めたクラス
+    '''
+    @classmethod
+    def getKeywordSearchFilterArgsAll(self, model, model_str, keyword):
+        queries = []
+        for f in model._meta.fields:
+            if model._meta.get_field(f.name).get_internal_type() in ['CharField', 'TextField'] :
+                kwargs = {str('%s__contains' % f.name) : keyword}
+                queries.append(Q(**kwargs))
+
+        query = queries.pop()
+        for item in queries:
+            query |= item
+        return query

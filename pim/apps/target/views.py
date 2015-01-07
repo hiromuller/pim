@@ -20,7 +20,7 @@ def index(request):
     forms = {'addForm':FORMS.TargetForm()}
     c = {}
     c.update(forms)
-    return show(request, c)
+    return list_init(request, c)
 
 def add(request):
     """
@@ -38,11 +38,11 @@ def add(request):
             c = {'addForm':fail_form}
             c.update({'form_message':MSGS.ADD_FAIL})
 
-            return show(request, c)
+            return list_init(request, c)
 
     c = {'form_message': MSGS.ADD_SUCCESS}
     c.update({'addForm':FORMS.TargetForm()})
-    return show(request, c)
+    return list_init(request, c)
 
 def targetUpdate(request):
     """
@@ -111,7 +111,43 @@ def targetDetailShow(request, c):
     c.update(CONFIG.ACTION_DICT)
     return render(request, 'common/main.html', c)
 
-def show(request, c):
+def targetSearch(request):
+    """
+    ターゲット検索
+    """
+    logger.info('ターゲットリスト画面開始')
+    forms = {'addForm':FORMS.TargetForm()}
+    c = {}
+    c.update(forms)
+
+    if request.method == 'POST':
+        key = request.POST["key"]
+        if key:
+
+        #表示するターゲットを取得する
+            responsible_target_list = SERVICES.selectResponsibleTargetListByKey(request.user, key)
+            registered_target_list = SERVICES.selectRegisteredTargetListByKey(request.user, key)
+            team_target_list = SERVICES.selectTeamTargetListByKey(request.user, key)
+            if SERVICES.hasTeam(request.user):
+                done_target_list = SERVICES.selectDoneTeamTargetListByKey(request.user, key)
+            else:
+                done_target_list = SERVICES.selectDoneRegisteredTargetListByKey(request.user, key)
+
+            target_list_list = []
+            target_list_list.append([CONSTS.RESPONSIBLE_TARGET_LIST_NAME,
+                                     responsible_target_list])
+            target_list_list.append([CONSTS.REGISTERED_TARGET_LIST_NAME,
+                                     registered_target_list])
+            target_list_list.append([CONSTS.TEAM_TARGET_LIST_NAME,
+                                     team_target_list])
+            target_list_list.append([CONSTS.DONE_TARGET_LIST_NAME,
+                                     done_target_list])
+            c.update({'target_list_list':target_list_list})
+            c.update({'key':key})
+            return show(request, c)
+    return list_init(request, c)
+
+def list_init(request, c):
     """
     ターゲット一覧表示メソッド
     URLなど必要な値をセットし、表示する
@@ -121,6 +157,7 @@ def show(request, c):
 #    target_list = SERVICES.selectAllTargetList()
 #    c.update({'target_list':target_list})
 
+    #表示するターゲットを取得する
     responsible_target_list = SERVICES.selectResponsibleTargetList(request.user)
     registered_target_list = SERVICES.selectRegisteredTargetList(request.user)
     team_target_list = SERVICES.selectTeamTargetList(request.user)
@@ -129,7 +166,6 @@ def show(request, c):
     else:
         done_target_list = SERVICES.selectDoneRegisteredTargetList(request.user)
 
-    #表示するターゲットを取得する
     target_list_list = []
     target_list_list.append([CONSTS.RESPONSIBLE_TARGET_LIST_NAME,
                              responsible_target_list])
@@ -141,7 +177,12 @@ def show(request, c):
                              done_target_list])
     c.update({'target_list_list':target_list_list})
 
+    return show(request, c)
+
+def show(request, c):
     #紹介者用ターゲットリストをセット
+    registered_target_list = SERVICES.selectRegisteredTargetList(request.user)
+    team_target_list = SERVICES.selectTeamTargetList(request.user)
     if SERVICES.hasTeam(request.user):
         introducer_form = {'introducer_form':FORMS.IntroducerForm(team_target_list)}
     else:
@@ -153,12 +194,14 @@ def show(request, c):
     main_content = CONFIG.TARGET_MAIN_URL
     sub_content = CONFIG.TARGET_SUB_URL
     insert_button = CONFIG.INSERT_BUTTON
+    search_action= CONFIG.ACTION_TARGET_SEARCH
 
     url_dict = {'main_url':main_url,
                 'page_title':page_title,
                 'main_content':main_content,
                 'sub_content':sub_content,
-                'insert_button':insert_button}
+                'insert_button':insert_button,
+                'search_action':search_action}
     c.update(csrf(request))
     c.update({'html_title':CONFIG.TARGET_HTML_TITLE})
     c.update(url_dict)
