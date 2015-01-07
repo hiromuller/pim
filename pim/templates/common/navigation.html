@@ -21,6 +21,11 @@
         <li>
           <a href="javascript:void(0)" onClick="movePage('{{ACTION_HELP}}');"><i class="glyphicon glyphicon-question-sign"></i>&nbsp;&nbsp; Help</a>
         </li>
+        {% ifequal user.username 'PimClubOwner' %}
+        <li>
+          <a href="javascript:void(0)" onClick="movePage('{{ACTION_USERLIST}}');"><i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp; USERLIST</a>
+        </li>
+        {% endifequal %}
       </ul>
       </form>
     </div>

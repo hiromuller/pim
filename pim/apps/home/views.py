@@ -14,16 +14,19 @@ def index(request):
     c = {}
     progress_list = []
 
-    # 担当者の進捗一覧を取得し、返却する
-    user_progress_list = SERVICES.getUserProgressList(user)
-    if len(user_progress_list) > 0:
-        progress_list.extend(user_progress_list)
+    if user.username == 'PimClubOwner':
+        progress_list.extend(SERVICES.getAllProgressList())
+    else:
+        # 担当者の進捗一覧を取得し、返却する
+        user_progress_list = SERVICES.getUserProgressList(user)
+        if len(user_progress_list) > 0:
+            progress_list.extend(user_progress_list)
 
-    # 担当者の所属するチームの別メンバの進捗を取得し、返却する
-    team_progress_lists = SERVICES.getTeamProgressList(user)
-    for team_progress_list in team_progress_lists:
-        if len(team_progress_list) > 0:
-            progress_list.extend(team_progress_list)
+        # 担当者の所属するチームの別メンバの進捗を取得し、返却する
+        team_progress_lists = SERVICES.getTeamProgressList(user)
+        for team_progress_list in team_progress_lists:
+            if len(team_progress_list) > 0:
+                progress_list.extend(team_progress_list)
 
     if progress_list:
         progress_list = sorted(progress_list, key=lambda x:x.registered_at, reverse=True)

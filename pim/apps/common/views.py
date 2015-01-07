@@ -11,6 +11,7 @@ import account.views as ACCOUNT_VIEWS
 import team.views as TEAM_VIEWS
 import help.views as HELP_VIEWS
 import manual.views as MANUAL_VIEWS
+import userlist.views as USERLIST_VIEWS
 import services as SERVICES
 import logging
 logger = logging.getLogger('app')
@@ -90,6 +91,12 @@ def index(request):
 
     elif action == CONFIG.ACTION_MANUAL:
         return MANUAL_VIEWS.index(request)
+
+    elif action == CONFIG.ACTION_USERLIST:
+        if request.user.username == 'PimClubOwner':
+            return USERLIST_VIEWS.index(request)
+        else:
+            return view(request)
 
     elif action == CONFIG.ACTION_DO_AGREE:
         return makeAgreement(request)

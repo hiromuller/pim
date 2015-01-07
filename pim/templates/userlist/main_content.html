@@ -1,0 +1,30 @@
+    <div id="main_content">
+      <table class="table table-hover" style="font-size:12px;">
+        <thead>
+          <tr>
+            <th>photo</th>
+            <th>Account</th>
+            <th>Name</th>
+            <th>team</th>
+            <th>birthday</th>
+            <th>birth_place</th>
+            <th>email</th>
+            <th>last_login</th>
+          </tr>
+        </thead>
+        <tbody>
+        {%for user in userlist%}
+          <tr>
+            <td><img class="header_profile" src="{{ user.profile_photo }}"></td>
+            <td><a href="http://twitter.com/{{user.username}}" target="_blank">{{ user.username }}</a></td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.team }}</td>
+            <td>{{ user.birthday }}</td>
+            <td>{{ user.birth_place }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.last_login }}</td>
+          </tr>
+         {% endfor %}
+        </tbody>
+      </table>
+    </div>

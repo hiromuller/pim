@@ -4,19 +4,13 @@ import logging
 
 logger = logging.getLogger('app')
 
-def getAllProgressList():
+def getUserList():
     """
-    全ての進捗を取得する
+    ユーザリストを取得する
     """
-    logger.info('getAllProgressList')
-    progress_management_list = []
+    logger.info('getUserList')
 
-    result = MODELS.Progress_management.objects.all().order_by('registered_at')
-    if result:
-        progress_management_list = result
-
-    return progress_management_list
-
+    return MODELS.User.objects.all()
 
 def getUserProgressList(user):
     """

@@ -36,6 +36,10 @@ TOP_PAGE_TITLE = HOME_PAGE_TITLE_URL
 TOP_CONTENT_MAIN = HOME_MAIN_URL
 TOP_CONTENT_SUB = HOME_SUB_URL
 
+USERLIST_PAGE_TITLE_URL = 'userlist/page_title.html'
+USERLIST_MAIN_URL = 'userlist/main_content.html'
+USERLIST_SUB_URL = 'userlist/sub_content.html'
+
 INSERT_BUTTON = 'popup_insert'
 
 
@@ -44,6 +48,7 @@ INSERT_BUTTON = 'popup_insert'
 """
 ACTION_LOGIN = 'login'
 ACTION_HOME = 'home'
+ACTION_USERLIST = 'userlist'
 ACTION_PROGRESS_LIST = 'progress_list'
 ACTION_PROGRESS_ADD = 'progress_add'
 ACTION_PROGRESS_UPDATE = 'progress_update'
@@ -69,6 +74,7 @@ ACTION_DO_AGREE = 'do_agree'
 
 ACTION_DICT = {
                 'ACTION_HOME':ACTION_HOME,
+                'ACTION_USERLIST':ACTION_USERLIST,
                 'ACTION_PROGRESS_LIST':ACTION_PROGRESS_LIST,
                 'ACTION_PROGRESS_ADD':ACTION_PROGRESS_ADD,
                 'ACTION_PROGRESS_UPDATE':ACTION_PROGRESS_UPDATE,
@@ -102,6 +108,7 @@ CONTENT_SUB = '/sub_content.html'
 HTMLタイトル
 """
 HOME_HTML_TITLE = 'Home'
+USERLIST_HTML_TITLE = 'Home'
 PROGRESS_HTML_TITLE = 'Progress'
 TARGET_HTML_TITLE = 'Target'
 ACCOUNT_HTML_TITLE = 'Account'
