@@ -29,84 +29,105 @@ def index(request):
     else:
         action = CONFIG.ACTION_LOGIN
 
-    #ページの振り分け
-    if action == CONFIG.ACTION_HOME:
-        return HOME_VIEWS.index(request)
+    if request.user.is_active:
+        #ページの振り分け
+        if action == CONFIG.ACTION_HOME:
+            return HOME_VIEWS.index(request)
 
-    elif action == CONFIG.ACTION_PROGRESS_LIST:
-        return PROGRESS_VIEWS.index(request)
+        elif action == CONFIG.ACTION_PROGRESS_LIST:
+            return PROGRESS_VIEWS.index(request)
 
-    elif action == CONFIG.ACTION_PROGRESS_ADD:
-        return PROGRESS_VIEWS.add(request)
+        elif action == CONFIG.ACTION_PROGRESS_ADD:
+            return PROGRESS_VIEWS.add(request)
 
-    elif action == CONFIG.ACTION_PROGRESS_UPDATE:
-        return PROGRESS_VIEWS.update(request)
+        elif action == CONFIG.ACTION_PROGRESS_UPDATE:
+            return PROGRESS_VIEWS.update(request)
 
-    elif action == CONFIG.ACTION_PROGRESS_SEARCH:
-        return PROGRESS_VIEWS.search(request)
+        elif action == CONFIG.ACTION_PROGRESS_SEARCH:
+            return PROGRESS_VIEWS.search(request)
 
-    elif action == CONFIG.ACTION_TARGET_LIST:
-        return TARGET_VIEWS.index(request)
+        elif action == CONFIG.ACTION_TARGET_LIST:
+            return TARGET_VIEWS.index(request)
 
-    elif action == CONFIG.ACTION_TARGET_ADD:
-        return TARGET_VIEWS.add(request)
+        elif action == CONFIG.ACTION_TARGET_ADD:
+            return TARGET_VIEWS.add(request)
 
-    elif action == CONFIG.ACTION_TARGET_DETAIL:
-        return TARGET_VIEWS.targetDetail(request)
+        elif action == CONFIG.ACTION_TARGET_DETAIL:
+            return TARGET_VIEWS.targetDetail(request)
 
-    elif action == CONFIG.ACTION_TARGET_UPDATE:
-        return TARGET_VIEWS.targetUpdate(request)
+        elif action == CONFIG.ACTION_TARGET_UPDATE:
+            return TARGET_VIEWS.targetUpdate(request)
 
-    elif action == CONFIG.ACTION_TARGET_SEARCH:
-        return TARGET_VIEWS.targetSearch(request)
+        elif action == CONFIG.ACTION_TARGET_SEARCH:
+            return TARGET_VIEWS.targetSearch(request)
 
-    elif action == CONFIG.ACTION_ACCOUNT:
-        return ACCOUNT_VIEWS.index(request)
+        elif action == CONFIG.ACTION_ACCOUNT:
+            return ACCOUNT_VIEWS.index(request)
 
-    elif action == CONFIG.ACTION_ACCOUNT_UPDATE:
-        return ACCOUNT_VIEWS.update(request)
+        elif action == CONFIG.ACTION_ACCOUNT_UPDATE:
+            return ACCOUNT_VIEWS.update(request)
 
-    elif action == CONFIG.ACTION_TEAM:
-        return TEAM_VIEWS.index(request)
+        elif action == CONFIG.ACTION_TEAM:
+            return TEAM_VIEWS.index(request)
 
-    elif action == CONFIG.ACTION_TEAM_ADD:
-        return TEAM_VIEWS.add(request)
+        elif action == CONFIG.ACTION_TEAM_ADD:
+            return TEAM_VIEWS.add(request)
 
-    elif action == CONFIG.ACTION_TEAM_INVITE:
-        return TEAM_VIEWS.invite(request)
+        elif action == CONFIG.ACTION_TEAM_INVITE:
+            return TEAM_VIEWS.invite(request)
 
-    elif action == CONFIG.ACTION_TEAM_INVITE_ACCEPT_USER:
-        return TEAM_VIEWS.acceptMember(request)
+        elif action == CONFIG.ACTION_TEAM_INVITE_ACCEPT_USER:
+            return TEAM_VIEWS.acceptMember(request)
 
-    elif action == CONFIG.ACTION_TEAM_INVITE_ACCEPT_TEAM:
-        return TEAM_VIEWS.acceptTeam(request)
+        elif action == CONFIG.ACTION_TEAM_INVITE_ACCEPT_TEAM:
+            return TEAM_VIEWS.acceptTeam(request)
 
-    elif action == CONFIG.ACTION_TEAM_DELETE_MEMBER:
-        return TEAM_VIEWS.deleteMember(request)
+        elif action == CONFIG.ACTION_TEAM_DELETE_MEMBER:
+            return TEAM_VIEWS.deleteMember(request)
 
-    elif action == CONFIG.ACTION_TEAM_DELETE_TEAM:
-        return TEAM_VIEWS.deleteTeam(request)
+        elif action == CONFIG.ACTION_TEAM_DELETE_TEAM:
+            return TEAM_VIEWS.deleteTeam(request)
 
-    elif action == CONFIG.ACTION_HELP:
-        return HELP_VIEWS.index(request)
+        elif action == CONFIG.ACTION_HELP:
+            return HELP_VIEWS.index(request)
 
-    elif action == CONFIG.ACTION_MANUAL:
-        return MANUAL_VIEWS.index(request)
+        elif action == CONFIG.ACTION_MANUAL:
+            return MANUAL_VIEWS.index(request)
 
-    elif action == CONFIG.ACTION_USERLIST:
-        if request.user.username == SETTING.MASTER_USER_NAME:
-            return USERLIST_VIEWS.index(request)
+        elif action == CONFIG.ACTION_USERLIST:
+            if request.user.username == SETTING.MASTER_USER_NAME:
+                return USERLIST_VIEWS.index(request)
+            else:
+                return view(request)
+
+        elif action == CONFIG.ACTION_USERLIST_DELETE_USER:
+            if request.user.username == SETTING.MASTER_USER_NAME:
+                return USERLIST_VIEWS.deleteUser(request)
+            else:
+                return view(request)
+
+        elif action == CONFIG.ACTION_USERLIST_ACTIVATE_USER:
+            if request.user.username == SETTING.MASTER_USER_NAME:
+                return USERLIST_VIEWS.activateUser(request)
+            else:
+                return view(request)
+
+        elif action == CONFIG.ACTION_USERLIST_DEACTIVATE_USER:
+            if request.user.username == SETTING.MASTER_USER_NAME:
+                return USERLIST_VIEWS.deactivateUser(request)
+            else:
+                return view(request)
+
+        elif action == CONFIG.ACTION_DO_AGREE:
+            return makeAgreement(request)
+
         else:
-            return view(request)
-
-    elif action == CONFIG.ACTION_DO_AGREE:
-        return makeAgreement(request)
-
+            if SERVICES.hasAgreement(request.user):
+                return view(request)
+            else:
+                return askForAgreement(request)
     else:
-        if SERVICES.hasAgreement(request.user):
-            return view(request)
-        else:
-            return askForAgreement(request)
+        return informLocked(request)
 
 def view(request):
     return HOME_VIEWS.index(request)
@@ -149,3 +170,12 @@ def makeAgreement(request):
             SERVICES.addAgreement(request.user, request.POST['statement_id'])
             return view(request)
     return askForAgreement(request)
+
+def informLocked(request):
+    """
+    ロックされているユーザ
+    """
+    logger.info('locked')
+
+    c ={}
+    return render(request, 'common/locked.html', c)

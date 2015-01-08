@@ -1,4 +1,6 @@
     <div id="main_content">
+      <form id="list_form" method="post" action="{{main_url}}">
+      {% csrf_token %}
       <table class="table table-hover" style="font-size:12px;">
         <thead>
           <tr>
@@ -8,14 +10,19 @@
             <th>Name</th>
             <th>team</th>
             <th>birthday</th>
-            <th>birth_place</th>
             <th>email</th>
             <th>last_login</th>
+            <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
         {%for user in userlist%}
+          {% if user.is_active %}
           <tr>
+          {% else %}
+          <tr bgcolor="#d3d3d3">
+          {% endif %}
             <td><img class="header_profile" src="{{ user.profile_photo }}"></td>
             <td>-</td>
             <td><a href="http://twitter.com/{{user.username}}" target="_blank">{{ user.username }}</a></td>
@@ -25,8 +32,55 @@
             <td>{{ user.birth_place }}</td>
             <td>{{ user.email }}</td>
             <td>{{ user.last_login }}</td>
+            <td>
+            {% ifnotequal master_user_name user.username %}
+              {% if user.is_active %}
+                      <a href="javascript:void(0)" onClick="deactivateUser('{{user.username}}', '{{ACTION_USERLIST_DEACTIVATE_USER}}');return false;">
+                        deactivate
+                      </a>
+              {% else %}
+                      <a href="javascript:void(0)" onClick="activateUser('{{user.username}}', '{{ACTION_USERLIST_ACTIVATE_USER}}');return false;">
+                        activate
+                      </a>
+              {% endif %}
+            {% endifnotequal %}
+            </td>
+            <td>
+            {% ifnotequal master_user_name user.username %}
+              {% if user.is_active %}
+                      <a href="javascript:void(0)" onClick="deleteObject('{{user.username}}', '', '{{ACTION_USERLIST_DELETE_USER}}');return false;">
+                        delete
+                      </a>
+              {% else %}
+                      <a href="javascript:void(0)" onClick="activateUser('{{user.username}}', '{{ACTION_USERLIST_ACTIVATE_USER}}');return false;">
+                        activate
+                      </a>
+              {% endif %}
+            {% endifnotequal %}
+            </td>
           </tr>
          {% endfor %}
         </tbody>
+      </table>
+      </form>
+      <br>
+      <br>
+      <table class="table table-hover" style="font-size:12px;">
+        <tr>
+          <td>
+            *deactivate
+          </td>
+          <td>
+            ユーザをロックする。ユーザに関連するレコードは保持される。<br>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            *delete
+          </td>
+          <td>
+            ユーザをロックする。ユーザに関連するターゲットやチームは消去される。ただし、ユーザが登録したが他ユーザが担当であるターゲットは担当ユーザに登録権が引き継がれる。ユーザ情報は消去されない。
+          </td>
+        </tr>
       </table>
     </div>
