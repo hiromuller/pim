@@ -3,6 +3,7 @@
         <thead>
           <tr>
             <th>photo</th>
+            <th>target</i></th>
             <th>Account</th>
             <th>Name</th>
             <th>team</th>
@@ -16,6 +17,7 @@
         {%for user in userlist%}
           <tr>
             <td><img class="header_profile" src="{{ user.profile_photo }}"></td>
+            <td>{{ num_target_dict|lookup:user }}</td>
             <td><a href="http://twitter.com/{{user.username}}" target="_blank">{{ user.username }}</a></td>
             <td>{{ user.name }}</td>
             <td>{{ user.team }}</td>

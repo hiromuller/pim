@@ -107,6 +107,7 @@ def targetDetailShow(request, c):
                 'page_title':page_title,
                 'main_content':main_content,
                 'sub_content':sub_content}
+    c.update({'master_user_name':SETTING.MASTER_USER_NAME})
     c.update(csrf(request))
     c.update(url_dict)
     c.update(CONFIG.ACTION_DICT)

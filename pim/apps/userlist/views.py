@@ -13,9 +13,12 @@ def index(request):
     c = {}
 
     userlist = SERVICES.getUserList()
-
     c.update({'userlist':userlist})
 
+    num_target_dict = {}
+    for user in userlist:
+        num_target_dict.update({user:SERVICES.getNumTarget(user)})
+    c.update({'num_target_dict':num_target_dict})
     main_url = CONFIG.TOP_URL
     page_title = CONFIG.USERLIST_PAGE_TITLE_URL
     main_content = CONFIG.USERLIST_MAIN_URL

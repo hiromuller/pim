@@ -10,7 +10,7 @@ def getUserList():
     """
     logger.info('getUserList')
 
-    return MODELS.User.objects.all()
+    return MODELS.User.objects.all().order_by('last_login').reverse()
 
 def getUserProgressList(user):
     """
@@ -54,3 +54,11 @@ def getTeamProgressList(user):
         pass
 
     return team_progress_lists
+
+def getNumTarget(user):
+    """
+    ユーザが登録したターゲット数を返す
+    return int
+    """
+
+    return  MODELS.Target.objects.filter(target_register__user=user).count()

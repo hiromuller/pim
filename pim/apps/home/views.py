@@ -15,7 +15,7 @@ def index(request):
     c = {}
     progress_list = []
 
-    if user.username == 'PimClubOwner':
+    if user.username == SETTING.MASTER_USER_NAME:
         progress_list.extend(SERVICES.getAllProgressList())
     else:
         # 担当者の進捗一覧を取得し、返却する
