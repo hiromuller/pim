@@ -4,6 +4,7 @@ from django.core.context_processors import csrf
 from django.contrib.auth.decorators import login_required
 import consts as CONST
 import configs as CONFIG
+import settings as SETTING
 import home.views as HOME_VIEWS
 import progress.views as PROGRESS_VIEWS
 import target.views as TARGET_VIEWS
@@ -93,7 +94,7 @@ def index(request):
         return MANUAL_VIEWS.index(request)
 
     elif action == CONFIG.ACTION_USERLIST:
-        if request.user.username == 'PimClubOwner':
+        if request.user.username == SETTING.MASTER_USER_NAME:
             return USERLIST_VIEWS.index(request)
         else:
             return view(request)

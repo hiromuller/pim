@@ -2,6 +2,7 @@
 from django.shortcuts import render
 from django.core.context_processors import csrf
 import configs as CONFIG
+import settings as SETTING
 import services as SERVICES
 import models as TEAM_MODELS
 import forms as FORMS
@@ -188,6 +189,7 @@ def show(request, c):
                 'page_title':page_title,
                 'main_content':main_content,
                 'sub_content':sub_content}
+    c.update({'master_user_name':SETTING.MASTER_USER_NAME})
     c.update(csrf(request))
     c.update({'html_title':CONFIG.TEAM_HTML_TITLE})
     c.update(url_dict)

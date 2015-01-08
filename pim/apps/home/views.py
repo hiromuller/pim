@@ -4,6 +4,7 @@ from django.core.context_processors import csrf
 import configs as CONFIG
 import services as SERVICES
 import consts as CONSTS
+import settings as SETTING
 import logging
 
 logger = logging.getLogger('app')
@@ -46,6 +47,7 @@ def index(request):
                 'main_content':main_content,
                 'sub_content':sub_content,
                 }
+    c.update({'master_user_name':SETTING.MASTER_USER_NAME})
     c.update(csrf(request))
     c.update({'html_title':CONFIG.HOME_HTML_TITLE})
     c.update(url_dict)

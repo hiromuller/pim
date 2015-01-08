@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.core.context_processors import csrf
 import configs as CONFIG
 import services as SERVICES
+import settings as SETTING
 import logging
 import messages as MSGS
 from account.forms import UserForm
@@ -21,7 +22,7 @@ def index(request):
 
 def update(request):
     logger.info('update')
-    
+
     if request.method == 'POST':
         user_form = UserForm(request.POST, instance=SERVICES.getUserInfo(request.user.username))
         result = SERVICES.updateUserInfo(user_form)
@@ -42,10 +43,11 @@ def show(request, c):
     main_content = CONFIG.ACCOUNT_MAIN_URL
     sub_content = CONFIG.ACCOUNT_SUB_URL
     action_dict = CONFIG.ACTION_DICT
-    url_dict = {'main_url':main_url, 
-                'page_title':page_title, 
+    url_dict = {'main_url':main_url,
+                'page_title':page_title,
                 'main_content':main_content,
                 'sub_content':sub_content}
+    c.update({'master_user_name':SETTING.MASTER_USER_NAME})
     c.update(csrf(request))
     c.update({'html_title':CONFIG.ACCOUNT_HTML_TITLE})
     c.update(url_dict)

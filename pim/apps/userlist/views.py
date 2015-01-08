@@ -2,6 +2,7 @@
 from django.shortcuts import render
 from django.core.context_processors import csrf
 import configs as CONFIG
+import settings as SETTING
 import services as SERVICES
 import logging
 
@@ -27,6 +28,7 @@ def index(request):
                 'sub_content':sub_content,
                 'insert_button':'-'
                 }
+    c.update({'master_user_name':SETTING.MASTER_USER_NAME})
     c.update(csrf(request))
     c.update({'html_title':CONFIG.USERLIST_HTML_TITLE})
     c.update(url_dict)
