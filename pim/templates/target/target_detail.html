@@ -6,10 +6,14 @@
         <table class="table">
           <tbody>
             <tr>
-              <td class="col-md-2">
+              <td class="col-md-1">
+                {% if target.target_photo%}
                 <img src="{{STATIC_URL}}{{target.target_photo}}" width="100%">
+                {% else %}
+                <img src="{{STATIC_URL}}images/no_image.png" width="100%">
+                {% endif %}
               </td>
-              <td class="col-md-10">
+              <td class="col-md-11">
                 <table style="width:100%;" class="table">
                   <tr>
                     <td class="col-md-12" colspan="4">

@@ -108,6 +108,7 @@ def targetDetailShow(request, c):
                 'main_content':main_content,
                 'sub_content':sub_content}
     c.update({'master_user_name':SETTING.MASTER_USER_NAME})
+    c.update({'main_only':',main_only'})
     c.update(csrf(request))
     c.update(url_dict)
     c.update(CONFIG.ACTION_DICT)
