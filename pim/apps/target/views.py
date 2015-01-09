@@ -54,7 +54,7 @@ def targetUpdate(request):
     result = ''
 
     if request.method == 'POST':
-        target_form = FORMS.TargetForm(request.POST)
+        target_form = FORMS.TargetForm(request.POST, request.FILES)
         target_id = request.POST['id']
         target = SERVICES.selectTargetById(target_id)
         if SERVICES.userOwnsTarget(request.user, target):

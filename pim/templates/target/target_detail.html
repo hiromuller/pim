@@ -7,7 +7,7 @@
           <tbody>
             <tr>
               <td class="col-md-2">
-                <img src="{{STATIC_URL}}images/no_image.png" width="100%">
+                <img src="{{STATIC_URL}}{{target.target_photo}}" width="100%">
               </td>
               <td class="col-md-10">
                 <table style="width:100%;" class="table">
@@ -15,6 +15,15 @@
                     <td class="col-md-12" colspan="4">
                       {{ targetForm.name.errors }}{{ targetForm.reading.errors }}{{ targetForm.nick_name.errors }}
                       {{ targetForm.name}} {{ targetForm.reading }} {{ targetForm.nick_name }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th class="col-md-2">
+                      画像:
+                    </th>
+                    <td class="col-md-10" colspan="3">
+                      {{ targetForm.target_photo.errors }}
+                      {{ targetForm.target_photo }}
                     </td>
                   </tr>
                   <tr>
