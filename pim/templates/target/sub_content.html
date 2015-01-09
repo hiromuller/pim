@@ -3,7 +3,7 @@
         {{form_message}}
         <form enctype="multipart/form-data" method="POST" action="{{main_url}}">
         {%csrf_token%}
-        
+
         <h4>ターゲット登録</h4>
 
         <div class="fieldWrapper form-group">
@@ -120,13 +120,13 @@
 	          <label for="id_type_3">性格3:</label>
 	          {{ addForm.type_3 }}
 	        </div>
-<!--
+
 	        <div class="fieldWrapper form-group">
 	          {{ addForm.target_photo.errors }}
 	          <label for="id_profile_photo">写真:</label>
 	          {{ addForm.target_photo }}
 	        </div>
- -->
+
 	        <div class="fieldWrapper form-group">
 	          {{ introducer_form.introducer.errors }}
 	          <label for="id_introducer">紹介者:</label>

@@ -2,6 +2,8 @@
 import common.models as MODELS
 from common.services import QuerySetUtil
 from django.db import transaction
+from PIL import Image
+import settings as SETTING
 import logging
 
 logger = logging.getLogger('app')
@@ -32,10 +34,29 @@ def addTarget(add_target_form):
 
     if add_target_form.is_valid():
         target = add_target_form.save()
+        resizeImage(target)
         return target
     else:
         return None
 
+@transaction.atomic
+def resizeImage(target):
+    logger.info('画像リサイズ')
+    small_size = (150, 100)
+    img = Image.open(SETTING.MEDIA_ROOT + str(target.target_photo))
+    img_w, img_h = img.size
+    aspect_ratio = img_w / float(img_h)
+    new_height = int(small_size[0] / aspect_ratio)
+
+    if new_height < 100:
+        final_width = small_size[0]
+        final_height = new_height
+    else:
+        final_width = int(aspect_ratio * small_size[1])
+        final_height = small_size[1]
+
+    imaged = img.resize((final_width, final_height), Image.ANTIALIAS)
+    imaged.save(SETTING.MEDIA_ROOT + str(target.target_photo), quality=100)
 
 @transaction.atomic
 def addTargetRegister(target, user):
