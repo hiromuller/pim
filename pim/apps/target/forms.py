@@ -4,7 +4,6 @@ Created on 2014/07/23
 
 @author: h-nagata
 '''
-from django.db import models
 from django import forms
 import common.models as MODELS
 
