@@ -92,6 +92,7 @@ def updateTarget(target_form, id):
         target = target_form.save(commit=False)
         target.id = id
         target.save()
+        resizeImage(target)
         return 'success'
 
     return 'fail'
